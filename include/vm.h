@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/22 16:08:35 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/23 17:16:51 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,10 @@ void				players_introduction(t_players *players);
 int     			start_battle(t_cursor *processes, t_players *players);
 int					convert_to_num(char *str, int size);
 int					*check_codage_byte(int codage_byte, int op);
+int					get_vfarena(t_cursor *processes, char *arena, int n, int pc);
 int					sti(t_cursor *processes, t_game_para *parameters, int *size);
+int					and(t_cursor *processes, t_game_para *parameters, int *size);
+int					or(t_cursor *processes, t_game_para *parameters, int *size);
+int					xor(t_cursor *processes, t_game_para *parameters, int *size);
+int					ld(t_cursor *processes, t_game_para *parameters, int *size);
 #endif

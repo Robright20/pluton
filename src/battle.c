@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/02/22 16:46:20 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/23 17:16:35 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,34 +40,34 @@ t_game_para		*init_game_parameters(t_players *players)
 	return (parameters);
 }
 
-int		execute_operation(t_cursor *processes, t_game_para *parameters)
+void		execute_operation(t_cursor *processes, t_game_para *parameters)
 {
-	int 	ret;
 	int		*size;
 
-	ret = 1;
-	if (!(size = check_codage_byte(parameters->arena[processes->pc], 11)))
-		return (-1);
-	printf("%d %d %d\n", size[0], size[1], size[2]);
-	// (processes->opcode == 1) && (ret = live(processes, parameters));
-	// (processes->opcode == 2) && (ret = ld(processes, parameters));
-	// (processes->opcode == 3) && (ret = st(processes, parameters));
-	// (processes->opcode == 4) && (ret = add(processes, parameters));
-	// (processes->opcode == 5) && (ret = sub(processes, parameters));
-	// (processes->opcode == 6) && (ret = and(processes, parameters));
-	// (processes->opcode == 7) && (ret = or(processes, parameters));
-	// (processes->opcode == 8) && (ret = xor(processes, parameters));
-	// (processes->opcode == 9) && (ret = zjmp(processes, parameters));
-	// (processes->opcode == 10) && (ret = ldi(processes, parameters));
-	(processes->opcode == 11) && (ret = sti(processes, parameters, size));
-	// (processes->opcode == 12) && (ret = ft_fork(processes, parameters));
-	// (processes->opcode == 13) && (ret = lld(processes, parameters));
-	// (processes->opcode == 14) && (ret = lldi(processes, parameters));
-	// (processes->opcode == 15) && (ret = lfork(processes, parameters));
-	// (processes->opcode == 16) && (ret = aff(processes, parameters));
-	processes->pc = (processes->pc + size[0] + size[1] + size[2]) % MEM_SIZE;
+	size = check_codage_byte(parameters->arena[processes->pc], 11);
+	if (!size[3])
+	{
+		// (processes->opcode == 1) && live(processes, parameters, size);
+		// (processes->opcode == 2) && ld(processes, parameters, size);
+		// (processes->opcode == 3) && st(processes, parameters, size);
+		// (processes->opcode == 4) && add(processes, parameters, size);
+		// (processes->opcode == 5) && sub(processes, parameters, size);
+		(processes->opcode == 6) && and(processes, parameters, size);
+		(processes->opcode == 7) && or(processes, parameters, size);
+		(processes->opcode == 8) && xor(processes, parameters, size);
+		// (processes->opcode == 9) && zjmp(processes, parameters, size);
+		// (processes->opcode == 10) && ldi(processes, parameters, size);
+		(processes->opcode == 11) && sti(processes, parameters, size);
+		// (processes->opcode == 12) && ft_fork(processes, parameters, size);
+		// (processes->opcode == 13) && lld(processes, parameters, size);
+		// (processes->opcode == 14) && lldi(processes, parameters, size);
+		// (processes->opcode == 15) && lfork(processes, parameters, size);
+		// (processes->opcode == 16) && aff(processes, parameters, size);
+	}
+
+	processes->pc = (processes->pc + 1 + (size[0] == 3 ? 2 : size[0]) +
+	(size[1] == 3 ? 2 : size[1]) + (size[2] == 3 ? 2 : size[2])) % MEM_SIZE;
 	ft_memdel((void **)&size);
-	return (ret);
 }
 
 int			set_opcode(t_cursor *processes, t_game_para *parameters)
@@ -81,8 +81,7 @@ int			set_opcode(t_cursor *processes, t_game_para *parameters)
 	}
 	processes->wait_cycle--;
 	if (!processes->wait_cycle)
-		if (!execute_operation(processes, parameters))
-			return (-1);
+		execute_operation(processes, parameters);
 	return (1);
 }
 
