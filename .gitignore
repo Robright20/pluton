@@ -35,6 +35,9 @@
 *.i*86
 *.x86_64
 *.hex
+corewar
+asm
+champs/
 
 # Debug files
 *.dSYM/
