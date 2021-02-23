@@ -1,0 +1,96 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm.h                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
+/*   Updated: 2021/02/22 16:08:35 by aalhaoui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef VM_H
+# define VM_H
+
+# include <sys/stat.h>
+# include <fcntl.h>
+# include "op.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include "../libft/libft.h"
+
+typedef	struct		s_cursor	t_cursor;
+typedef	struct 		s_op 		t_op;
+typedef	struct		s_player	t_player;
+typedef	struct		s_players	t_players;
+typedef	struct		s_game_para	t_game_para;
+typedef	struct		s_cursor	t_cursor;
+
+struct				s_op
+{
+	char			name[10];
+	int				args_counter;
+	char			args[3];
+	int				opcode;
+	int				cycle_to_wait;
+	char			description[64];
+	int				codage_byte;
+	int				dir_size;
+};
+
+extern	t_op		op_tab[17];
+
+struct				s_player
+{
+	char			*name;
+	char			*comment;
+	char			*code;
+	int				size;
+	int				id;
+};
+
+struct				s_players
+{
+	t_player		**player;
+	int				*ids_av;
+	int				number_of_players;
+};
+
+struct				s_game_para
+{
+	char			*arena;
+	int				last_live;
+	int				cycle_counter;
+	int				cycle_to_die;
+	int				check_counter;
+	int				live_counter;
+	int     		opcode_wait_cycles[17];
+};
+
+struct				s_cursor
+{
+	int				pc;
+	int				id;
+	int				carry;
+	int				opcode;
+	int				last_live;
+	int				wait_cycle;
+	int				jump;
+	int				registeries[REG_NUMBER];
+	t_cursor		*next;
+};
+
+int					verify_champ(t_players *players, char *argv, int id);
+void				delete_process(t_cursor *processes, int id);
+int					init_arena(t_players *players, t_game_para *parameters);
+unsigned int		convert_to_numfd(int size, int fd);
+t_cursor			*init_processes(t_players *players);
+t_cursor			*add_process(t_cursor *processes, t_players *players, int id);
+void				delete_process(t_cursor *processes, int id);
+void				players_introduction(t_players *players);
+int     			start_battle(t_cursor *processes, t_players *players);
+int					convert_to_num(char *str, int size);
+int					*check_codage_byte(int codage_byte, int op);
+int					sti(t_cursor *processes, t_game_para *parameters, int *size);
+#endif
