@@ -3,27 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:55:51 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/22 16:09:40 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/24 12:17:14 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		live(t_cursor *processes, t_game_para *parameters)
+int		live(t_cursor *processes, t_game_para *parameters, int size)
 {
-	int		arg1_value;
-	char	*arg1;
+	int		arg1;
 
-	arg1 = ft_strsub(parameters->arena, processes->pc, 4);
-	arg1_value = convert_to_num(arg1, 4);
-	processes->pc += 4;
-	if (arg1_value == processes->registeries[0])
-	{
-		parameters->last_live = -processes->registeries[0];
-		parameters->live_counter++;
-	}
+	arg1 = get_vfarena(processes, parameters->arena, 4, processes->pc);
+	if (arg1 == processes->registeries[1])
+		parameters->last_live;
 	return (1);
 }

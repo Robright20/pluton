@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sti.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:58:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/23 17:27:31 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/24 11:57:45 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int		sti(t_cursor *processes, t_game_para *parameters, int *size)
 	sum += get_vfarena(processes, parameters->arena, size[1], pc);
 	pc = (pc + size[1]) % MEM_SIZE;
 	sum += get_vfarena(processes, parameters->arena, size[2], pc);
-	pc = (pc + size[2]) % MEM_SIZE;
 	index = (index + ((sum + MEM_SIZE) % MEM_SIZE) % IDX_MOD) % MEM_SIZE;
 	parameters->arena[index] = arg1;
 	printf("%d %d\n", pc, parameters->arena[index]);

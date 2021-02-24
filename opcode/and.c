@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   and.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 16:20:53 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/23 17:50:31 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/24 11:57:53 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,5 @@ int		and(t_cursor *processes, t_game_para *parameters, int *size)
 	result = arg1 & arg2;
 	(result == 0) && (processes->carry = 1);
 	processes->registeries[(int )parameters->arena[pc]] = result;
-	pc = (pc + size[2]) % MEM_SIZE;
 	return (1);
 }

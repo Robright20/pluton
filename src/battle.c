@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   battle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/02/23 17:16:35 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/24 12:30:38 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ void		execute_operation(t_cursor *processes, t_game_para *parameters)
 {
 	int		*size;
 
-	size = check_codage_byte(parameters->arena[processes->pc], 11);
+	if (op_tab[processes->opcode].codage_byte)
+		size = check_codage_byte(parameters->arena[processes->pc], processes->opcode);
 	if (!size[3])
 	{
-		// (processes->opcode == 1) && live(processes, parameters, size);
+		(processes->opcode == 1) && live(processes, parameters, size);
 		// (processes->opcode == 2) && ld(processes, parameters, size);
 		// (processes->opcode == 3) && st(processes, parameters, size);
 		// (processes->opcode == 4) && add(processes, parameters, size);
@@ -64,8 +65,8 @@ void		execute_operation(t_cursor *processes, t_game_para *parameters)
 		// (processes->opcode == 15) && lfork(processes, parameters, size);
 		// (processes->opcode == 16) && aff(processes, parameters, size);
 	}
-
-	processes->pc = (processes->pc + 1 + (size[0] == 3 ? 2 : size[0]) +
+	if (op_tab[processes->opcode].codage_byte)
+		processes->pc = (processes->pc + 1 + (size[0] == 3 ? 2 : size[0]) +
 	(size[1] == 3 ? 2 : size[1]) + (size[2] == 3 ? 2 : size[2])) % MEM_SIZE;
 	ft_memdel((void **)&size);
 }
