@@ -1,0 +1,31 @@
+Russian wiki
+    https://github.com/VBrazhnik/Corewar/wiki
+English wiki
+    https://github.com/k-off/Corewar/wiki/Introduction
+coreware operations resume 
+    https://docs.google.com/spreadsheets/d/1tmSm8VH4mhIQPYQXae9quYiQSMRiSo809LEuSHMnOlA/edit#gid=0
+original corewar, if you wanna read more about it:
+    - corewars king of the hill
+        ttp://www.koth.org/
+    - the Beginners guide to Redcode 
+        http://vyznev.net/corewar/guide.html    
+    - Core War
+        https://www.corewars.org/index.html
+    - creating a virtual machine/registre VM in C
+        https://en.wikibooks.org/wiki/Creating_a_Virtual_Machine/Register_VM_in_C
+corewar correction page:
+    https://github.com/rizky/42-corrections/blob/master/corewar.pdf
+a nice visualizer and GUI
+    https://github.com/conanwu777/corewar
+rizky's corewar unit-tests
+    https://github.com/rizky/corewar/tree/unit-tests
+rizky's coreware, (he have a nice resource folder)
+    https://github.com/rizky/corewar
+corewar operations by jyeo
+    https://github.com/rizky/corewar/blob/master/resources/corewar_operations_by_jyeo.pdf
+corewar cheat sheet by Ewen_
+    https://github.com/rizky/corewar/blob/master/resources/Corewar_Cheat_Sheet.pdf
+last thing:
+    - don't be afraid to ask the others, me included.
+    - and take your time reading through the resources, (I didn't do this, bcs of the lake of knowledge, and resources, but it's good thing if you have an idea of what's happening before you start the code)
+
