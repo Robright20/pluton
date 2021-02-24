@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   battle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/02/24 12:30:38 by mac              ###   ########.fr       */
+/*   Updated: 2021/02/24 16:55:54 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,18 @@ void		execute_operation(t_cursor *processes, t_game_para *parameters)
 
 	if (op_tab[processes->opcode].codage_byte)
 		size = check_codage_byte(parameters->arena[processes->pc], processes->opcode);
-	if (!size[3])
+	if (!op_tab[processes->opcode].codage_byte || !size[3])
 	{
-		(processes->opcode == 1) && live(processes, parameters, size);
-		// (processes->opcode == 2) && ld(processes, parameters, size);
-		// (processes->opcode == 3) && st(processes, parameters, size);
-		// (processes->opcode == 4) && add(processes, parameters, size);
+		(processes->opcode == 1) && live(processes, parameters);
+		(processes->opcode == 2) && ld(processes, parameters, size);
+		(processes->opcode == 3) && st(processes, parameters, size);
+		(processes->opcode == 4) && add(processes, parameters, size);
 		// (processes->opcode == 5) && sub(processes, parameters, size);
 		(processes->opcode == 6) && and(processes, parameters, size);
 		(processes->opcode == 7) && or(processes, parameters, size);
 		(processes->opcode == 8) && xor(processes, parameters, size);
 		// (processes->opcode == 9) && zjmp(processes, parameters, size);
-		// (processes->opcode == 10) && ldi(processes, parameters, size);
+		(processes->opcode == 10) && ldi(processes, parameters, size);
 		(processes->opcode == 11) && sti(processes, parameters, size);
 		// (processes->opcode == 12) && ft_fork(processes, parameters, size);
 		// (processes->opcode == 13) && lld(processes, parameters, size);

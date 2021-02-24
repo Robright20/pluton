@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sti.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:58:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/24 11:57:45 by mac              ###   ########.fr       */
+/*   Updated: 2021/02/24 16:00:23 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		get_vfarena(t_cursor *processes, char *arena, int n, int pc)
 	if (n == 1)
 	{
 		value = arena[pc];
-		if (value >= 1 && value <= 16)
+		if (value >= 1 && value < 17)
 			value = processes->registeries[value - 1];
 	}
 	else

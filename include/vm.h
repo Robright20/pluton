@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/23 17:16:51 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/24 15:44:21 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,9 @@ int					and(t_cursor *processes, t_game_para *parameters, int *size);
 int					or(t_cursor *processes, t_game_para *parameters, int *size);
 int					xor(t_cursor *processes, t_game_para *parameters, int *size);
 int					ld(t_cursor *processes, t_game_para *parameters, int *size);
+int					live(t_cursor *processes, t_game_para *parameters);
+int					st(t_cursor *processes, t_game_para *parameters, int *size);
+int					add(t_cursor *processes, t_game_para *parameters, int *size);
+int					sub(t_cursor *processes, t_game_para *parameters, int *size);
+int					ldi(t_cursor *processes, t_game_para *parameters, int *size);
 #endif

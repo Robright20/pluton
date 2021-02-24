@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   or.c                                               :+:      :+:    :+:   */
+/*   add.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/23 17:10:53 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/24 16:02:37 by aalhaoui         ###   ########.fr       */
+/*   Created: 2021/02/24 14:52:38 by aalhaoui          #+#    #+#             */
+/*   Updated: 2021/02/24 16:02:22 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		or(t_cursor *processes, t_game_para *parameters, int *size)
+int		add(t_cursor *processes, t_game_para *parameters, int *size)
 {
-	int		pc;
-	int		result;
-	int		arg1;
-	int		arg2;
+    int		pc;
+    int		arg3;
+	int		sum;
 
+	sum = 0;
 	pc = processes->pc;
 	pc = (pc + 1) % MEM_SIZE;
-	arg1 = get_vfarena(processes, parameters->arena, size[0], pc);
+	sum += get_vfarena(processes, parameters->arena, size[0], pc);
 	pc = (pc + size[0]) % MEM_SIZE;
-	arg2 = get_vfarena(processes, parameters->arena, size[1], pc);
+	sum += get_vfarena(processes, parameters->arena, size[1], pc);
 	pc = (pc + size[1]) % MEM_SIZE;
-	result = arg1 | arg2;
-	(result == 0) && (processes->carry = 1);
-	(result != 0) && (processes->carry = 0);
-	processes->registeries[(int )parameters->arena[pc] - 1] = result;
+	arg3 = parameters->arena[pc];
+	if (arg3 > 0 && arg3 <= 16)
+		processes->registeries[arg3 - 1] = sum;
+	(sum == 0) && (processes->carry = 1);
+	(sum != 0) && (processes->carry = 0);
 	return (1);
 }

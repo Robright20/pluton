@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   live.c                                             :+:      :+:    :+:   */
+/*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/17 16:55:51 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/24 14:29:57 by aalhaoui         ###   ########.fr       */
+/*   Created: 2021/02/24 16:56:09 by aalhaoui          #+#    #+#             */
+/*   Updated: 2021/02/24 17:43:35 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		live(t_cursor *processes, t_game_para *parameters)
+int		ft_fork(t_cursor *processes, t_game_para *parameters, int *size)
 {
-	int		arg1;
-
-	arg1 = get_vfarena(processes, parameters->arena, 4, processes->pc);
-	if (arg1 == processes->registeries[1])
-		parameters->last_live = arg1;
-	processes->pc = (processes->pc + 4)	% MEM_SIZE;
-	return (1);
+    
 }
