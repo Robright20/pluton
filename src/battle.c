@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/02/24 16:55:54 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/25 18:29:24 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,15 @@ void		execute_operation(t_cursor *processes, t_game_para *parameters)
 	int		*size;
 
 	if (op_tab[processes->opcode].codage_byte)
-		size = check_codage_byte(parameters->arena[processes->pc], processes->opcode);
+		size = check_codage_byte(parameters->arena[processes->pc + 1], processes->opcode);
 	if (!op_tab[processes->opcode].codage_byte || !size[3])
 	{
+		get_args(processes, parameters, size);
 		(processes->opcode == 1) && live(processes, parameters);
 		(processes->opcode == 2) && ld(processes, parameters, size);
 		(processes->opcode == 3) && st(processes, parameters, size);
 		(processes->opcode == 4) && add(processes, parameters, size);
-		// (processes->opcode == 5) && sub(processes, parameters, size);
+		(processes->opcode == 5) && sub(processes, parameters, size);
 		(processes->opcode == 6) && and(processes, parameters, size);
 		(processes->opcode == 7) && or(processes, parameters, size);
 		(processes->opcode == 8) && xor(processes, parameters, size);
@@ -66,8 +67,10 @@ void		execute_operation(t_cursor *processes, t_game_para *parameters)
 		// (processes->opcode == 16) && aff(processes, parameters, size);
 	}
 	if (op_tab[processes->opcode].codage_byte)
-		processes->pc = (processes->pc + 1 + (size[0] == 3 ? 2 : size[0]) +
+		processes->pc = (processes->pc + 2 + (size[0] == 3 ? 2 : size[0]) +
 	(size[1] == 3 ? 2 : size[1]) + (size[2] == 3 ? 2 : size[2])) % MEM_SIZE;
+	else
+		processes->pc = (processes->pc + (op_tab[processes->opcode].dir_size ? 2 : 4)) % MEM_SIZE;
 	ft_memdel((void **)&size);
 }
 
@@ -77,7 +80,6 @@ int			set_opcode(t_cursor *processes, t_game_para *parameters)
 	if (processes->wait_cycle < 0)
 	{
 		processes->opcode = parameters->arena[processes->pc];
-		processes->pc = (processes->pc + 1) % MEM_SIZE;
 		processes->wait_cycle = 1;
 	}
 	processes->wait_cycle--;

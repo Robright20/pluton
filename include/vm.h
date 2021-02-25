@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/24 15:44:21 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/25 17:31:03 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ struct				s_cursor
 	int				id;
 	int				carry;
 	int				opcode;
+	int				args[3];
 	int				last_live;
 	int				wait_cycle;
 	int				jump;
@@ -103,4 +104,5 @@ int					st(t_cursor *processes, t_game_para *parameters, int *size);
 int					add(t_cursor *processes, t_game_para *parameters, int *size);
 int					sub(t_cursor *processes, t_game_para *parameters, int *size);
 int					ldi(t_cursor *processes, t_game_para *parameters, int *size);
+int					lld(t_cursor *processes, t_game_para *parameters, int *size);
 #endif
