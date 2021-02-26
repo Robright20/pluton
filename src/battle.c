@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/02/25 18:29:24 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/26 15:28:20 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_game_para		*init_game_parameters(t_players *players)
 	return (parameters);
 }
 
-void		execute_operation(t_cursor *processes, t_game_para *parameters)
+void		execute_operation(t_cursor *processes, t_game_para *parameters, t_cursor *fprocesses)
 {
 	int		*size;
 
@@ -50,31 +50,31 @@ void		execute_operation(t_cursor *processes, t_game_para *parameters)
 	{
 		get_args(processes, parameters, size);
 		(processes->opcode == 1) && live(processes, parameters);
-		(processes->opcode == 2) && ld(processes, parameters, size);
-		(processes->opcode == 3) && st(processes, parameters, size);
-		(processes->opcode == 4) && add(processes, parameters, size);
-		(processes->opcode == 5) && sub(processes, parameters, size);
-		(processes->opcode == 6) && and(processes, parameters, size);
-		(processes->opcode == 7) && or(processes, parameters, size);
-		(processes->opcode == 8) && xor(processes, parameters, size);
-		// (processes->opcode == 9) && zjmp(processes, parameters, size);
-		(processes->opcode == 10) && ldi(processes, parameters, size);
-		(processes->opcode == 11) && sti(processes, parameters, size);
-		// (processes->opcode == 12) && ft_fork(processes, parameters, size);
-		// (processes->opcode == 13) && lld(processes, parameters, size);
-		// (processes->opcode == 14) && lldi(processes, parameters, size);
-		// (processes->opcode == 15) && lfork(processes, parameters, size);
-		// (processes->opcode == 16) && aff(processes, parameters, size);
+		(processes->opcode == 2) && ld(processes, parameters);
+		(processes->opcode == 3) && st(processes, parameters);
+		(processes->opcode == 4) && add(processes, parameters);
+		(processes->opcode == 5) && sub(processes, parameters);
+		(processes->opcode == 6) && and(processes, parameters);
+		(processes->opcode == 7) && or(processes, parameters);
+		(processes->opcode == 8) && xor(processes, parameters);
+		(processes->opcode == 9) && zjmp(processes, parameters);
+		(processes->opcode == 10) && ldi(processes, parameters);
+		(processes->opcode == 11) && sti(processes, parameters);
+		(processes->opcode == 12) && ft_fork(processes, parameters, fprocesses);
+		(processes->opcode == 13) && lld(processes, parameters);
+		(processes->opcode == 14) && lldi(processes, parameters);
+		// (processes->opcode == 15) && lfork(processes, parameters, fprocesses);
+		// (processes->opcode == 16) && aff(processes, parameters);
 	}
 	if (op_tab[processes->opcode].codage_byte)
 		processes->pc = (processes->pc + 2 + (size[0] == 3 ? 2 : size[0]) +
-	(size[1] == 3 ? 2 : size[1]) + (size[2] == 3 ? 2 : size[2])) % MEM_SIZE;
+		(size[1] == 3 ? 2 : size[1]) + (size[2] == 3 ? 2 : size[2])) % MEM_SIZE;
 	else
 		processes->pc = (processes->pc + (op_tab[processes->opcode].dir_size ? 2 : 4)) % MEM_SIZE;
 	ft_memdel((void **)&size);
 }
 
-int			set_opcode(t_cursor *processes, t_game_para *parameters)
+int			set_opcode(t_cursor *processes, t_game_para *parameters, t_cursor *fprocesses)
 {
 	printf("--->>>>>\n");
 	if (processes->wait_cycle < 0)
@@ -84,7 +84,7 @@ int			set_opcode(t_cursor *processes, t_game_para *parameters)
 	}
 	processes->wait_cycle--;
 	if (!processes->wait_cycle)
-		execute_operation(processes, parameters);
+		execute_operation(processes, parameters, fprocesses);
 	return (1);
 }
 
@@ -95,8 +95,7 @@ int			processes_execution(t_cursor *processes, t_game_para *parameters)
 	cur_process = processes;
 	while (cur_process)
 	{
-		if (cur_process->wait_cycle < 0)
-			set_opcode(cur_process, parameters);
+		set_opcode(cur_process, parameters, processes);
 		printf("%d\n", cur_process->registeries[0]);
 		cur_process = cur_process->next;
 		parameters->cycle_counter++;

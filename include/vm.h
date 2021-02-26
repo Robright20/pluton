@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/25 17:31:03 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/26 15:28:32 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,17 @@ int     			start_battle(t_cursor *processes, t_players *players);
 int					convert_to_num(char *str, int size);
 int					*check_codage_byte(int codage_byte, int op);
 int					get_vfarena(t_cursor *processes, char *arena, int n, int pc);
-int					sti(t_cursor *processes, t_game_para *parameters, int *size);
-int					and(t_cursor *processes, t_game_para *parameters, int *size);
-int					or(t_cursor *processes, t_game_para *parameters, int *size);
-int					xor(t_cursor *processes, t_game_para *parameters, int *size);
-int					ld(t_cursor *processes, t_game_para *parameters, int *size);
+int					sti(t_cursor *processes, t_game_para *parameters);
+int					and(t_cursor *processes, t_game_para *parameters);
+int					or(t_cursor *processes, t_game_para *parameters);
+int					xor(t_cursor *processes, t_game_para *parameters);
+int					ld(t_cursor *processes, t_game_para *parameters);
 int					live(t_cursor *processes, t_game_para *parameters);
-int					st(t_cursor *processes, t_game_para *parameters, int *size);
-int					add(t_cursor *processes, t_game_para *parameters, int *size);
-int					sub(t_cursor *processes, t_game_para *parameters, int *size);
-int					ldi(t_cursor *processes, t_game_para *parameters, int *size);
-int					lld(t_cursor *processes, t_game_para *parameters, int *size);
+int					st(t_cursor *processes, t_game_para *parameters);
+int					add(t_cursor *processes, t_game_para *parameters);
+int					sub(t_cursor *processes, t_game_para *parameters);
+int					ldi(t_cursor *processes, t_game_para *parameters);
+int					lld(t_cursor *processes, t_game_para *parameters);
+int					zjmp(t_cursor *processes, t_game_para *parameters);
+int					lldi(t_cursor *processes, t_game_para *parameters);
 #endif

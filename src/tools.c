@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:31:54 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/25 19:28:13 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/26 14:58:10 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		get_vfarena(t_cursor *processes, char *arena, int n, int pc)
 	value = 0;
 	if (n == 3)
 	{
-		idx = ((processes->opcode > 12 && processes->opcode < 16) ? IDX_MOD : MAX_INT);
+		idx = ((processes->opcode == 13 && processes->opcode == 15) ? IDX_MOD : MAX_INT);
 		i = (pc + get_vfarena(processes, arena, 2, pc) % idx) % MEM_SIZE;
 		n = 4;
 	}

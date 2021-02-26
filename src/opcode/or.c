@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sti.c                                              :+:      :+:    :+:   */
+/*   or.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/17 16:58:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/25 19:03:02 by aalhaoui         ###   ########.fr       */
+/*   Created: 2021/02/23 17:10:53 by aalhaoui          #+#    #+#             */
+/*   Updated: 2021/02/26 15:10:10 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/vm.h"
+#include "vm.h"
 
-int		sti(t_cursor *processes, t_game_para *parameters, int *size)
+int		or(t_cursor *processes, t_game_para *parameters)
 {
-	int		index;
-	int		sum;
+	int		result;
 
-	index = processes->pc;
-	if (processes->args[0] > 0 && processes->args[0] < 17)
+	if (processes->args[2] > 0 && processes->args[2] < 17)
 	{
-		sum = processes->args[1] + processes->args[2];
-		index = (index + ((sum + MEM_SIZE) % MEM_SIZE) % IDX_MOD) % MEM_SIZE;
-		parameters->arena[index] = processes->registeries[processes->args[0] - 1];
+		result = processes->args[0] | processes->args[1];
+		processes->registeries[processes->args[2] - 1] = result;
+		(result == 0) && (processes->carry = 1);
+		(result != 0) && (processes->carry = 0);
 	}
 	return (1);
 }
