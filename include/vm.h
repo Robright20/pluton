@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/27 15:42:13 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/27 19:03:46 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,21 +97,27 @@ int					convert_to_num(char *str, int size);
 int					*check_codage_byte(int codage_byte, int op);
 int					get_vfarena(t_cursor *processes, char *arena, int n, int pc);
 int					sti(t_cursor *processes, t_game_para *parameters);
-int					and(t_cursor *processes, t_game_para *parameters);
-int					or(t_cursor *processes, t_game_para *parameters);
-int					xor(t_cursor *processes, t_game_para *parameters);
-int					ld(t_cursor *processes, t_game_para *parameters);
+int					and(t_cursor *processes);
+int					or(t_cursor *processes);
+int					xor(t_cursor *processes);
+int					ld(t_cursor *processes);
 int					live(t_cursor *processes, t_game_para *parameters);
-int					st(t_cursor *processes, t_game_para *parameters);
-int					add(t_cursor *processes, t_game_para *parameters);
-int					sub(t_cursor *processes, t_game_para *parameters);
+int					st(t_cursor *processes, t_game_para *parameters, int *size);
+int					add(t_cursor *processes);
+int					sub(t_cursor *processes);
 int					ldi(t_cursor *processes, t_game_para *parameters);
-int					lld(t_cursor *processes, t_game_para *parameters);
-int					zjmp(t_cursor *processes, t_game_para *parameters);
+int					lld(t_cursor *processes);
+int					zjmp(t_cursor *processes);
 int					lldi(t_cursor *processes, t_game_para *parameters);
 int					ft_fork(t_cursor *processes, t_game_para *parameters,
 															t_cursor *fprocesses);
 int					lfork(t_cursor *processes, t_game_para *parameters,
 															t_cursor *fprocesses);
 t_cursor			*fork_child(t_cursor *processes, t_cursor *fprocesses);
+t_game_para			*init_game_parameters(t_players *players);
+void				execute_operations(t_cursor *processes, t_game_para *parameters,
+														t_cursor *fprocesses);
+int					get_args(t_cursor *processes, t_game_para *parameters, int *size);													
+int					remove_process(t_cursor *process, t_cursor *processes);
+int					remove_all_processes(t_cursor *processes, t_game_para *parameters);
 #endif

@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:16:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/27 14:50:10 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/27 19:03:06 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,37 @@ t_cursor	*init_processes(t_players *players)
 		if (!(processes = add_process(processes, players, i)))
 			return (NULL);
 	return (processes);
+}
+
+int		remove_process(t_cursor *process, t_cursor *processes)
+{
+	t_cursor	*cur;
+
+	cur = processes;
+	while (cur)
+	{
+		if (cur->next == process)
+		{
+			cur->next = process->next;
+			ft_memdel((void **)&process);
+			break ;
+		}
+		cur = cur->next;
+	}
+	return (1);
+}
+
+int		remove_all_processes(t_cursor *processes, t_game_para *parameters)
+{
+	t_cursor	*cur_process;
+	t_cursor	*tmp;
+
+	cur_process = processes;
+	while (cur_process)
+	{
+		tmp = cur_process->next;
+		ft_memdel((void **)&cur_process);
+		cur_process = tmp;
+	}
+	return (parameters->last_live);
 }

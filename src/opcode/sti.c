@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:58:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/26 15:08:35 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/27 18:44:36 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ int		sti(t_cursor *processes, t_game_para *parameters)
 {
 	int		index;
 	int		sum;
+	int		reg;
 
 	index = processes->pc;
 	if (processes->args[0] > 0 && processes->args[0] < 17)
 	{
 		sum = processes->args[1] + processes->args[2];
 		index = (index + ((sum + MEM_SIZE) % MEM_SIZE) % IDX_MOD) % MEM_SIZE;
-		parameters->arena[index] = processes->registeries[processes->args[0] - 1];
+		reg = processes->args[0] - 1;
+		parameters->arena[index] = processes->registeries[reg];
 	}
 	return (1);
 }

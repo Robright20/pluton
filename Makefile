@@ -1,9 +1,9 @@
 NAME = corewar
 SRC = $(addprefix src/, read_players.c op.c verify_champ.c arena.c\
 		processes.c battle.c tools.c\
-		opcode/live.c opcode/sti.c opcode/and.c opcode/or.c\
-		opcode/xor.c opcode/ld.c opcode/zjmp.c opcode/fork.c\
-		opcode/lfork.c)
+		opcode/add.c opcode/and.c opcode/fork.c opcode/live.c opcode/lld.c\
+		opcode/lldi.c opcode/or.c opcode/st.c opcode/sti.c opcode/sub.c\
+		opcode/xor.c opcode/zjmp.c opcode/ldi.c opcode/ld.c opcode/lfork.c)
 
 HEADER = $(addprefix include/, vm.h op.h)
 OBJ = $(SRC:.c=.o)

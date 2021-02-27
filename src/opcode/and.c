@@ -6,13 +6,13 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 16:20:53 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/26 15:09:50 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/27 18:41:32 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		and(t_cursor *processes, t_game_para *parameters)
+int		and(t_cursor *processes)
 {
 	int		result;
 

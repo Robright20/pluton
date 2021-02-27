@@ -6,15 +6,14 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 14:59:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/26 15:10:20 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/27 19:03:59 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		add(t_cursor *processes, t_game_para *parameters)
+int		sub(t_cursor *processes)
 {
-	int		pc;
 	int		sum;
 
 	if (processes->args[0] > 0 && processes->args[0] < 17 &&

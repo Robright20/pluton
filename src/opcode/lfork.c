@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:51:44 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/27 14:55:17 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/27 18:50:41 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ int			lfork(t_cursor *processes, t_game_para *parameters,
 	new_processes->pc = index + processes->pc;
 	ft_memcpy(parameters->arena + new_processes->pc, new_processes->code,
 													new_processes->code_size);
+	new_processes->wait_cycle = -1;
+	execute_operations(new_processes, parameters, fprocesses);
 	return (1);
 }

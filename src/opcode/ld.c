@@ -6,13 +6,13 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 17:15:44 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/26 15:09:56 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/27 18:41:52 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		ld(t_cursor *processes, t_game_para *parameters)
+int		ld(t_cursor *processes)
 {
 	if (processes->args[1] > 0 && processes->args[1] < 17)
 	{

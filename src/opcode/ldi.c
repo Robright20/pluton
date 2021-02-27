@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:43:44 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/26 16:33:35 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/27 18:46:04 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 int		ldi(t_cursor *processes, t_game_para *parameters)
 {
-    int		index;
-    int		sum;
+	int		index;
+	int		sum;
 	int		to_save;
 
-    if (processes->args[2] > 0 && processes->args[2] < 17)
-    {
-        sum = processes->args[0] + processes->args[1];
+	if (processes->args[2] > 0 && processes->args[2] < 17)
+	{
+		sum = processes->args[0] + processes->args[1];
+		index = processes->pc;
 		index = (index + ((sum + MEM_SIZE) % MEM_SIZE) % IDX_MOD) % MEM_SIZE;
-		to_save = get_vfarena(processes, init_arena, 4, index);
+		to_save = get_vfarena(processes, parameters->arena, 4, index);
 		processes->registeries[processes->args[2] - 1] = to_save;
-    }
-    return (1);
+	}
+	return (1);
 }

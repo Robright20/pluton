@@ -6,17 +6,17 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 14:33:14 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/26 15:10:14 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/27 18:46:47 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		st(t_cursor *processes, t_game_para *parameters)
+int		st(t_cursor *processes, t_game_para *parameters, int *size)
 {
 	int		index;
 	int		arg1;
-	
+
 	if (processes->args[0] > 0 && processes->args[0] < 17)
 	{
 		arg1 = processes->registeries[processes->args[0] - 1];
@@ -28,5 +28,5 @@ int		st(t_cursor *processes, t_game_para *parameters)
 			parameters->arena[index] = arg1;
 		}
 	}
-    return (1);
+	return (1);
 }

@@ -6,13 +6,13 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 17:12:23 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/26 15:10:25 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/27 18:44:57 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		xor(t_cursor *processes, t_game_para *parameters)
+int		xor(t_cursor *processes)
 {
 	int		result;
 

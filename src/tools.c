@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:31:54 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/26 14:58:10 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/27 18:56:41 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int		get_vfarena(t_cursor *processes, char *arena, int n, int pc)
 	value = 0;
 	if (n == 3)
 	{
-		idx = ((processes->opcode == 13 && processes->opcode == 15) ? IDX_MOD : MAX_INT);
+		idx = processes->opcode == 13 || processes->opcode == 15;
+		idx = idx ? IDX_MOD : MAX_INT;
 		i = (pc + get_vfarena(processes, arena, 2, pc) % idx) % MEM_SIZE;
 		n = 4;
 	}
@@ -63,7 +64,7 @@ int		get_vfarena(t_cursor *processes, char *arena, int n, int pc)
 	return (value);
 }
 
-int     get_args(t_cursor *processes, t_game_para *parameters, int *size)
+int			get_args(t_cursor *processes, t_game_para *parameters, int *size)
 {
 	int		pc;
 	int		i;
@@ -72,8 +73,37 @@ int     get_args(t_cursor *processes, t_game_para *parameters, int *size)
 	i = -1;
 	while (++i < op_tab[processes->opcode].args_counter)
 	{
-		processes->args[i] = get_vfarena(processes, parameters->arena, size[i], pc);
+		processes->args[i] =
+						get_vfarena(processes, parameters->arena, size[i], pc);
 		pc = (pc + 1) % MEM_SIZE;
 	}
 	return (1);
+}
+
+t_game_para		*init_game_parameters(t_players *players)
+{
+	t_game_para *parameters;
+
+	if (!(parameters = (t_game_para *)ft_memalloc(sizeof(t_game_para))))
+		return (NULL);
+	if (!init_arena(players, parameters))
+		return (NULL);
+	parameters->cycle_to_die = CYCLE_TO_DIE;
+	parameters->opcode_wait_cycles[0] = 10;
+	parameters->opcode_wait_cycles[1] = 5;
+	parameters->opcode_wait_cycles[2] = 5;
+	parameters->opcode_wait_cycles[3] = 10;
+	parameters->opcode_wait_cycles[4] = 10;
+	parameters->opcode_wait_cycles[5] = 6;
+	parameters->opcode_wait_cycles[6] = 6;
+	parameters->opcode_wait_cycles[7] = 6;
+	parameters->opcode_wait_cycles[8] = 20;
+	parameters->opcode_wait_cycles[9] = 25;
+	parameters->opcode_wait_cycles[10] = 25;
+	parameters->opcode_wait_cycles[11] = 800;
+	parameters->opcode_wait_cycles[12] = 10;
+	parameters->opcode_wait_cycles[13] = 50;
+	parameters->opcode_wait_cycles[14] = 1000;
+	parameters->opcode_wait_cycles[15] = 2;
+	return (parameters);
 }
