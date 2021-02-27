@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   processes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:16:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/27 19:03:06 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/27 22:36:30 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ t_cursor		*add_process(t_cursor *processes, t_players *players, int id)
 	if (!processes)
 		processes = new_process;
 	else
-		processes->next = new_process;
-	return (processes);
+		new_process->next = processes;
+	return (new_process);
 }
 
 void	delete_process(t_cursor *processes, int id)
@@ -61,7 +61,7 @@ void		players_introduction(t_players *players)
 	while (++i < players->number_of_players)
 		printf("* player %d, weighing %d bytes, \"%s\",  (\"%s\") !\n", i + 1,
 							players->player[i]->size, players->player[i]->name,
-													players->player[i]->name);
+													players->player[i]->comment);
 }
 
 t_cursor	*init_processes(t_players *players)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/27 19:03:46 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/27 23:22:06 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,9 @@ int					convert_to_num(char *str, int size);
 int					*check_codage_byte(int codage_byte, int op);
 int					get_vfarena(t_cursor *processes, char *arena, int n, int pc);
 int					sti(t_cursor *processes, t_game_para *parameters);
-int					and(t_cursor *processes);
-int					or(t_cursor *processes);
-int					xor(t_cursor *processes);
+int					and(t_cursor *processes, int *size);
+int					or(t_cursor *processes, int *size);
+int					xor(t_cursor *processes, int *size);
 int					ld(t_cursor *processes);
 int					live(t_cursor *processes, t_game_para *parameters);
 int					st(t_cursor *processes, t_game_para *parameters, int *size);

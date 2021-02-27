@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:31:54 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/27 18:56:41 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/28 00:05:16 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		get_vfarena(t_cursor *processes, char *arena, int n, int pc)
 	{
 		value <<= 8;
 		value |= (int)arena[i];
+		printf("%d %d\n", pc, arena[i]);
 		i = (i + 1) % MEM_SIZE;
 	}
 	return (value);
@@ -68,14 +69,20 @@ int			get_args(t_cursor *processes, t_game_para *parameters, int *size)
 {
 	int		pc;
 	int		i;
+	int		tmp;
 
-	pc = processes->pc + 2;
+	pc = processes->pc + (op_tab[processes->opcode - 1].codage_byte ? 2 : 1);
 	i = -1;
-	while (++i < op_tab[processes->opcode].args_counter)
+	while (++i < op_tab[processes->opcode - 1].args_counter)
 	{
+		if (op_tab[processes->opcode - 1].codage_byte)
+			tmp = size[i];
+		else 
+			tmp = op_tab[processes->opcode - 1].dir_size ? 2 : 4;
 		processes->args[i] =
-						get_vfarena(processes, parameters->arena, size[i], pc);
-		pc = (pc + 1) % MEM_SIZE;
+						get_vfarena(processes, parameters->arena, tmp, pc);
+		if (op_tab[processes->opcode - 1].codage_byte)
+			pc = (pc + size[i]) % MEM_SIZE;
 	}
 	return (1);
 }

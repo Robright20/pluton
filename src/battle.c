@@ -3,91 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   battle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/02/27 18:41:10 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/28 00:18:29 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-int				operations(t_cursor *processes, t_game_para *parameters,
-											t_cursor *fprocesses, int *size)
-{
-	int		ret;
-	int		op;
-
-	ret = 1;
-	op = processes->opcode;
-	(op == 1) && (ret = live(processes, parameters));
-	(op == 2) && (ret = ld(processes));
-	(op == 3) && (ret = st(processes, parameters, size));
-	(op == 4) && (ret = add(processes));
-	(op == 5) && (ret = sub(processes));
-	(op == 6) && (ret = and(processes));
-	(op == 7) && (ret = or(processes));
-	(op == 8) && (ret = xor(processes));
-	(op == 9) && (ret = zjmp(processes));
-	(op == 10) && (ret = ldi(processes, parameters));
-	(op == 11) && (ret = sti(processes, parameters));
-	(op == 12) && (ret = ft_fork(processes, parameters, fprocesses));
-	(op == 13) && (ret = lld(processes));
-	(op == 14) && (ret = lldi(processes, parameters));
-	(op == 15) && (ret = lfork(processes, parameters, fprocesses));
-	// (op == 16) && aff(processes, parameters);
-	return (ret);
-}
-
-void			execute_operations(t_cursor *processes, t_game_para *parameters,
-														t_cursor *fprocesses)
-{
-	int		*size;
-	int		args_size;
-	int		pc;
-
-	pc = processes->pc;
-	if (op_tab[processes->opcode].codage_byte)
-		size = check_codage_byte(parameters->arena[pc + 1], processes->opcode);
-	if (!op_tab[processes->opcode].codage_byte || !size[3])
-	{
-		get_args(processes, parameters, size);
-		operations(processes, parameters, fprocesses, size);
-	}
-	if (op_tab[processes->opcode].codage_byte)
-	{
-		args_size = (size[0] == 3 ? 2 : size[0]) + (size[1] == 3 ? 2 : size[1])
-												+ (size[2] == 3 ? 2 : size[2]);
-		args_size = (args_size + MEM_SIZE) % MEM_SIZE;
-		processes->pc = (pc + 2 + args_size) % MEM_SIZE;
-	}
-	else
-		processes->pc = (pc + (op_tab[processes->opcode].dir_size ? 2 : 4))
-																	% MEM_SIZE;
-	processes->wait_cycle = -1;
-	ft_memdel((void **)&size);
-}
-
-int			processes_execution(t_cursor *processes, t_game_para *parameters)
-{
-	t_cursor	*cur_process;
-
-	cur_process = processes;
-	while (cur_process)
-	{
-		if (cur_process->wait_cycle < 0)
-		{
-			cur_process->opcode = parameters->arena[cur_process->pc];
-			cur_process->wait_cycle =
-								op_tab[cur_process->opcode].cycle_to_wait;
-		}
-		cur_process->wait_cycle--;
-		if (!cur_process->wait_cycle)
-			execute_operations(cur_process, parameters, processes);
-		cur_process = cur_process->next;
-	}
-	return (1);
-}
 
 int		the_check(t_cursor *processes, t_game_para *parameters)
 {
@@ -117,6 +40,87 @@ int		the_check(t_cursor *processes, t_game_para *parameters)
 	return (0);
 }
 
+int				operations(t_cursor *processes, t_game_para *parameters,
+											t_cursor *fprocesses, int *size)
+{
+	int		ret;
+	int		op;
+
+	ret = 1;
+	op = processes->opcode;
+	printf("P	%d | %s %d %d %d\n", -processes->registeries[0],
+		op_tab[processes->opcode - 1].name, processes->args[0],
+		processes->args[1], processes->args[2]);
+	(op == 1) && (ret = live(processes, parameters));
+	(op == 2) && (ret = ld(processes));
+	(op == 3) && (ret = st(processes, parameters, size));
+	(op == 4) && (ret = add(processes));
+	(op == 5) && (ret = sub(processes));
+	(op == 6) && (ret = and(processes, size));
+	(op == 7) && (ret = or(processes, size));
+	(op == 8) && (ret = xor(processes, size));
+	(op == 9) && (ret = zjmp(processes));
+	(op == 10) && (ret = ldi(processes, parameters));
+	(op == 11) && (ret = sti(processes, parameters));
+	(op == 12) && (ret = ft_fork(processes, parameters, fprocesses));
+	(op == 13) && (ret = lld(processes));
+	(op == 14) && (ret = lldi(processes, parameters));
+	(op == 15) && (ret = lfork(processes, parameters, fprocesses));
+	// (op == 16) && aff(processes, parameters);
+	return (ret);
+}
+
+void			execute_operations(t_cursor *processes, t_game_para *parameters,
+														t_cursor *fprocesses)
+{
+	int		*size;
+	int		args_size;
+	int		pc;
+
+	pc = processes->pc;
+	size = NULL;
+	if (op_tab[processes->opcode - 1].codage_byte)
+		size = check_codage_byte(parameters->arena[pc + 1], processes->opcode);
+	if (!op_tab[processes->opcode - 1].codage_byte || !size[3])
+	{
+		get_args(processes, parameters, size);
+		operations(processes, parameters, fprocesses, size);	
+	}
+	if (op_tab[processes->opcode - 1].codage_byte)
+	{
+		args_size = (size[0] == 3 ? 2 : size[0]) + (size[1] == 3 ? 2 : size[1])
+												+ (size[2] == 3 ? 2 : size[2]);
+		args_size = (args_size + MEM_SIZE) % MEM_SIZE;
+		processes->pc = (pc + 2 + args_size) % MEM_SIZE;
+	}
+	else
+		processes->pc = (pc + (op_tab[processes->opcode - 1].dir_size ? 2 : 4))
+																	% MEM_SIZE;
+	processes->wait_cycle = -1;
+	ft_memdel((void **)&size);
+}
+
+int			processes_execution(t_cursor *processes, t_game_para *parameters)
+{
+	t_cursor	*cur_process;
+
+	cur_process = processes;
+	while (cur_process)
+	{
+		if (cur_process->wait_cycle < 0)
+		{
+			cur_process->opcode = parameters->arena[cur_process->pc];
+			cur_process->wait_cycle =
+								op_tab[cur_process->opcode - 1].cycle_to_wait;
+		}
+		cur_process->wait_cycle--;
+		if (!cur_process->wait_cycle)
+			execute_operations(cur_process, parameters, processes);
+		cur_process = cur_process->next;
+	}
+	return (1);
+}
+
 int			start_battle(t_cursor *processes, t_players *players)
 {
 	t_game_para		*parameters;
@@ -129,8 +133,9 @@ int			start_battle(t_cursor *processes, t_players *players)
 		cycle_to_check = 0;
 		while (++cycle_to_check < parameters->cycle_to_die)
 		{
-			processes_execution(processes, parameters);
 			parameters->cycle_counter++;
+			printf("It is now cycle %d\n", parameters->cycle_counter);
+			processes_execution(processes, parameters);
 		}
 		if (the_check(processes, parameters))
 			break ;
