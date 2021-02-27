@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 15:26:45 by mac               #+#    #+#             */
-/*   Updated: 2021/02/17 17:19:43 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/27 15:08:19 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int		verify_champ(t_players *players, char *argv, int id)
 	char	*extension;
 
 	champ_len = ft_strlen(argv);
-	extension = ft_strsub(argv, champ_len - 4, champ_len);
+	if (!(extension = ft_strsub(argv, champ_len - 4, champ_len)))
+		return (-1);
 	if (!ft_strequ(extension, ".cor"))
 	{
 		printf("ERROR : champion extension error");

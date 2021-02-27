@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:16:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/22 16:09:23 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/27 14:50:10 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_cursor		*add_process(t_cursor *processes, t_players *players, int id)
 	new_process->registeries[0] = -(id + 1);
 	new_process->pc = MEM_SIZE / players->number_of_players * (unique_id - 1);
 	new_process->wait_cycle = -1;
+	new_process->code = players->player[id]->code;
+	new_process->code_size = players->player[id]->size;
 	new_process->next = NULL;
 	if (!processes)
 		processes = new_process;

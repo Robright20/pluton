@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/26 15:28:32 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/27 15:42:13 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ struct				s_game_para
 	int				cycle_to_die;
 	int				check_counter;
 	int				live_counter;
+	int				last_live_counter;
 	int     		opcode_wait_cycles[17];
 };
 
@@ -72,12 +73,13 @@ struct				s_cursor
 {
 	int				pc;
 	int				id;
+	int				code_size;
 	int				carry;
 	int				opcode;
 	int				args[3];
 	int				last_live;
 	int				wait_cycle;
-	int				jump;
+	char			*code;
 	int				registeries[REG_NUMBER];
 	t_cursor		*next;
 };
@@ -107,4 +109,9 @@ int					ldi(t_cursor *processes, t_game_para *parameters);
 int					lld(t_cursor *processes, t_game_para *parameters);
 int					zjmp(t_cursor *processes, t_game_para *parameters);
 int					lldi(t_cursor *processes, t_game_para *parameters);
+int					ft_fork(t_cursor *processes, t_game_para *parameters,
+															t_cursor *fprocesses);
+int					lfork(t_cursor *processes, t_game_para *parameters,
+															t_cursor *fprocesses);
+t_cursor			*fork_child(t_cursor *processes, t_cursor *fprocesses);
 #endif
