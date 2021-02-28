@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sti.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:58:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/28 00:10:20 by mac              ###   ########.fr       */
+/*   Updated: 2021/02/28 15:01:11 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		sti(t_cursor *processes, t_game_para *parameters)
 		sum = processes->args[1] + processes->args[2];
 		index = (index + ((sum + MEM_SIZE) % MEM_SIZE) % IDX_MOD) % MEM_SIZE;
 		reg = processes->args[0] - 1;
-		parameters->arena[index] = processes->registeries[reg];
+		cpy_toarena(processes->registeries[reg], parameters, index, 4);
 	}
 	return (1);
 }

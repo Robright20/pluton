@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:31:54 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/28 00:05:16 by mac              ###   ########.fr       */
+/*   Updated: 2021/02/28 15:05:27 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		*check_codage_byte(int codage_byte, int op)
+int			*check_codage_byte(int codage_byte, int op)
 {
 	int		*size;
 	int		tmp;
@@ -40,7 +40,7 @@ int		*check_codage_byte(int codage_byte, int op)
 	return (size);
 }
 
-int		get_vfarena(t_cursor *processes, char *arena, int n, int pc)
+int			get_vfarena(t_cursor *processes, char *arena, int n, int pc)
 {
 	int		value;
 	int		idx;
@@ -59,7 +59,6 @@ int		get_vfarena(t_cursor *processes, char *arena, int n, int pc)
 	{
 		value <<= 8;
 		value |= (int)arena[i];
-		printf("%d %d\n", pc, arena[i]);
 		i = (i + 1) % MEM_SIZE;
 	}
 	return (value);
@@ -77,7 +76,7 @@ int			get_args(t_cursor *processes, t_game_para *parameters, int *size)
 	{
 		if (op_tab[processes->opcode - 1].codage_byte)
 			tmp = size[i];
-		else 
+		else
 			tmp = op_tab[processes->opcode - 1].dir_size ? 2 : 4;
 		processes->args[i] =
 						get_vfarena(processes, parameters->arena, tmp, pc);
@@ -87,7 +86,7 @@ int			get_args(t_cursor *processes, t_game_para *parameters, int *size)
 	return (1);
 }
 
-t_game_para		*init_game_parameters(t_players *players)
+t_game_para	*init_game_parameters(t_players *players)
 {
 	t_game_para *parameters;
 
@@ -113,4 +112,18 @@ t_game_para		*init_game_parameters(t_players *players)
 	parameters->opcode_wait_cycles[14] = 1000;
 	parameters->opcode_wait_cycles[15] = 2;
 	return (parameters);
+}
+
+void		cpy_toarena(int reg, t_game_para *parameters, int index, int n)
+{
+	int		i;
+	int		tmp;
+
+	i = index - 1;
+	tmp = (n - 1) * 8;
+	while (++i < index + n)
+	{
+		parameters->arena[i] = (reg >> tmp) & 255;
+		tmp -= 8;
+	}
 }

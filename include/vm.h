@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/27 23:22:06 by mac              ###   ########.fr       */
+/*   Updated: 2021/02/28 15:02:36 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,4 +120,5 @@ void				execute_operations(t_cursor *processes, t_game_para *parameters,
 int					get_args(t_cursor *processes, t_game_para *parameters, int *size);													
 int					remove_process(t_cursor *process, t_cursor *processes);
 int					remove_all_processes(t_cursor *processes, t_game_para *parameters);
+void			cpy_toarena(int reg, t_game_para *parameters, int index, int n);
 #endif

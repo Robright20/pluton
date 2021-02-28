@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 14:33:14 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/27 18:46:47 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/28 15:03:51 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		st(t_cursor *processes, t_game_para *parameters, int *size)
 		else
 		{
 			index = processes->pc + (processes->args[1] % IDX_MOD);
-			parameters->arena[index] = arg1;
+			cpy_toarena(arg1, parameters, index, 4);
 		}
 	}
 	return (1);

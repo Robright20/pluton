@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   battle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/02/28 00:21:01 by mac              ###   ########.fr       */
+/*   Updated: 2021/02/28 15:58:54 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ void			execute_operations(t_cursor *processes, t_game_para *parameters,
 		args_size = (args_size + MEM_SIZE) % MEM_SIZE;
 		processes->pc = (pc + 2 + args_size) % MEM_SIZE;
 	}
-	else
-		processes->pc = (pc + (op_tab[processes->opcode - 1].dir_size ? 2 : 4))
+	else if (processes->opcode != 9)
+		processes->pc = (pc + 1 + (op_tab[processes->opcode - 1].dir_size ? 2 : 4))
 																	% MEM_SIZE;
 	processes->wait_cycle = -1;
 	ft_memdel((void **)&size);
@@ -125,22 +125,44 @@ int			start_battle(t_cursor *processes, t_players *players)
 {
 	t_game_para		*parameters;
 	int				cycle_to_check;
+	int		i;
+	int		j;
 
 	if (!(parameters = init_game_parameters(players)))
 		return (-1);
 	while (processes && parameters->cycle_to_die > 0)
 	{
 		cycle_to_check = 0;
-		while (++cycle_to_check < parameters->cycle_to_die)
+		while (++cycle_to_check <= parameters->cycle_to_die)
 		{
 			parameters->cycle_counter++;
+			if (parameters->cycle_counter == 26)
+			{
+				i = -1;
+				j = 0;
+				while (++i < 4096)
+				{
+					j++;
+					printf("%02hhx  ", parameters->arena[i]);
+					if (j == 32)
+					{
+						printf("\n");
+						j = 0;
+					}
+					if (i == 2047)
+					{
+						j = 0;
+						printf("\n\n---------------------\n\n");
+					}
+				}
+			}
 			printf("It is now cycle %d\n", parameters->cycle_counter);
 			processes_execution(processes, parameters);
 		}
 		if (the_check(processes, parameters))
 			break ;
 	}
-	printf("“Player %d (%s) won\n", parameters->last_live,
+	printf("“Contestant %d, \"%s\", has won !\n", parameters->last_live,
 							players->player[parameters->last_live]->name);
 	ft_memdel((void **)&parameters->arena);
 	ft_memdel((void **)&parameters);
