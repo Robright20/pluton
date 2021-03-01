@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:58:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/28 15:01:11 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/01 18:39:31 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ int		sti(t_cursor *processes, t_game_para *parameters)
 	int		reg;
 
 	index = processes->pc;
+	printf("-->P	%d | %s r%d %d %d\n", processes->player_id,
+		op_tab[processes->opcode - 1].name, processes->args[0],
+		processes->args[1], processes->args[2]);
+	printf("          |-> store to %d + %d = %d (with pc and mod %d)\n",
+		processes->args[1], processes->args[2],
+		processes->args[1] + processes->args[2], processes->pc);
 	if (processes->args[0] > 0 && processes->args[0] < 17)
 	{
 		sum = processes->args[1] + processes->args[2];

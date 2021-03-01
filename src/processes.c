@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:16:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/28 18:17:40 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/01 19:15:32 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,6 @@ t_cursor		*add_process(t_cursor *processes, t_players *players, int id)
 	return (new_process);
 }
 
-void	delete_process(t_cursor *processes, int id)
-{
-	t_cursor	*tmp;
-	t_cursor	*prev;
-
-	tmp = processes;
-	while (tmp)
-	{
-		if (processes->id == id)
-		{
-			prev->next = tmp->next;
-			ft_memdel((void **)&tmp);
-			break ;
-		}
-		prev = tmp;
-		tmp = tmp->next;
-	}
-}
-
 void		players_introduction(t_players *players)
 {
 	int		i;
@@ -78,35 +59,28 @@ t_cursor	*init_processes(t_players *players)
 	return (processes);
 }
 
-int		remove_process(t_cursor *process, t_cursor *processes)
+t_cursor	*remove_process(t_cursor *process, t_cursor *processes)
 {
 	t_cursor	*cur;
+	t_cursor	*tmp;
 
 	cur = processes;
 	while (cur)
 	{
-		if (cur->next == process)
+		tmp = cur->next;
+		if (cur == process)
 		{
-			cur->next = process->next;
-			ft_memdel((void **)&process);
+			processes = tmp;
+			ft_memdel((void **)&cur);
 			break ;
 		}
-		cur = cur->next;
+		else if (cur->next == process)
+		{
+			cur = tmp->next;
+			ft_memdel((void **)&cur->next);
+			break ;
+		}
+		cur = tmp;
 	}
-	return (1);
-}
-
-int		remove_all_processes(t_cursor *processes, t_game_para *parameters)
-{
-	t_cursor	*cur_process;
-	t_cursor	*tmp;
-
-	cur_process = processes;
-	while (cur_process)
-	{
-		tmp = cur_process->next;
-		ft_memdel((void **)&cur_process);
-		cur_process = tmp;
-	}
-	return (parameters->last_live);
+	return (processes);
 }

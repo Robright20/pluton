@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/02/28 18:24:48 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/01 19:03:47 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,20 @@ int		the_check(t_cursor *processes, t_game_para *parameters)
 	{
 		if (parameters->cycle_counter - cur_process->last_live >
 												parameters->cycle_to_die)
-			remove_process(cur_process, processes);
+			processes = remove_process(cur_process, processes);
+		if (!processes)
+			return (parameters->last_live);
 		cur_process = cur_process->next;
 	}
-	if (!processes)
-		return (parameters->last_live);
 	if (diff_lives >= NBR_LIVE || parameters->check_counter % MAX_CHECKS == 0)
 	{
 		parameters->cycle_to_die -= CYCLE_DELTA;
 		if (parameters->cycle_to_die <= 0)
 		{
-			printf("Cycle to die is now %d\n", parameters->cycle_to_die);
-			return (remove_all_processes(processes, parameters));
+			if (parameters->cycle_counter > 33061)
+				exit(0);
+			printf("Cycle to die is now  %d\n", parameters->cycle_to_die);
+			parameters->cycle_to_die = 1;
 		}
 		parameters->check_counter = 0;
 	}
@@ -51,9 +53,6 @@ int				operations(t_cursor *processes, t_game_para *parameters,
 
 	ret = 1;
 	op = processes->opcode;
-	printf("-->P	%d | %s %d %d %d\n", processes->player_id,
-		op_tab[processes->opcode - 1].name, processes->args[0],
-		processes->args[1], processes->args[2]);
 	(op == 1) && (ret = live(processes, parameters));
 	(op == 2) && (ret = ld(processes));
 	(op == 3) && (ret = st(processes, parameters, size));
