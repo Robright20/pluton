@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/02/28 15:58:54 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/28 18:24:48 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ int		the_check(t_cursor *processes, t_game_para *parameters)
 	{
 		parameters->cycle_to_die -= CYCLE_DELTA;
 		if (parameters->cycle_to_die <= 0)
+		{
+			printf("Cycle to die is now %d\n", parameters->cycle_to_die);
 			return (remove_all_processes(processes, parameters));
+		}
 		parameters->check_counter = 0;
 	}
 	parameters->last_live_counter = parameters->live_counter;
@@ -48,7 +51,7 @@ int				operations(t_cursor *processes, t_game_para *parameters,
 
 	ret = 1;
 	op = processes->opcode;
-	printf("P	%d | %s %d %d %d\n", -processes->registeries[0],
+	printf("-->P	%d | %s %d %d %d\n", processes->player_id,
 		op_tab[processes->opcode - 1].name, processes->args[0],
 		processes->args[1], processes->args[2]);
 	(op == 1) && (ret = live(processes, parameters));

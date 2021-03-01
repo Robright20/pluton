@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 15:26:45 by mac               #+#    #+#             */
-/*   Updated: 2021/02/27 15:08:19 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/28 17:46:25 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int		check_champ_file(t_players *players, char *champ, int id)
 		return (-1);
 	if (convert_to_numfd(4, fd) != 0)
 		return (-1);
-	if ((players->player[id]->size = convert_to_numfd(4, fd)) < 0)
+	if ((players->player[id]->size = convert_to_numfd(4, fd)) < 0 ||
+				players->player[id]->size > 682)
 		return (-1);
 	if (read(fd, players->player[id]->comment, COMMENT_LENGTH) != 2048)
 		return (-1);

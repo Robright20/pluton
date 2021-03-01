@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/28 15:02:36 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/28 18:10:38 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ struct				s_cursor
 	int				last_live;
 	int				wait_cycle;
 	char			*code;
+	int				player_id;
 	int				registeries[REG_NUMBER];
 	t_cursor		*next;
 };

@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:56:09 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/27 18:50:09 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/02/28 18:17:16 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_cursor	*fork_child(t_cursor *processes, t_cursor *fprocesses)
 	new_process->carry = processes->carry;
 	new_process->code = processes->code;
 	new_process->code_size = processes->code_size;
+	new_process->player_id = processes->player_id;
 	new_process->next = fprocesses;
 	return (new_process);
 }
