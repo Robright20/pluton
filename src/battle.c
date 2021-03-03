@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/03/01 19:03:47 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/03 19:14:32 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void			execute_operations(t_cursor *processes, t_game_para *parameters,
 		args_size = (args_size + MEM_SIZE) % MEM_SIZE;
 		processes->pc = (pc + 2 + args_size) % MEM_SIZE;
 	}
-	else if (processes->opcode != 9)
+	else if (processes->opcode != 9 || (processes->opcode == 9 && !processes->carry))
 		processes->pc = (pc + 1 + (op_tab[processes->opcode - 1].dir_size ? 2 : 4))
 																	% MEM_SIZE;
 	processes->wait_cycle = -1;
@@ -109,6 +109,9 @@ int			processes_execution(t_cursor *processes, t_game_para *parameters)
 	cur_process = processes;
 	while (cur_process)
 	{
+		if (cur_process->player_id == 1)
+			printf("->%d %d<-\n", parameters->arena[cur_process->pc],
+			cur_process->pc);
 		if (cur_process->wait_cycle < 0)
 		{
 			cur_process->opcode = parameters->arena[cur_process->pc];
@@ -138,14 +141,14 @@ int			start_battle(t_cursor *processes, t_players *players)
 		while (++cycle_to_check <= parameters->cycle_to_die)
 		{
 			parameters->cycle_counter++;
-			if (parameters->cycle_counter == 26)
+			if (parameters->cycle_counter == 1070)
 			{
 				i = -1;
 				j = 0;
 				while (++i < 4096)
 				{
 					j++;
-					printf("%02hhx  ", parameters->arena[i]);
+					printf("%02hhx ", parameters->arena[i]);
 					if (j == 32)
 					{
 						printf("\n");

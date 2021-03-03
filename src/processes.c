@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:16:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/01 19:15:32 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/03 19:27:37 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 t_cursor		*add_process(t_cursor *processes, t_players *players, int id)
 {
 	t_cursor		*new_process;
-	static	int		unique_id;
 
 	if (!(new_process = (t_cursor *)ft_memalloc(sizeof(t_cursor))))
 		return (NULL);
-	new_process->id = ++unique_id;
+	new_process->id = id + 1;
 	new_process->registeries[0] = -(id + 1);
 	new_process->pc = MEM_SIZE / players->number_of_players * (unique_id - 1);
 	new_process->wait_cycle = -1;
@@ -44,6 +43,8 @@ void		players_introduction(t_players *players)
 		printf("* player %d, weighing %d bytes, \"%s\",  (\"%s\") !\n", i + 1,
 							players->player[i]->size, players->player[i]->name,
 												players->player[i]->comment);
+	unique_id = i;
+	printf("%d\n", i);
 }
 
 t_cursor	*init_processes(t_players *players)
@@ -71,13 +72,13 @@ t_cursor	*remove_process(t_cursor *process, t_cursor *processes)
 		if (cur == process)
 		{
 			processes = tmp;
-			ft_memdel((void **)&cur);
+			// ft_memdel((void **)&cur);
 			break ;
 		}
 		else if (cur->next == process)
 		{
 			cur = tmp->next;
-			ft_memdel((void **)&cur->next);
+			// ft_memdel((void **)&ßcur->next);
 			break ;
 		}
 		cur = tmp;
