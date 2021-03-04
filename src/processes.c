@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:16:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/03 19:27:37 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/04 17:36:50 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 t_cursor		*add_process(t_cursor *processes, t_players *players, int id)
 {
 	t_cursor		*new_process;
+	static	int		unique_id;
 
 	if (!(new_process = (t_cursor *)ft_memalloc(sizeof(t_cursor))))
 		return (NULL);
-	new_process->id = id + 1;
+	new_process->id = ++unique_id;
 	new_process->registeries[0] = -(id + 1);
 	new_process->pc = MEM_SIZE / players->number_of_players * (unique_id - 1);
 	new_process->wait_cycle = -1;
 	new_process->code = players->player[id]->code;
 	new_process->code_size = players->player[id]->size;
+	new_process->name = players->player[id]->name;
 	new_process->player_id = id + 1;
 	new_process->next = NULL;
 	if (!processes)
@@ -40,11 +42,9 @@ void		players_introduction(t_players *players)
 	i = -1;
 	printf("Introducing contestants...\n");
 	while (++i < players->number_of_players)
-		printf("* player %d, weighing %d bytes, \"%s\",  (\"%s\") !\n", i + 1,
+		printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", i + 1,
 							players->player[i]->size, players->player[i]->name,
 												players->player[i]->comment);
-	unique_id = i;
-	printf("%d\n", i);
 }
 
 t_cursor	*init_processes(t_players *players)
@@ -72,13 +72,13 @@ t_cursor	*remove_process(t_cursor *process, t_cursor *processes)
 		if (cur == process)
 		{
 			processes = tmp;
-			// ft_memdel((void **)&cur);
+			ft_memdel((void **)&cur);
 			break ;
 		}
 		else if (cur->next == process)
 		{
 			cur = tmp->next;
-			// ft_memdel((void **)&ßcur->next);
+			ft_memdel((void **)&cur->next);
 			break ;
 		}
 		cur = tmp;

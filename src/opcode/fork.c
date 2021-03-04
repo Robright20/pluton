@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:56:09 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/03 19:25:42 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/04 17:14:36 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_cursor	*fork_child(t_cursor *processes, t_cursor *fprocesses)
 	new_process->code = processes->code;
 	new_process->code_size = processes->code_size;
 	new_process->player_id = processes->player_id;
-	new_process->id = unique_id++;
 	new_process->next = fprocesses;
 	return (new_process);
 }
@@ -38,7 +37,7 @@ int			ft_fork(t_cursor *processes, t_game_para *parameters,
 	int			index;
 	t_cursor	*new_processes;
 
-	printf("-->P	%d | %s %d\n", processes->player_id,
+	printf("P    %d | %s %d\n", processes->player_id,
 		op_tab[processes->opcode - 1].name, processes->args[0]);
 	index = ((processes->args[0] + MEM_SIZE) % MEM_SIZE) % IDX_MOD;
 	if (!(new_processes = fork_child(processes, fprocesses)))

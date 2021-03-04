@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/03 19:25:10 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/04 17:36:36 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ struct				s_op
 	int				dir_size;
 };
 
-int					unique_id;
 extern	t_op		op_tab[17];
 
 struct				s_player
@@ -82,6 +81,7 @@ struct				s_cursor
 	int				wait_cycle;
 	char			*code;
 	int				player_id;
+	char			*name;
 	int				registeries[REG_NUMBER];
 	t_cursor		*next;
 };

@@ -1,0 +1,323 @@
+Introducing contestants...
+* Player 1, weighing 325 bytes, "Celebration Funebre v0.99pl42" ("Jour J") !
+* Player 2, weighing 23 bytes, "zork" ("just a basic living prog") !
+It is now cycle 1
+It is now cycle 2
+It is now cycle 3
+It is now cycle 4
+It is now cycle 5
+P    1 | ld 0 r3
+It is now cycle 6
+It is now cycle 7
+It is now cycle 8
+It is now cycle 9
+It is now cycle 10
+It is now cycle 11
+It is now cycle 12
+It is now cycle 13
+It is now cycle 14
+It is now cycle 15
+It is now cycle 16
+It is now cycle 17
+It is now cycle 18
+It is now cycle 19
+It is now cycle 20
+It is now cycle 21
+It is now cycle 22
+It is now cycle 23
+It is now cycle 24
+It is now cycle 25
+P    2 | sti r1 15 1
+       | -> store to 15 + 1 = 16 (with pc and mod 2064)
+P    1 | zjmp 80 OK
+It is now cycle 26
+It is now cycle 27
+It is now cycle 28
+It is now cycle 29
+It is now cycle 30
+It is now cycle 31
+P    2 | and -2 0 r1
+It is now cycle 32
+It is now cycle 33
+It is now cycle 34
+It is now cycle 35
+It is now cycle 36
+It is now cycle 37
+It is now cycle 38
+It is now cycle 39
+It is now cycle 40
+It is now cycle 41
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 42
+It is now cycle 43
+It is now cycle 44
+It is now cycle 45
+It is now cycle 46
+It is now cycle 47
+It is now cycle 48
+It is now cycle 49
+It is now cycle 50
+P    1 | sti r1 -74 1
+       | -> store to -74 + 1 = -73 (with pc and mod 14)
+It is now cycle 51
+It is now cycle 52
+It is now cycle 53
+It is now cycle 54
+It is now cycle 55
+It is now cycle 56
+It is now cycle 57
+It is now cycle 58
+It is now cycle 59
+It is now cycle 60
+It is now cycle 61
+P    2 | zjmp -5 OK
+It is now cycle 62
+It is now cycle 63
+It is now cycle 64
+It is now cycle 65
+It is now cycle 66
+It is now cycle 67
+It is now cycle 68
+It is now cycle 69
+It is now cycle 70
+It is now cycle 71
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 72
+It is now cycle 73
+It is now cycle 74
+It is now cycle 75
+P    1 | sti r1 -81 15
+       | -> store to -81 + 15 = -66 (with pc and mod 28)
+It is now cycle 76
+It is now cycle 77
+It is now cycle 78
+It is now cycle 79
+It is now cycle 80
+It is now cycle 81
+It is now cycle 82
+It is now cycle 83
+It is now cycle 84
+It is now cycle 85
+It is now cycle 86
+It is now cycle 87
+It is now cycle 88
+It is now cycle 89
+It is now cycle 90
+It is now cycle 91
+P    2 | zjmp -5 OK
+It is now cycle 92
+It is now cycle 93
+It is now cycle 94
+It is now cycle 95
+It is now cycle 96
+It is now cycle 97
+It is now cycle 98
+It is now cycle 99
+It is now cycle 100
+P    1 | sti r1 -88 29
+       | -> store to -88 + 29 = -59 (with pc and mod 42)
+It is now cycle 101
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 102
+It is now cycle 103
+It is now cycle 104
+It is now cycle 105
+It is now cycle 106
+It is now cycle 107
+It is now cycle 108
+It is now cycle 109
+It is now cycle 110
+It is now cycle 111
+It is now cycle 112
+It is now cycle 113
+It is now cycle 114
+It is now cycle 115
+It is now cycle 116
+It is now cycle 117
+It is now cycle 118
+It is now cycle 119
+It is now cycle 120
+It is now cycle 121
+P    2 | zjmp -5 OK
+It is now cycle 122
+It is now cycle 123
+It is now cycle 124
+It is now cycle 125
+P    1 | sti r1 -95 43
+       | -> store to -95 + 43 = -52 (with pc and mod 56)
+It is now cycle 126
+It is now cycle 127
+It is now cycle 128
+It is now cycle 129
+It is now cycle 130
+It is now cycle 131
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 132
+It is now cycle 133
+It is now cycle 134
+It is now cycle 135
+It is now cycle 136
+It is now cycle 137
+It is now cycle 138
+It is now cycle 139
+It is now cycle 140
+It is now cycle 141
+It is now cycle 142
+It is now cycle 143
+It is now cycle 144
+It is now cycle 145
+It is now cycle 146
+It is now cycle 147
+It is now cycle 148
+It is now cycle 149
+It is now cycle 150
+P    1 | sti r1 -102 57
+       | -> store to -102 + 57 = -45 (with pc and mod 70)
+It is now cycle 151
+P    2 | zjmp -5 OK
+It is now cycle 152
+It is now cycle 153
+It is now cycle 154
+It is now cycle 155
+It is now cycle 156
+It is now cycle 157
+It is now cycle 158
+It is now cycle 159
+It is now cycle 160
+It is now cycle 161
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 162
+It is now cycle 163
+It is now cycle 164
+It is now cycle 165
+It is now cycle 166
+It is now cycle 167
+It is now cycle 168
+It is now cycle 169
+It is now cycle 170
+It is now cycle 171
+It is now cycle 172
+It is now cycle 173
+It is now cycle 174
+It is now cycle 175
+P    1 | sti r1 -109 71
+       | -> store to -109 + 71 = -38 (with pc and mod 84)
+It is now cycle 176
+It is now cycle 177
+It is now cycle 178
+It is now cycle 179
+It is now cycle 180
+P    1 | ld 393216 r4
+It is now cycle 181
+P    2 | zjmp -5 OK
+It is now cycle 182
+It is now cycle 183
+It is now cycle 184
+It is now cycle 185
+P    1 | ld 917504 r12
+It is now cycle 186
+It is now cycle 187
+It is now cycle 188
+It is now cycle 189
+It is now cycle 190
+P    1 | ld 1 r11
+It is now cycle 191
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 192
+It is now cycle 193
+It is now cycle 194
+It is now cycle 195
+P    1 | ld 6 r10
+It is now cycle 196
+It is now cycle 197
+It is now cycle 198
+It is now cycle 199
+It is now cycle 200
+It is now cycle 201
+It is now cycle 202
+It is now cycle 203
+It is now cycle 204
+It is now cycle 205
+P    1 | live 42
+It is now cycle 206
+It is now cycle 207
+It is now cycle 208
+It is now cycle 209
+It is now cycle 210
+It is now cycle 211
+P    2 | zjmp -5 OK
+It is now cycle 212
+It is now cycle 213
+It is now cycle 214
+It is now cycle 215
+It is now cycle 216
+It is now cycle 217
+It is now cycle 218
+It is now cycle 219
+It is now cycle 220
+It is now cycle 221
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 222
+It is now cycle 223
+It is now cycle 224
+It is now cycle 225
+It is now cycle 226
+It is now cycle 227
+It is now cycle 228
+It is now cycle 229
+It is now cycle 230
+P    1 | sti r4 -155 1
+       | -> store to -155 + 1 = -154 (with pc and mod 8)
+It is now cycle 231
+It is now cycle 232
+It is now cycle 233
+It is now cycle 234
+It is now cycle 235
+It is now cycle 236
+It is now cycle 237
+It is now cycle 238
+It is now cycle 239
+It is now cycle 240
+P    1 | add r4 r12 r4
+It is now cycle 241
+P    2 | zjmp -5 OK
+It is now cycle 242
+It is now cycle 243
+It is now cycle 244
+It is now cycle 245
+It is now cycle 246
+It is now cycle 247
+It is now cycle 248
+It is now cycle 249
+It is now cycle 250
+P    1 | sub r10 r11 r10
+It is now cycle 251
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 252
+It is now cycle 253
+It is now cycle 254
+It is now cycle 255
+It is now cycle 256
+It is now cycle 257
+It is now cycle 258
+It is now cycle 259
+It is now cycle 260
+It is now cycle 261
+It is now cycle 262
+It is now cycle 263
+It is now cycle 264
+It is now cycle 265
+It is now cycle 266
+It is now cycle 267
+It is now cycle 268
+It is now cycle 269
+It is now cycle 270
+P    1 | zjmp -50 FAILED
