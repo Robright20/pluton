@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/04 17:36:36 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/04 19:25:12 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ struct				s_op
 };
 
 extern	t_op		op_tab[17];
+int					unique_id;
 
 struct				s_player
 {
@@ -112,13 +113,11 @@ int					lld(t_cursor *processes);
 int					zjmp(t_cursor *processes);
 int					lldi(t_cursor *processes, t_game_para *parameters);
 int					ft_fork(t_cursor *processes, t_game_para *parameters,
-															t_cursor *fprocesses);
+															t_cursor **fprocesses);
 int					lfork(t_cursor *processes, t_game_para *parameters,
-															t_cursor *fprocesses);
-t_cursor			*fork_child(t_cursor *processes, t_cursor *fprocesses);
+															t_cursor **fprocesses);
+t_cursor			*fork_child(t_cursor *processes, t_cursor **fprocesses);
 t_game_para			*init_game_parameters(t_players *players);
-void				execute_operations(t_cursor *processes, t_game_para *parameters,
-														t_cursor *fprocesses);
 int					get_args(t_cursor *processes, t_game_para *parameters, int *size);													
 t_cursor			*remove_process(t_cursor *process, t_cursor *processes);
 void				cpy_toarena(int reg, t_game_para *parameters, int index, int n);

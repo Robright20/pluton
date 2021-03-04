@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/03/04 17:32:38 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/04 19:25:00 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		the_check(t_cursor *processes, t_game_para *parameters)
 }
 
 int				operations(t_cursor *processes, t_game_para *parameters,
-											t_cursor *fprocesses, int *size)
+											t_cursor **fprocesses, int *size)
 {
 	int		ret;
 	int		op;
@@ -68,7 +68,7 @@ int				operations(t_cursor *processes, t_game_para *parameters,
 }
 
 void			execute_operations(t_cursor *processes, t_game_para *parameters,
-														t_cursor *fprocesses)
+														t_cursor **fprocesses)
 {
 	int		*size;
 	int		args_size;
@@ -93,15 +93,17 @@ void			execute_operations(t_cursor *processes, t_game_para *parameters,
 	else if (processes->opcode != 9)
 		processes->pc = (pc + 1 + (op_tab[processes->opcode - 1].dir_size ? 2 : 4))
 																	% MEM_SIZE;
+	else if (processes->opcode == 9 && !processes->carry)
+		processes->pc = (pc + 3) %MEM_SIZE;
 	processes->wait_cycle = -1;
 	ft_memdel((void **)&size);
 }
 
-int			processes_execution(t_cursor *processes, t_game_para *parameters)
+int			processes_execution(t_cursor **processes, t_game_para *parameters)
 {
 	t_cursor	*cur_process;
 
-	cur_process = processes;
+	cur_process = *processes;
 	while (cur_process)
 	{
 		if (cur_process->wait_cycle < 0)
@@ -154,7 +156,7 @@ int			start_battle(t_cursor *processes, t_players *players)
 			// 	}
 			// }
 			printf("It is now cycle %d\n", parameters->cycle_counter);
-			processes_execution(processes, parameters);
+			processes_execution(&processes, parameters);
 		}
 		if (the_check(processes, parameters))
 			break ;
