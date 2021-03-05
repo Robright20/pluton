@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/03/05 16:37:27 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/05 19:03:09 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int				operations(t_cursor *processes, t_game_para *parameters,
 	(op == 8) && (ret = xor(processes, size));
 	(op == 9) && (ret = zjmp(processes));
 	(op == 10) && (ret = ldi(processes, parameters));
-	(op == 11) && (ret = sti(processes, parameters));
+	(op == 11) && (ret = sti(processes, parameters, size));
 	(op == 12) && (ret = ft_fork(processes, parameters, fprocesses));
 	(op == 13) && (ret = lld(processes));
 	(op == 14) && (ret = lldi(processes, parameters));

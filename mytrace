@@ -3177,14 +3177,14 @@ It is now cycle 2807
 It is now cycle 2808
 It is now cycle 2809
 It is now cycle 2810
-P    7 | sti r15 0 14
-       | -> store to 0 + 14 = 14 (with pc and mod 60)
-P    6 | sti r15 0 14
-       | -> store to 0 + 14 = 14 (with pc and mod 60)
-P    4 | sti r15 0 14
-       | -> store to 0 + 14 = 14 (with pc and mod 60)
-P    1 | sti r15 0 14
-       | -> store to 0 + 14 = 14 (with pc and mod 60)
+P    7 | sti r15 0 -182
+       | -> store to 0 + -182 = -182 (with pc and mod -136)
+P    6 | sti r15 0 -194
+       | -> store to 0 + -194 = -194 (with pc and mod -148)
+P    4 | sti r15 0 -190
+       | -> store to 0 + -190 = -190 (with pc and mod -144)
+P    1 | sti r15 0 -186
+       | -> store to 0 + -186 = -186 (with pc and mod -140)
 It is now cycle 2811
 It is now cycle 2812
 It is now cycle 2813

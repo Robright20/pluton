@@ -6,13 +6,13 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:43:44 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/05 18:43:21 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/05 19:10:16 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		ldi(t_cursor *processes, t_game_para *parameters)
+int		ldi(t_cursor *processes, t_game_para *parameters, int)
 {
 	int		index;
 	int		sum;
