@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/04 19:25:12 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/05 18:34:41 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ struct				s_cursor
 	int				args[3];
 	int				last_live;
 	int				wait_cycle;
-	char			*code;
 	int				player_id;
 	char			*name;
 	int				registeries[REG_NUMBER];
@@ -98,7 +97,7 @@ void				players_introduction(t_players *players);
 int     			start_battle(t_cursor *processes, t_players *players);
 int					convert_to_num(char *str, int size);
 int					*check_codage_byte(int codage_byte, int op);
-int					get_vfarena(t_cursor *processes, char *arena, int n, int pc);
+unsigned int		get_vfarena(t_cursor *processes, char *arena, int n, int pc);
 int					sti(t_cursor *processes, t_game_para *parameters);
 int					and(t_cursor *processes, int *size);
 int					or(t_cursor *processes, int *size);

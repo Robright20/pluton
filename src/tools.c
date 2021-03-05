@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:31:54 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/01 17:03:40 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/05 18:58:04 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int			*check_codage_byte(int codage_byte, int op)
 	return (size);
 }
 
-int			get_vfarena(t_cursor *processes, char *arena, int n, int pc)
+unsigned int	get_vfarena(t_cursor *processes, char *arena, int n, int pc)
 {
-	int		value;
-	int		idx;
-	int		i;
+	unsigned int		value;
+	int					idx;
+	int					i;
 
 	i = pc;
 	value = 0;
@@ -58,9 +58,10 @@ int			get_vfarena(t_cursor *processes, char *arena, int n, int pc)
 	while (i < pc + n)
 	{
 		value <<= 8;
-		value |= (int)arena[i];
+		value = value | (unsigned char)arena[i];
 		i = (i + 1) % MEM_SIZE;
 	}
+	(n == 2) && (value = (short)value);
 	return (value);
 }
 

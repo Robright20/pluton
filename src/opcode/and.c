@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 16:20:53 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/04 17:39:07 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/05 15:15:30 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		and(t_cursor *processes, int *size)
 			processes->args[0] = processes->registeries[processes->args[0] - 1];
 		if (size[1] == 1)
 			processes->args[1] = processes->registeries[processes->args[1] - 1];
-		printf("P    %d | %s %d %d r%d\n", processes->player_id,
+		printf("P    %d | %s %d %d r%d\n", processes->id,
 			op_tab[processes->opcode - 1].name, processes->args[0],
 			processes->args[1], processes->args[2]);
 		result = processes->args[0] & processes->args[1];

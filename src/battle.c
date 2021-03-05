@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/03/04 19:25:00 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/05 16:37:27 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		the_check(t_cursor *processes, t_game_para *parameters)
 	if (diff_lives >= NBR_LIVE || parameters->check_counter % MAX_CHECKS == 0)
 	{
 		parameters->cycle_to_die -= CYCLE_DELTA;
+		printf("Cycle to die is now %d\n", parameters->cycle_to_die);
 		if (parameters->cycle_to_die <= 0)
 			parameters->cycle_to_die = 1;
 		parameters->check_counter = 0;
@@ -135,14 +136,14 @@ int			start_battle(t_cursor *processes, t_players *players)
 		while (++cycle_to_check <= parameters->cycle_to_die)
 		{
 			parameters->cycle_counter++;
-			// if (parameters->cycle_counter == 26)
+			// if (parameters->cycle_counter == 1072)
 			// {
 			// 	i = -1;
 			// 	j = 0;
 			// 	while (++i < 4096)
 			// 	{
 			// 		j++;
-			// 		printf("%02hhx  ", parameters->arena[i]);
+			// 		printf("%02hhx ", parameters->arena[i]);
 			// 		if (j == 32)
 			// 		{
 			// 			printf("\n");

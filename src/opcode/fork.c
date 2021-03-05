@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:56:09 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/04 19:26:14 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/05 18:34:12 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_cursor	*fork_child(t_cursor *processes, t_cursor **fprocesses)
 	while (++i < 16)
 		new_process->registeries[i] = processes->registeries[i];
 	new_process->carry = processes->carry;
-	new_process->code = processes->code;
+	new_process->name = processes->name;
 	new_process->code_size = processes->code_size;
 	new_process->player_id = processes->player_id;
 	new_process->next = *fprocesses;
@@ -37,14 +37,16 @@ int			ft_fork(t_cursor *processes, t_game_para *parameters,
 	int			index;
 	t_cursor	*new_process;
 
-	printf("P    %d | %s %d\n", processes->player_id,
-		op_tab[processes->opcode - 1].name, processes->args[0]);
-	index = ((processes->args[0] + MEM_SIZE) % MEM_SIZE) % IDX_MOD;
+	printf("P    %d | %s %d (%d)\n", processes->id,
+		op_tab[processes->opcode - 1].name, processes->args[0],
+										processes->pc + processes->args[0]);
+	index = (((processes->args[0] % IDX_MOD) + MEM_SIZE) % MEM_SIZE);
 	if (!(new_process = fork_child(processes, fprocesses)))
 		return (-1);
-	new_process->pc = index + processes->pc;
-	ft_memcpy(parameters->arena + new_process->pc, new_process->code,
-													new_process->code_size);
+	new_process->pc = (index + processes->pc) % MEM_SIZE;
+	new_process->opcode = parameters->arena[new_process->pc];
+	new_process->wait_cycle =
+							op_tab[new_process->opcode - 1].cycle_to_wait;
 	*fprocesses = new_process;
 	return (1);
 }

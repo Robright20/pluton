@@ -1202,18 +1202,18 @@ It is now cycle 1067
 It is now cycle 1068
 It is now cycle 1069
 It is now cycle 1070
-P    1 | fork -25
+P    1 | fork -25 (157)
 It is now cycle 1071
 It is now cycle 1072
 It is now cycle 1073
 It is now cycle 1074
 It is now cycle 1075
 It is now cycle 1076
-P    1 | ld 0 r3
 It is now cycle 1077
 It is now cycle 1078
 It is now cycle 1079
 It is now cycle 1080
+P    3 | live 42
 P    1 | live 3
 It is now cycle 1081
 P    2 | zjmp -5 OK
@@ -1234,7 +1234,6 @@ It is now cycle 1093
 It is now cycle 1094
 It is now cycle 1095
 It is now cycle 1096
-P    1 | zjmp 80 OK
 It is now cycle 1097
 It is now cycle 1098
 It is now cycle 1099
@@ -1244,6 +1243,8 @@ It is now cycle 1102
 It is now cycle 1103
 It is now cycle 1104
 It is now cycle 1105
+P    3 | sti r4 -155 1
+       | -> store to -155 + 1 = -154 (with pc and mod 8)
 It is now cycle 1106
 It is now cycle 1107
 It is now cycle 1108
@@ -1255,20 +1256,20 @@ It is now cycle 1112
 It is now cycle 1113
 It is now cycle 1114
 It is now cycle 1115
+P    3 | add r4 r12 r4
 It is now cycle 1116
 It is now cycle 1117
 It is now cycle 1118
 It is now cycle 1119
 It is now cycle 1120
 It is now cycle 1121
-P    1 | sti r1 -74 1
-       | -> store to -74 + 1 = -73 (with pc and mod 683)
 P    2 | live -2
 Player 2 (zork) is said to be alive
 It is now cycle 1122
 It is now cycle 1123
 It is now cycle 1124
 It is now cycle 1125
+P    3 | sub r10 r11 r10
 It is now cycle 1126
 It is now cycle 1127
 It is now cycle 1128
@@ -1290,9 +1291,8 @@ It is now cycle 1142
 It is now cycle 1143
 It is now cycle 1144
 It is now cycle 1145
+P    3 | zjmp -50 FAILED
 It is now cycle 1146
-P    1 | sti r1 -81 15
-       | -> store to -81 + 15 = -66 (with pc and mod 697)
 It is now cycle 1147
 It is now cycle 1148
 It is now cycle 1149
@@ -1320,8 +1320,6 @@ It is now cycle 1168
 It is now cycle 1169
 It is now cycle 1170
 It is now cycle 1171
-P    1 | sti r1 -88 29
-       | -> store to -88 + 29 = -59 (with pc and mod 711)
 P    2 | zjmp -5 OK
 It is now cycle 1172
 It is now cycle 1173
@@ -1350,8 +1348,6 @@ It is now cycle 1193
 It is now cycle 1194
 It is now cycle 1195
 It is now cycle 1196
-P    1 | sti r1 -95 43
-       | -> store to -95 + 43 = -52 (with pc and mod 725)
 It is now cycle 1197
 It is now cycle 1198
 It is now cycle 1199
@@ -1380,8 +1376,6 @@ It is now cycle 1218
 It is now cycle 1219
 It is now cycle 1220
 It is now cycle 1221
-P    1 | sti r1 -102 57
-       | -> store to -102 + 57 = -45 (with pc and mod 739)
 It is now cycle 1222
 It is now cycle 1223
 It is now cycle 1224
@@ -1410,33 +1404,27 @@ It is now cycle 1243
 It is now cycle 1244
 It is now cycle 1245
 It is now cycle 1246
-P    1 | sti r1 -109 71
-       | -> store to -109 + 71 = -38 (with pc and mod 753)
 It is now cycle 1247
 It is now cycle 1248
 It is now cycle 1249
 It is now cycle 1250
 It is now cycle 1251
-P    1 | ld 393216 r4
 It is now cycle 1252
 It is now cycle 1253
 It is now cycle 1254
 It is now cycle 1255
 It is now cycle 1256
-P    1 | ld 917504 r12
 It is now cycle 1257
 It is now cycle 1258
 It is now cycle 1259
 It is now cycle 1260
 It is now cycle 1261
-P    1 | ld 1 r11
 P    2 | zjmp -5 OK
 It is now cycle 1262
 It is now cycle 1263
 It is now cycle 1264
 It is now cycle 1265
 It is now cycle 1266
-P    1 | ld 6 r10
 It is now cycle 1267
 It is now cycle 1268
 It is now cycle 1269
@@ -1449,7 +1437,6 @@ It is now cycle 1273
 It is now cycle 1274
 It is now cycle 1275
 It is now cycle 1276
-P    1 | live 42
 It is now cycle 1277
 It is now cycle 1278
 It is now cycle 1279
@@ -1476,8 +1463,6 @@ It is now cycle 1298
 It is now cycle 1299
 It is now cycle 1300
 It is now cycle 1301
-P    1 | sti r4 -155 1
-       | -> store to -155 + 1 = -154 (with pc and mod 677)
 P    2 | live -2
 Player 2 (zork) is said to be alive
 It is now cycle 1302
@@ -1490,7 +1475,6 @@ It is now cycle 1308
 It is now cycle 1309
 It is now cycle 1310
 It is now cycle 1311
-P    1 | add r4 r12 r4
 It is now cycle 1312
 It is now cycle 1313
 It is now cycle 1314
@@ -1501,7 +1485,6 @@ It is now cycle 1318
 It is now cycle 1319
 It is now cycle 1320
 It is now cycle 1321
-P    1 | sub r10 r11 r10
 P    2 | zjmp -5 OK
 It is now cycle 1322
 It is now cycle 1323
@@ -1525,7 +1508,6 @@ It is now cycle 1338
 It is now cycle 1339
 It is now cycle 1340
 It is now cycle 1341
-P    1 | zjmp -50 FAILED
 It is now cycle 1342
 It is now cycle 1343
 It is now cycle 1344
@@ -1740,6 +1722,7 @@ It is now cycle 1533
 It is now cycle 1534
 It is now cycle 1535
 It is now cycle 1536
+Cycle to die is now 1486
 It is now cycle 1537
 It is now cycle 1538
 It is now cycle 1539
@@ -2119,18 +2102,18 @@ It is now cycle 1877
 It is now cycle 1878
 It is now cycle 1879
 It is now cycle 1880
-P    1 | fork 40
+P    1 | fork 40 (230)
 It is now cycle 1881
 It is now cycle 1882
 It is now cycle 1883
 It is now cycle 1884
 It is now cycle 1885
 It is now cycle 1886
-P    1 | ld 0 r3
 It is now cycle 1887
 It is now cycle 1888
 It is now cycle 1889
 It is now cycle 1890
+P    4 | live 42
 P    1 | live 4
 It is now cycle 1891
 P    2 | zjmp -5 OK
@@ -2151,7 +2134,6 @@ It is now cycle 1903
 It is now cycle 1904
 It is now cycle 1905
 It is now cycle 1906
-P    1 | zjmp 80 OK
 It is now cycle 1907
 It is now cycle 1908
 It is now cycle 1909
@@ -2178,8 +2160,6 @@ It is now cycle 1928
 It is now cycle 1929
 It is now cycle 1930
 It is now cycle 1931
-P    1 | sti r1 -74 1
-       | -> store to -74 + 1 = -73 (with pc and mod 244)
 P    2 | live -2
 Player 2 (zork) is said to be alive
 It is now cycle 1932
@@ -2196,6 +2176,7 @@ It is now cycle 1942
 It is now cycle 1943
 It is now cycle 1944
 It is now cycle 1945
+P    3 | fork -25 (157)
 It is now cycle 1946
 It is now cycle 1947
 It is now cycle 1948
@@ -2207,9 +2188,9 @@ It is now cycle 1952
 It is now cycle 1953
 It is now cycle 1954
 It is now cycle 1955
+P    5 | live 42
+P    3 | live 3
 It is now cycle 1956
-P    1 | sti r1 -81 15
-       | -> store to -81 + 15 = -66 (with pc and mod 258)
 It is now cycle 1957
 It is now cycle 1958
 It is now cycle 1959
@@ -2236,9 +2217,9 @@ It is now cycle 1977
 It is now cycle 1978
 It is now cycle 1979
 It is now cycle 1980
+P    5 | sti r4 -155 1
+       | -> store to -155 + 1 = -154 (with pc and mod 8)
 It is now cycle 1981
-P    1 | sti r1 -88 29
-       | -> store to -88 + 29 = -59 (with pc and mod 272)
 P    2 | zjmp -5 OK
 It is now cycle 1982
 It is now cycle 1983
@@ -2249,6 +2230,7 @@ It is now cycle 1987
 It is now cycle 1988
 It is now cycle 1989
 It is now cycle 1990
+P    5 | add r4 r12 r4
 It is now cycle 1991
 P    2 | live -2
 Player 2 (zork) is said to be alive
@@ -2261,14 +2243,13 @@ It is now cycle 1997
 It is now cycle 1998
 It is now cycle 1999
 It is now cycle 2000
+P    5 | sub r10 r11 r10
 It is now cycle 2001
 It is now cycle 2002
 It is now cycle 2003
 It is now cycle 2004
 It is now cycle 2005
 It is now cycle 2006
-P    1 | sti r1 -95 43
-       | -> store to -95 + 43 = -52 (with pc and mod 286)
 It is now cycle 2007
 It is now cycle 2008
 It is now cycle 2009
@@ -2284,6 +2265,7 @@ It is now cycle 2017
 It is now cycle 2018
 It is now cycle 2019
 It is now cycle 2020
+P    5 | zjmp -50 FAILED
 It is now cycle 2021
 P    2 | live -2
 Player 2 (zork) is said to be alive
@@ -2297,8 +2279,6 @@ It is now cycle 2028
 It is now cycle 2029
 It is now cycle 2030
 It is now cycle 2031
-P    1 | sti r1 -102 57
-       | -> store to -102 + 57 = -45 (with pc and mod 300)
 It is now cycle 2032
 It is now cycle 2033
 It is now cycle 2034
@@ -2327,33 +2307,27 @@ It is now cycle 2053
 It is now cycle 2054
 It is now cycle 2055
 It is now cycle 2056
-P    1 | sti r1 -109 71
-       | -> store to -109 + 71 = -38 (with pc and mod 314)
 It is now cycle 2057
 It is now cycle 2058
 It is now cycle 2059
 It is now cycle 2060
 It is now cycle 2061
-P    1 | ld 393216 r4
 It is now cycle 2062
 It is now cycle 2063
 It is now cycle 2064
 It is now cycle 2065
 It is now cycle 2066
-P    1 | ld 917504 r12
 It is now cycle 2067
 It is now cycle 2068
 It is now cycle 2069
 It is now cycle 2070
 It is now cycle 2071
-P    1 | ld 1 r11
 P    2 | zjmp -5 OK
 It is now cycle 2072
 It is now cycle 2073
 It is now cycle 2074
 It is now cycle 2075
 It is now cycle 2076
-P    1 | ld 6 r10
 It is now cycle 2077
 It is now cycle 2078
 It is now cycle 2079
@@ -2366,7 +2340,6 @@ It is now cycle 2083
 It is now cycle 2084
 It is now cycle 2085
 It is now cycle 2086
-P    1 | live 42
 It is now cycle 2087
 It is now cycle 2088
 It is now cycle 2089
@@ -2393,8 +2366,6 @@ It is now cycle 2108
 It is now cycle 2109
 It is now cycle 2110
 It is now cycle 2111
-P    1 | sti r4 -155 1
-       | -> store to -155 + 1 = -154 (with pc and mod 238)
 P    2 | live -2
 Player 2 (zork) is said to be alive
 It is now cycle 2112
@@ -2407,7 +2378,6 @@ It is now cycle 2118
 It is now cycle 2119
 It is now cycle 2120
 It is now cycle 2121
-P    1 | add r4 r12 r4
 It is now cycle 2122
 It is now cycle 2123
 It is now cycle 2124
@@ -2418,7 +2388,6 @@ It is now cycle 2128
 It is now cycle 2129
 It is now cycle 2130
 It is now cycle 2131
-P    1 | sub r10 r11 r10
 P    2 | zjmp -5 OK
 It is now cycle 2132
 It is now cycle 2133
@@ -2430,7 +2399,6 @@ It is now cycle 2138
 It is now cycle 2139
 It is now cycle 2140
 It is now cycle 2141
-P    1 | fork -25
 P    2 | live -2
 Player 2 (zork) is said to be alive
 It is now cycle 2142
@@ -2439,13 +2407,10 @@ It is now cycle 2144
 It is now cycle 2145
 It is now cycle 2146
 It is now cycle 2147
-P    1 | ld 0 r3
 It is now cycle 2148
 It is now cycle 2149
 It is now cycle 2150
 It is now cycle 2151
-P    1 | zjmp -50 FAILED
-P    1 | live 3
 It is now cycle 2152
 It is now cycle 2153
 It is now cycle 2154
@@ -2463,7 +2428,6 @@ It is now cycle 2164
 It is now cycle 2165
 It is now cycle 2166
 It is now cycle 2167
-P    1 | zjmp 80 OK
 It is now cycle 2168
 It is now cycle 2169
 It is now cycle 2170
@@ -2492,8 +2456,6 @@ It is now cycle 2190
 It is now cycle 2191
 P    2 | zjmp -5 OK
 It is now cycle 2192
-P    1 | sti r1 -74 1
-       | -> store to -74 + 1 = -73 (with pc and mod 1352)
 It is now cycle 2193
 It is now cycle 2194
 It is now cycle 2195
@@ -2521,8 +2483,6 @@ It is now cycle 2214
 It is now cycle 2215
 It is now cycle 2216
 It is now cycle 2217
-P    1 | sti r1 -81 15
-       | -> store to -81 + 15 = -66 (with pc and mod 1366)
 It is now cycle 2218
 It is now cycle 2219
 It is now cycle 2220
@@ -2551,8 +2511,6 @@ It is now cycle 2239
 It is now cycle 2240
 It is now cycle 2241
 It is now cycle 2242
-P    1 | sti r1 -88 29
-       | -> store to -88 + 29 = -59 (with pc and mod 1380)
 It is now cycle 2243
 It is now cycle 2244
 It is now cycle 2245
@@ -2581,8 +2539,6 @@ It is now cycle 2264
 It is now cycle 2265
 It is now cycle 2266
 It is now cycle 2267
-P    1 | sti r1 -95 43
-       | -> store to -95 + 43 = -52 (with pc and mod 1394)
 It is now cycle 2268
 It is now cycle 2269
 It is now cycle 2270
@@ -2611,8 +2567,6 @@ It is now cycle 2291
 P    2 | live -2
 Player 2 (zork) is said to be alive
 It is now cycle 2292
-P    1 | sti r1 -102 57
-       | -> store to -102 + 57 = -45 (with pc and mod 1408)
 It is now cycle 2293
 It is now cycle 2294
 It is now cycle 2295
@@ -2639,8 +2593,6 @@ It is now cycle 2314
 It is now cycle 2315
 It is now cycle 2316
 It is now cycle 2317
-P    1 | sti r1 -109 71
-       | -> store to -109 + 71 = -38 (with pc and mod 1422)
 It is now cycle 2318
 It is now cycle 2319
 It is now cycle 2320
@@ -2648,25 +2600,21 @@ It is now cycle 2321
 P    2 | live -2
 Player 2 (zork) is said to be alive
 It is now cycle 2322
-P    1 | ld 393216 r4
 It is now cycle 2323
 It is now cycle 2324
 It is now cycle 2325
 It is now cycle 2326
 It is now cycle 2327
-P    1 | ld 917504 r12
 It is now cycle 2328
 It is now cycle 2329
 It is now cycle 2330
 It is now cycle 2331
 It is now cycle 2332
-P    1 | ld 1 r11
 It is now cycle 2333
 It is now cycle 2334
 It is now cycle 2335
 It is now cycle 2336
 It is now cycle 2337
-P    1 | ld 6 r10
 It is now cycle 2338
 It is now cycle 2339
 It is now cycle 2340
@@ -2678,7 +2626,6 @@ It is now cycle 2344
 It is now cycle 2345
 It is now cycle 2346
 It is now cycle 2347
-P    1 | live 42
 It is now cycle 2348
 It is now cycle 2349
 It is now cycle 2350
@@ -2707,8 +2654,6 @@ It is now cycle 2370
 It is now cycle 2371
 P    2 | zjmp -5 OK
 It is now cycle 2372
-P    1 | sti r4 -155 1
-       | -> store to -155 + 1 = -154 (with pc and mod 1346)
 It is now cycle 2373
 It is now cycle 2374
 It is now cycle 2375
@@ -2721,7 +2666,6 @@ It is now cycle 2381
 P    2 | live -2
 Player 2 (zork) is said to be alive
 It is now cycle 2382
-P    1 | add r4 r12 r4
 It is now cycle 2383
 It is now cycle 2384
 It is now cycle 2385
@@ -2732,7 +2676,6 @@ It is now cycle 2389
 It is now cycle 2390
 It is now cycle 2391
 It is now cycle 2392
-P    1 | sub r10 r11 r10
 It is now cycle 2393
 It is now cycle 2394
 It is now cycle 2395
@@ -2756,7 +2699,6 @@ It is now cycle 2411
 P    2 | live -2
 Player 2 (zork) is said to be alive
 It is now cycle 2412
-P    1 | zjmp -50 FAILED
 It is now cycle 2413
 It is now cycle 2414
 It is now cycle 2415
@@ -3062,18 +3004,21 @@ It is now cycle 2687
 It is now cycle 2688
 It is now cycle 2689
 It is now cycle 2690
-P    1 | fork 69
+P    4 | fork 61 (296)
+P    1 | fork 69 (267)
 It is now cycle 2691
 It is now cycle 2692
 It is now cycle 2693
 It is now cycle 2694
 It is now cycle 2695
 It is now cycle 2696
-P    1 | ld 0 r3
 It is now cycle 2697
 It is now cycle 2698
 It is now cycle 2699
 It is now cycle 2700
+P    7 | live 42
+P    6 | live 42
+P    4 | live 42
 P    1 | live 42
 It is now cycle 2701
 P    2 | zjmp -5 OK
@@ -3094,7 +3039,6 @@ It is now cycle 2713
 It is now cycle 2714
 It is now cycle 2715
 It is now cycle 2716
-P    1 | zjmp 80 OK
 It is now cycle 2717
 It is now cycle 2718
 It is now cycle 2719
@@ -3104,13 +3048,22 @@ It is now cycle 2722
 It is now cycle 2723
 It is now cycle 2724
 It is now cycle 2725
+P    7 | ldi 12 -259 r15
+       | -> load from 12 + -259 = -247 (with pc and mod 25)
+P    6 | ldi 0 -288 r15
+       | -> load from 0 + -288 = -288 (with pc and mod 13)
+P    4 | ldi 4 -230 r15
+       | -> load from 4 + -230 = -226 (with pc and mod 17)
 P    1 | ldi 8 -193 r15
-          |-> store to -193 + 15 = -178 (with pc and mod 206)
+       | -> load from 8 + -193 = -185 (with pc and mod 21)
 It is now cycle 2726
 It is now cycle 2727
 It is now cycle 2728
 It is now cycle 2729
 It is now cycle 2730
+P    7 | ld -182 r14
+P    6 | ld -194 r14
+P    4 | ld -190 r14
 P    1 | ld -186 r14
 It is now cycle 2731
 P    2 | zjmp -5 OK
@@ -3118,6 +3071,9 @@ It is now cycle 2732
 It is now cycle 2733
 It is now cycle 2734
 It is now cycle 2735
+P    7 | ld 0 r2
+P    6 | ld 0 r2
+P    4 | ld 0 r2
 P    1 | ld 0 r2
 It is now cycle 2736
 It is now cycle 2737
@@ -3125,8 +3081,6 @@ It is now cycle 2738
 It is now cycle 2739
 It is now cycle 2740
 It is now cycle 2741
-P    1 | sti r1 -74 1
-       | -> store to -74 + 1 = -73 (with pc and mod 281)
 P    2 | live -2
 Player 2 (zork) is said to be alive
 It is now cycle 2742
@@ -3143,6 +3097,10 @@ It is now cycle 2752
 It is now cycle 2753
 It is now cycle 2754
 It is now cycle 2755
+P    7 | zjmp -286 OK
+P    6 | zjmp -315 OK
+P    4 | zjmp -257 OK
+P    3 | fork 40 (230)
 P    1 | zjmp -220 OK
 It is now cycle 2756
 It is now cycle 2757
@@ -3155,9 +3113,9 @@ It is now cycle 2762
 It is now cycle 2763
 It is now cycle 2764
 It is now cycle 2765
+P    8 | live 42
+P    3 | live 4
 It is now cycle 2766
-P    1 | sti r1 -81 15
-       | -> store to -81 + 15 = -66 (with pc and mod 295)
 It is now cycle 2767
 It is now cycle 2768
 It is now cycle 2769
@@ -3169,7 +3127,10 @@ It is now cycle 2772
 It is now cycle 2773
 It is now cycle 2774
 It is now cycle 2775
-P    1 | zjmp 80 OK
+P    7 | zjmp 34 OK
+P    6 | zjmp 34 OK
+P    4 | zjmp 34 OK
+P    1 | zjmp 34 OK
 It is now cycle 2776
 It is now cycle 2777
 It is now cycle 2778
@@ -3180,14 +3141,20 @@ It is now cycle 2782
 It is now cycle 2783
 It is now cycle 2784
 It is now cycle 2785
+P    7 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    6 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    4 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    1 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
 It is now cycle 2786
 It is now cycle 2787
 It is now cycle 2788
 It is now cycle 2789
 It is now cycle 2790
 It is now cycle 2791
-P    1 | sti r1 -88 29
-       | -> store to -88 + 29 = -59 (with pc and mod 309)
 P    2 | zjmp -5 OK
 It is now cycle 2792
 It is now cycle 2793
@@ -3198,8 +3165,6 @@ It is now cycle 2797
 It is now cycle 2798
 It is now cycle 2799
 It is now cycle 2800
-P    1 | sti r1 -74 1
-       | -> store to -74 + 1 = -73 (with pc and mod 14)
 It is now cycle 2801
 P    2 | live -2
 Player 2 (zork) is said to be alive
@@ -3212,31 +3177,42 @@ It is now cycle 2807
 It is now cycle 2808
 It is now cycle 2809
 It is now cycle 2810
+P    7 | sti r15 0 14
+       | -> store to 0 + 14 = 14 (with pc and mod 60)
+P    6 | sti r15 0 14
+       | -> store to 0 + 14 = 14 (with pc and mod 60)
+P    4 | sti r15 0 14
+       | -> store to 0 + 14 = 14 (with pc and mod 60)
+P    1 | sti r15 0 14
+       | -> store to 0 + 14 = 14 (with pc and mod 60)
 It is now cycle 2811
 It is now cycle 2812
 It is now cycle 2813
 It is now cycle 2814
 It is now cycle 2815
 It is now cycle 2816
-P    1 | sti r1 -95 43
-       | -> store to -95 + 43 = -52 (with pc and mod 323)
 It is now cycle 2817
 It is now cycle 2818
 It is now cycle 2819
 It is now cycle 2820
+P    5 | fork -25 (157)
 It is now cycle 2821
 P    2 | zjmp -5 OK
 It is now cycle 2822
 It is now cycle 2823
 It is now cycle 2824
 It is now cycle 2825
-P    1 | sti r1 -81 15
-       | -> store to -81 + 15 = -66 (with pc and mod 28)
 It is now cycle 2826
 It is now cycle 2827
 It is now cycle 2828
 It is now cycle 2829
 It is now cycle 2830
+P    9 | live 42
+P    7 | zjmp -200 OK
+P    6 | zjmp -200 OK
+P    5 | live 3
+P    4 | zjmp -200 OK
+P    1 | zjmp -200 OK
 It is now cycle 2831
 P    2 | live -2
 Player 2 (zork) is said to be alive
@@ -3250,8 +3226,6 @@ It is now cycle 2838
 It is now cycle 2839
 It is now cycle 2840
 It is now cycle 2841
-P    1 | sti r1 -102 57
-       | -> store to -102 + 57 = -45 (with pc and mod 337)
 It is now cycle 2842
 It is now cycle 2843
 It is now cycle 2844
@@ -3261,14 +3235,14 @@ It is now cycle 2847
 It is now cycle 2848
 It is now cycle 2849
 It is now cycle 2850
-P    1 | sti r1 -88 29
-       | -> store to -88 + 29 = -59 (with pc and mod 42)
 It is now cycle 2851
 P    2 | zjmp -5 OK
 It is now cycle 2852
 It is now cycle 2853
 It is now cycle 2854
 It is now cycle 2855
+P    9 | sti r4 -155 1
+       | -> store to -155 + 1 = -154 (with pc and mod 8)
 It is now cycle 2856
 It is now cycle 2857
 It is now cycle 2858
@@ -3281,36 +3255,30 @@ It is now cycle 2862
 It is now cycle 2863
 It is now cycle 2864
 It is now cycle 2865
+P    9 | add r4 r12 r4
 It is now cycle 2866
-P    1 | sti r1 -109 71
-       | -> store to -109 + 71 = -38 (with pc and mod 351)
 It is now cycle 2867
 It is now cycle 2868
 It is now cycle 2869
 It is now cycle 2870
 It is now cycle 2871
-P    1 | ld 393216 r4
 It is now cycle 2872
 It is now cycle 2873
 It is now cycle 2874
 It is now cycle 2875
-P    1 | sti r1 -95 43
-       | -> store to -95 + 43 = -52 (with pc and mod 56)
+P    9 | sub r10 r11 r10
 It is now cycle 2876
-P    1 | ld 917504 r12
 It is now cycle 2877
 It is now cycle 2878
 It is now cycle 2879
 It is now cycle 2880
 It is now cycle 2881
-P    1 | ld 1 r11
 P    2 | zjmp -5 OK
 It is now cycle 2882
 It is now cycle 2883
 It is now cycle 2884
 It is now cycle 2885
 It is now cycle 2886
-P    1 | ld 6 r10
 It is now cycle 2887
 It is now cycle 2888
 It is now cycle 2889
@@ -3322,14 +3290,12 @@ It is now cycle 2892
 It is now cycle 2893
 It is now cycle 2894
 It is now cycle 2895
+P    9 | zjmp -50 FAILED
 It is now cycle 2896
-P    1 | live 42
 It is now cycle 2897
 It is now cycle 2898
 It is now cycle 2899
 It is now cycle 2900
-P    1 | sti r1 -102 57
-       | -> store to -102 + 57 = -45 (with pc and mod 70)
 It is now cycle 2901
 It is now cycle 2902
 It is now cycle 2903
@@ -3352,69 +3318,51 @@ It is now cycle 2918
 It is now cycle 2919
 It is now cycle 2920
 It is now cycle 2921
-P    1 | sti r4 -155 1
-       | -> store to -155 + 1 = -154 (with pc and mod 275)
 P    2 | live -2
 Player 2 (zork) is said to be alive
 It is now cycle 2922
 It is now cycle 2923
 It is now cycle 2924
 It is now cycle 2925
-P    1 | sti r1 -109 71
-       | -> store to -109 + 71 = -38 (with pc and mod 84)
 It is now cycle 2926
 It is now cycle 2927
 It is now cycle 2928
 It is now cycle 2929
 It is now cycle 2930
-P    1 | ld 393216 r4
 It is now cycle 2931
-P    1 | add r4 r12 r4
 It is now cycle 2932
 It is now cycle 2933
 It is now cycle 2934
 It is now cycle 2935
-P    1 | ld 917504 r12
 It is now cycle 2936
 It is now cycle 2937
 It is now cycle 2938
 It is now cycle 2939
 It is now cycle 2940
-P    1 | ld 1 r11
 It is now cycle 2941
-P    1 | sub r10 r11 r10
 P    2 | zjmp -5 OK
 It is now cycle 2942
 It is now cycle 2943
 It is now cycle 2944
 It is now cycle 2945
-P    1 | ld 6 r10
 It is now cycle 2946
 It is now cycle 2947
 It is now cycle 2948
 It is now cycle 2949
 It is now cycle 2950
 It is now cycle 2951
-P    1 | fork 0
-P    1 | fork 40
 P    2 | live -2
 Player 2 (zork) is said to be alive
 It is now cycle 2952
 It is now cycle 2953
 It is now cycle 2954
 It is now cycle 2955
-P    1 | live 42
 It is now cycle 2956
 It is now cycle 2957
-P    1 | ld 0 r3
-P    1 | ld 0 r3
 It is now cycle 2958
 It is now cycle 2959
 It is now cycle 2960
 It is now cycle 2961
-P    1 | zjmp 0 FAILED
-P    1 | live -1
-Player 1 ((null)) is said to be alive
 It is now cycle 2962
 It is now cycle 2963
 It is now cycle 2964
@@ -3432,13 +3380,9 @@ It is now cycle 2974
 It is now cycle 2975
 It is now cycle 2976
 It is now cycle 2977
-P    1 | zjmp 80 OK
-P    1 | zjmp 80 OK
 It is now cycle 2978
 It is now cycle 2979
 It is now cycle 2980
-P    1 | sti r4 -155 1
-       | -> store to -155 + 1 = -154 (with pc and mod 8)
 It is now cycle 2981
 P    2 | live -2
 Player 2 (zork) is said to be alive
@@ -3451,7 +3395,6 @@ It is now cycle 2987
 It is now cycle 2988
 It is now cycle 2989
 It is now cycle 2990
-P    1 | add r4 r12 r4
 It is now cycle 2991
 It is now cycle 2992
 It is now cycle 2993
@@ -3462,14 +3405,9 @@ It is now cycle 2997
 It is now cycle 2998
 It is now cycle 2999
 It is now cycle 3000
-P    1 | sub r10 r11 r10
 It is now cycle 3001
 P    2 | zjmp -5 OK
 It is now cycle 3002
-P    1 | sti r1 -74 1
-       | -> store to -74 + 1 = -73 (with pc and mod 913)
-P    1 | sti r1 -74 1
-       | -> store to -74 + 1 = -73 (with pc and mod 426)
 It is now cycle 3003
 It is now cycle 3004
 It is now cycle 3005
@@ -3490,7 +3428,5 @@ It is now cycle 3017
 It is now cycle 3018
 It is now cycle 3019
 It is now cycle 3020
-P    1 | zjmp -50 FAILED
 It is now cycle 3021
-P    1 | live 42
 It is now cycle 3022
