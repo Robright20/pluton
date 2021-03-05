@@ -3056,3 +3056,445 @@ P    4 | ldi 4 -230 r15
        | -> load from 4 + -230 = -226 (with pc and mod 17)
 P    1 | ldi 8 -193 r15
        | -> load from 8 + -193 = -185 (with pc and mod 21)
+It is now cycle 2726
+It is now cycle 2727
+It is now cycle 2728
+It is now cycle 2729
+It is now cycle 2730
+P    7 | ld -182 r14
+P    6 | ld -194 r14
+P    4 | ld -190 r14
+P    1 | ld -186 r14
+It is now cycle 2731
+P    2 | zjmp -5 OK
+It is now cycle 2732
+It is now cycle 2733
+It is now cycle 2734
+It is now cycle 2735
+P    7 | ld 0 r2
+P    6 | ld 0 r2
+P    4 | ld 0 r2
+P    1 | ld 0 r2
+It is now cycle 2736
+It is now cycle 2737
+It is now cycle 2738
+It is now cycle 2739
+It is now cycle 2740
+It is now cycle 2741
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 2742
+It is now cycle 2743
+It is now cycle 2744
+It is now cycle 2745
+It is now cycle 2746
+It is now cycle 2747
+It is now cycle 2748
+It is now cycle 2749
+It is now cycle 2750
+It is now cycle 2751
+It is now cycle 2752
+It is now cycle 2753
+It is now cycle 2754
+It is now cycle 2755
+P    7 | zjmp -286 OK
+P    6 | zjmp -315 OK
+P    4 | zjmp -257 OK
+P    3 | fork 40 (230)
+P    1 | zjmp -220 OK
+It is now cycle 2756
+It is now cycle 2757
+It is now cycle 2758
+It is now cycle 2759
+It is now cycle 2760
+It is now cycle 2761
+P    2 | zjmp -5 OK
+It is now cycle 2762
+It is now cycle 2763
+It is now cycle 2764
+It is now cycle 2765
+P    8 | live 42
+P    3 | live 4
+It is now cycle 2766
+It is now cycle 2767
+It is now cycle 2768
+It is now cycle 2769
+It is now cycle 2770
+It is now cycle 2771
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 2772
+It is now cycle 2773
+It is now cycle 2774
+It is now cycle 2775
+P    7 | zjmp 34 OK
+P    6 | zjmp 34 OK
+P    4 | zjmp 34 OK
+P    1 | zjmp 34 OK
+It is now cycle 2776
+It is now cycle 2777
+It is now cycle 2778
+It is now cycle 2779
+It is now cycle 2780
+It is now cycle 2781
+It is now cycle 2782
+It is now cycle 2783
+It is now cycle 2784
+It is now cycle 2785
+P    7 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    6 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    4 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    1 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+It is now cycle 2786
+It is now cycle 2787
+It is now cycle 2788
+It is now cycle 2789
+It is now cycle 2790
+It is now cycle 2791
+P    2 | zjmp -5 OK
+It is now cycle 2792
+It is now cycle 2793
+It is now cycle 2794
+It is now cycle 2795
+It is now cycle 2796
+It is now cycle 2797
+It is now cycle 2798
+It is now cycle 2799
+It is now cycle 2800
+It is now cycle 2801
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 2802
+It is now cycle 2803
+It is now cycle 2804
+It is now cycle 2805
+It is now cycle 2806
+It is now cycle 2807
+It is now cycle 2808
+It is now cycle 2809
+It is now cycle 2810
+P    7 | sti r15 0 -182
+       | -> store to 0 + -182 = -182 (with pc and mod -136)
+P    6 | sti r15 0 -194
+       | -> store to 0 + -194 = -194 (with pc and mod -148)
+P    4 | sti r15 0 -190
+       | -> store to 0 + -190 = -190 (with pc and mod -144)
+P    1 | sti r15 0 -186
+       | -> store to 0 + -186 = -186 (with pc and mod -140)
+It is now cycle 2811
+It is now cycle 2812
+It is now cycle 2813
+It is now cycle 2814
+It is now cycle 2815
+It is now cycle 2816
+It is now cycle 2817
+It is now cycle 2818
+It is now cycle 2819
+It is now cycle 2820
+P    5 | fork -25 (157)
+It is now cycle 2821
+P    2 | zjmp -5 OK
+It is now cycle 2822
+It is now cycle 2823
+It is now cycle 2824
+It is now cycle 2825
+It is now cycle 2826
+It is now cycle 2827
+It is now cycle 2828
+It is now cycle 2829
+It is now cycle 2830
+P    9 | live 42
+P    7 | zjmp -200 OK
+P    6 | zjmp -200 OK
+P    5 | live 3
+P    4 | zjmp -200 OK
+P    1 | zjmp -200 OK
+It is now cycle 2831
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 2832
+It is now cycle 2833
+It is now cycle 2834
+It is now cycle 2835
+It is now cycle 2836
+It is now cycle 2837
+It is now cycle 2838
+It is now cycle 2839
+It is now cycle 2840
+P    7 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    6 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    4 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    1 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+It is now cycle 2841
+It is now cycle 2842
+It is now cycle 2843
+It is now cycle 2844
+It is now cycle 2845
+It is now cycle 2846
+It is now cycle 2847
+It is now cycle 2848
+It is now cycle 2849
+It is now cycle 2850
+It is now cycle 2851
+P    2 | zjmp -5 OK
+It is now cycle 2852
+It is now cycle 2853
+It is now cycle 2854
+It is now cycle 2855
+P    9 | sti r4 -155 1
+       | -> store to -155 + 1 = -154 (with pc and mod 8)
+It is now cycle 2856
+It is now cycle 2857
+It is now cycle 2858
+It is now cycle 2859
+It is now cycle 2860
+It is now cycle 2861
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 2862
+It is now cycle 2863
+It is now cycle 2864
+It is now cycle 2865
+P    9 | add r4 r12 r4
+P    7 | sti r15 0 -182
+       | -> store to 0 + -182 = -182 (with pc and mod 3771)
+P    6 | sti r15 0 -194
+       | -> store to 0 + -194 = -194 (with pc and mod 3759)
+P    4 | sti r15 0 -190
+       | -> store to 0 + -190 = -190 (with pc and mod 3763)
+P    1 | sti r15 0 -186
+       | -> store to 0 + -186 = -186 (with pc and mod 3767)
+It is now cycle 2866
+It is now cycle 2867
+It is now cycle 2868
+It is now cycle 2869
+It is now cycle 2870
+It is now cycle 2871
+It is now cycle 2872
+It is now cycle 2873
+It is now cycle 2874
+It is now cycle 2875
+P    9 | sub r10 r11 r10
+It is now cycle 2876
+It is now cycle 2877
+It is now cycle 2878
+It is now cycle 2879
+It is now cycle 2880
+It is now cycle 2881
+P    2 | zjmp -5 OK
+It is now cycle 2882
+It is now cycle 2883
+It is now cycle 2884
+It is now cycle 2885
+P    7 | zjmp -200 OK
+P    6 | zjmp -200 OK
+P    4 | zjmp -200 OK
+P    1 | zjmp -200 OK
+It is now cycle 2886
+It is now cycle 2887
+It is now cycle 2888
+It is now cycle 2889
+It is now cycle 2890
+It is now cycle 2891
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 2892
+It is now cycle 2893
+It is now cycle 2894
+It is now cycle 2895
+P    9 | zjmp -50 FAILED
+P    7 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    6 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    4 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    1 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+It is now cycle 2896
+It is now cycle 2897
+It is now cycle 2898
+It is now cycle 2899
+It is now cycle 2900
+It is now cycle 2901
+It is now cycle 2902
+It is now cycle 2903
+It is now cycle 2904
+It is now cycle 2905
+It is now cycle 2906
+It is now cycle 2907
+It is now cycle 2908
+It is now cycle 2909
+It is now cycle 2910
+It is now cycle 2911
+P    2 | zjmp -5 OK
+It is now cycle 2912
+It is now cycle 2913
+It is now cycle 2914
+It is now cycle 2915
+It is now cycle 2916
+It is now cycle 2917
+It is now cycle 2918
+It is now cycle 2919
+It is now cycle 2920
+P    7 | sti r15 0 -182
+       | -> store to 0 + -182 = -182 (with pc and mod 3582)
+P    6 | sti r15 0 -194
+       | -> store to 0 + -194 = -194 (with pc and mod 3570)
+P    4 | sti r15 0 -190
+       | -> store to 0 + -190 = -190 (with pc and mod 3574)
+P    1 | sti r15 0 -186
+       | -> store to 0 + -186 = -186 (with pc and mod 3578)
+It is now cycle 2921
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 2922
+It is now cycle 2923
+It is now cycle 2924
+It is now cycle 2925
+It is now cycle 2926
+It is now cycle 2927
+It is now cycle 2928
+It is now cycle 2929
+It is now cycle 2930
+It is now cycle 2931
+It is now cycle 2932
+It is now cycle 2933
+It is now cycle 2934
+It is now cycle 2935
+It is now cycle 2936
+It is now cycle 2937
+It is now cycle 2938
+It is now cycle 2939
+It is now cycle 2940
+P    7 | zjmp -200 OK
+P    6 | zjmp -200 OK
+P    4 | zjmp -200 OK
+P    1 | zjmp -200 OK
+It is now cycle 2941
+P    2 | zjmp -5 OK
+It is now cycle 2942
+It is now cycle 2943
+It is now cycle 2944
+It is now cycle 2945
+It is now cycle 2946
+It is now cycle 2947
+It is now cycle 2948
+It is now cycle 2949
+It is now cycle 2950
+P    7 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    6 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    4 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    1 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+It is now cycle 2951
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 2952
+It is now cycle 2953
+It is now cycle 2954
+It is now cycle 2955
+It is now cycle 2956
+It is now cycle 2957
+It is now cycle 2958
+It is now cycle 2959
+It is now cycle 2960
+It is now cycle 2961
+It is now cycle 2962
+It is now cycle 2963
+It is now cycle 2964
+It is now cycle 2965
+It is now cycle 2966
+It is now cycle 2967
+It is now cycle 2968
+It is now cycle 2969
+It is now cycle 2970
+It is now cycle 2971
+P    2 | zjmp -5 OK
+It is now cycle 2972
+It is now cycle 2973
+It is now cycle 2974
+It is now cycle 2975
+P    7 | sti r15 0 -182
+       | -> store to 0 + -182 = -182 (with pc and mod 3393)
+P    6 | sti r15 0 -194
+       | -> store to 0 + -194 = -194 (with pc and mod 3381)
+P    4 | sti r15 0 -190
+       | -> store to 0 + -190 = -190 (with pc and mod 3385)
+P    1 | sti r15 0 -186
+       | -> store to 0 + -186 = -186 (with pc and mod 3389)
+It is now cycle 2976
+It is now cycle 2977
+It is now cycle 2978
+It is now cycle 2979
+It is now cycle 2980
+It is now cycle 2981
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 2982
+It is now cycle 2983
+It is now cycle 2984
+It is now cycle 2985
+It is now cycle 2986
+It is now cycle 2987
+It is now cycle 2988
+It is now cycle 2989
+It is now cycle 2990
+It is now cycle 2991
+It is now cycle 2992
+It is now cycle 2993
+It is now cycle 2994
+It is now cycle 2995
+P    7 | zjmp -200 OK
+P    6 | zjmp -200 OK
+P    4 | zjmp -200 OK
+P    1 | zjmp -200 OK
+It is now cycle 2996
+It is now cycle 2997
+It is now cycle 2998
+It is now cycle 2999
+It is now cycle 3000
+It is now cycle 3001
+P    2 | zjmp -5 OK
+It is now cycle 3002
+It is now cycle 3003
+It is now cycle 3004
+It is now cycle 3005
+P    7 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    6 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    4 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+P    1 | live -1
+Player 1 (Celebration Funebre v0.99pl42) is said to be alive
+It is now cycle 3006
+It is now cycle 3007
+It is now cycle 3008
+It is now cycle 3009
+It is now cycle 3010
+It is now cycle 3011
+P    2 | live -2
+Player 2 (zork) is said to be alive
+It is now cycle 3012
+It is now cycle 3013
+It is now cycle 3014
+It is now cycle 3015
+It is now cycle 3016
+It is now cycle 3017
+It is now cycle 3018
+It is now cycle 3019
+It is now cycle 3020
+It is now cycle 3021
+It is now cycle 3022

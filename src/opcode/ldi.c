@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ldi.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:43:44 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/05 19:10:16 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/05 21:26:28 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		ldi(t_cursor *processes, t_game_para *parameters, int)
+int		ldi(t_cursor *processes, t_game_para *parameters)
 {
 	int		index;
 	int		sum;
