@@ -6,13 +6,13 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:31:54 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/06 18:29:26 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 18:33:59 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int			*check_codage_byte(int codage_byte, int op)
+int				*check_codage_byte(int codage_byte, int op)
 {
 	int		*size;
 	int		tmp;
@@ -65,7 +65,7 @@ unsigned int	get_vfarena(t_cursor *processes, char *arena, int n, int pc)
 	return (value);
 }
 
-int			get_args(t_cursor *processes, t_game_para *parameters, int *size)
+int				get_args(t_cursor *processes, t_game_para *parameters, int *size)
 {
 	int		pc;
 	int		i;
@@ -88,7 +88,7 @@ int			get_args(t_cursor *processes, t_game_para *parameters, int *size)
 	return (1);
 }
 
-t_game_para	*init_game_parameters(t_players *players)
+t_game_para		*init_game_parameters(t_players *players)
 {
 	t_game_para *parameters;
 
@@ -117,7 +117,7 @@ t_game_para	*init_game_parameters(t_players *players)
 	return (parameters);
 }
 
-void		cpy_toarena(int reg, t_game_para **parameters, int index, int n)
+void			cpy_toarena(int reg, t_game_para **parameters, int index, int n)
 {
 	int		i;
 	int		tmp;

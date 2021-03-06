@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/03/06 18:00:34 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 19:02:49 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,8 @@ int			start_battle(t_cursor *processes, t_players *players)
 {
 	t_game_para		*parameters;
 	int				cycle_to_check;
-	int		i;
-	int		j;
+	// int		i;
+	// int		j;
 
 	if (!(parameters = init_game_parameters(players)))
 		return (-1);
@@ -140,24 +140,24 @@ int			start_battle(t_cursor *processes, t_players *players)
 		while (++cycle_to_check <= parameters->cycle_to_die)
 		{
 			parameters->cycle_counter++;
-			if (parameters->cycle_counter == 4841 || parameters->cycle_counter == 4839)
-			{
-				i = -1;
-				j = 0;
-				while (++i < 4096)
-				{
-					j++;
-					printf("%02hhx ", parameters->arena[i]);
-					if (j == 32)
-					{
-						printf("\n");
-						j = 0;
-					}
-				}
-			}
+			// if (parameters->cycle_counter == 4841 || parameters->cycle_counter == 4839)
+			// {
+			// 	i = -1;
+			// 	j = 0;
+			// 	while (++i < 4096)
+			// 	{
+			// 		j++;
+			// 		printf("%02hhx ", parameters->arena[i]);
+			// 		if (j == 32)
+			// 		{
+			// 			printf("\n");
+			// 			j = 0;
+			// 		}
+			// 	}
+			// }
 			printf("It is now cycle %d\n", parameters->cycle_counter);
 			processes_execution(&processes, parameters);
-			if (parameters->cycle_counter == 4895)
+			if (parameters->cycle_counter == 7180)
 				exit(0);
 		}
 		if (the_check(processes, parameters))
