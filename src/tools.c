@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:31:54 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/06 18:33:59 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 19:10:38 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ unsigned int	get_vfarena(t_cursor *processes, char *arena, int n, int pc)
 	return (value);
 }
 
-int				get_args(t_cursor *processes, t_game_para *parameters, int *size)
+int				get_args(t_cursor *processes, t_game_para *parameters,
+																	int *size)
 {
 	int		pc;
 	int		i;
