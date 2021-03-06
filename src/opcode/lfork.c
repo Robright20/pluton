@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:51:44 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/05 18:35:40 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 11:13:21 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@ int			lfork(t_cursor *processes, t_game_para *parameters,
 	index = (processes->args[0] + MEM_SIZE) % MEM_SIZE;
 	if (!(new_process = fork_child(processes, fprocesses)))
 		return (-1);
-	new_process->pc = index + processes->pc;
+	new_process->pc = (index + processes->pc) % MEM_SIZE;
 	new_process->opcode = parameters->arena[new_process->pc];
 	new_process->wait_cycle =
 							op_tab[new_process->opcode - 1].cycle_to_wait;
-	*fprocesses = new_process;
 	*fprocesses = new_process;
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   battle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/03/05 23:19:38 by mac              ###   ########.fr       */
+/*   Updated: 2021/03/06 12:43:36 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ int		the_check(t_cursor *processes, t_game_para *parameters)
 	cur_process = processes;
 	while (cur_process)
 	{
-		if (parameters->cycle_counter - cur_process->last_live >
-												parameters->cycle_to_die)
-			exit (0);
+		// if (parameters->cycle_counter - cur_process->last_live >
+		// 	parameters->cycle_to_die && parameters->cycle_counter -
+		// 	cur_process->start > parameters->cycle_to_die)
+		// 	printf("%d %d\n", cur_process->id, parameters->cycle_counter - cur_process->start);
+		// printf("%d\n", cur_process->player_id);
 		if (!processes)
 			return (parameters->last_live);
 		cur_process = cur_process->next;
@@ -110,7 +112,10 @@ int			processes_execution(t_cursor **processes, t_game_para *parameters)
 		if (cur_process->wait_cycle < 0)
 		{
 			cur_process->opcode = parameters->arena[cur_process->pc];
-			cur_process->wait_cycle =
+			if (cur_process->opcode < 1 || cur_process->opcode > 16)
+				cur_process->pc = (cur_process->pc + 1) % MEM_SIZE;
+			else
+				cur_process->wait_cycle =
 								op_tab[cur_process->opcode - 1].cycle_to_wait;
 		}
 		cur_process->wait_cycle--;
@@ -136,7 +141,7 @@ int			start_battle(t_cursor *processes, t_players *players)
 		while (++cycle_to_check <= parameters->cycle_to_die)
 		{
 			parameters->cycle_counter++;
-			// if (parameters->cycle_counter == 2811)
+			// if (parameters->cycle_counter == 3417)
 			// {
 			// 	i = -1;
 			// 	j = 0;
@@ -149,13 +154,10 @@ int			start_battle(t_cursor *processes, t_players *players)
 			// 			printf("\n");
 			// 			j = 0;
 			// 		}
-			// 		if (i == 2047)
-			// 		{
-			// 			j = 0;
-			// 			printf("\n\n---------------------\n\n");
-			// 		}
 			// 	}
 			// }
+			if (parameters->cycle_counter == 4000)
+				exit (0);
 			printf("It is now cycle %d\n", parameters->cycle_counter);
 			processes_execution(&processes, parameters);
 		}

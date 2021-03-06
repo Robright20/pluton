@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/05 19:02:53 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 12:46:34 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ struct				s_game_para
 	int				live_counter;
 	int				last_live_counter;
 	int     		opcode_wait_cycles[17];
+	t_players 		*players;
 };
 
 struct				s_cursor
@@ -79,9 +80,9 @@ struct				s_cursor
 	int				opcode;
 	int				args[3];
 	int				last_live;
+	int				start;
 	int				wait_cycle;
 	int				player_id;
-	char			*name;
 	int				registeries[REG_NUMBER];
 	t_cursor		*next;
 };

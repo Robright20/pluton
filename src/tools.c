@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:31:54 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/05 22:22:02 by mac              ###   ########.fr       */
+/*   Updated: 2021/03/06 12:27:58 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ t_game_para	*init_game_parameters(t_players *players)
 		return (NULL);
 	if (!init_arena(players, parameters))
 		return (NULL);
+	parameters->players = players;
 	parameters->cycle_to_die = CYCLE_TO_DIE;
 	parameters->opcode_wait_cycles[0] = 10;
 	parameters->opcode_wait_cycles[1] = 5;
