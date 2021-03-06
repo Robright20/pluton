@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   battle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/03/06 19:30:38 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 23:29:49 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int		the_check(t_cursor *processes, t_game_para *parameters)
 	while (cur_process)
 	{
 		if (parameters->cycle_counter - cur_process->last_live >
-			parameters->cycle_to_die && parameters->cycle_counter -
-			cur_process->start > parameters->cycle_to_die)
+													parameters->cycle_to_die)
 			processes = remove_process(cur_process, processes, parameters);
 		if (!processes)
 			return (parameters->last_live);
@@ -157,7 +156,7 @@ int			start_battle(t_cursor *processes, t_players *players)
 			// }
 			printf("It is now cycle %d\n", parameters->cycle_counter);
 			processes_execution(&processes, parameters);
-			if (parameters->cycle_counter == 7181)
+			if (parameters->cycle_counter == 20000)
 				exit(0);
 		}
 		if (the_check(processes, parameters))

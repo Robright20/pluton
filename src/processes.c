@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   processes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:16:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/06 19:32:39 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 22:56:58 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_cursor	*remove_process(t_cursor *process, t_cursor *processes,
 		}
 		cur = tmp;
 	}
-	printf("Process %4d hasn't lived for %4d cycles (CTD %4d)\n",
+	printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
 		process->id, parameters->cycle_counter - process->last_live,
 		parameters->cycle_to_die);
 	return (processes);

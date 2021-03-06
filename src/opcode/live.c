@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:55:51 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/06 16:14:20 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 23:27:02 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int		live(t_cursor *processes, t_game_para *parameters)
 			parameters->players->player[-processes->args[0] - 1]->name);
 		parameters->last_live = -processes->args[0];
 		parameters->live_counter++;
-		processes->last_live = parameters->cycle_counter;
 	}
 	return (1);
 }

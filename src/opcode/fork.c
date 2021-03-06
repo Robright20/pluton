@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:56:09 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/06 19:11:40 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 23:27:56 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_cursor	*fork_child(t_cursor *processes, t_cursor **fprocesses)
 	new_process->carry = processes->carry;
 	new_process->code_size = processes->code_size;
 	new_process->player_id = processes->player_id;
+	new_process->last_live = processes->last_live;
 	new_process->next = *fprocesses;
 	return (new_process);
 }
@@ -49,7 +50,6 @@ int			ft_fork(t_cursor *processes, t_game_para *parameters,
 	else
 		new_process->wait_cycle =
 			op_tab[new_process->opcode - 1].cycle_to_wait;
-	new_process->start = parameters->cycle_counter;
 	*fprocesses = new_process;
 	return (1);
 }

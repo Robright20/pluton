@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/06 19:30:14 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 23:28:04 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ struct				s_cursor
 	int				opcode;
 	int				args[3];
 	int				last_live;
-	int				start;
 	int				wait_cycle;
 	int				player_id;
 	int				registeries[REG_NUMBER];

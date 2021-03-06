@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:31:54 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/06 19:10:38 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 22:41:22 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ unsigned int	get_vfarena(t_cursor *processes, char *arena, int n, int pc)
 	unsigned int		value;
 	int					idx;
 	int					i;
+	int					end;
 
 	i = pc % MEM_SIZE;
 	value = 0;
@@ -55,11 +56,13 @@ unsigned int	get_vfarena(t_cursor *processes, char *arena, int n, int pc)
 		i = (pc + get_vfarena(processes, arena, 2, pc) % idx) % MEM_SIZE;
 		n = 4;
 	}
-	while (i < pc + n)
+	end = pc + n;
+	while (i < end)
 	{
 		value <<= 8;
 		value = value | (unsigned char)arena[i];
 		i = (i + 1) % MEM_SIZE;
+		(i == 0) && (end %= MEM_SIZE);
 	}
 	(n == 2) && (value = (short)value);
 	return (value);
