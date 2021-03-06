@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:16:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/06 12:46:13 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 19:27:32 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ t_cursor	*remove_process(t_cursor *process, t_cursor *processes)
 			ft_memdel((void **)&cur);
 			break ;
 		}
-		else if (cur->next == process)
+		else if (tmp == process)
 		{
-			cur = tmp->next;
-			ft_memdel((void **)&cur->next);
+			cur->next = tmp->next;
+			ft_memdel((void **)&tmp);
 			break ;
 		}
 		cur = tmp;
