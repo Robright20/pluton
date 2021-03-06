@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/03/06 19:25:34 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 19:30:38 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		the_check(t_cursor *processes, t_game_para *parameters)
 		if (parameters->cycle_counter - cur_process->last_live >
 			parameters->cycle_to_die && parameters->cycle_counter -
 			cur_process->start > parameters->cycle_to_die)
-			processes = remove_process(cur_process, processes);
+			processes = remove_process(cur_process, processes, parameters);
 		if (!processes)
 			return (parameters->last_live);
 		cur_process = cur_process->next;

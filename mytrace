@@ -12564,101 +12564,11 @@ P    8 | live -1
 Player 1 (Celebration Funebre v0.99pl42) is said to be alive
 P    3 | live -1
 Player 1 (Celebration Funebre v0.99pl42) is said to be alive
-21
-19
-18
-17
-16
-15
-14
-13
-12
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
--------
-21
-19
-18
-16
-15
-14
-13
-12
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
--------
-21
-19
-18
-15
-14
-13
-12
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
--------
-21
-19
-18
-15
-14
-12
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
--------
-21
-19
-18
-15
-14
-12
-11
-10
-8
-7
-6
-5
-4
-3
-2
-1
--------
+Process   20 hasn't lived for 1722 cycles (CTD 1336)
+Process   17 hasn't lived for 1601 cycles (CTD 1336)
+Process   16 hasn't lived for 1779 cycles (CTD 1336)
+Process   13 hasn't lived for 1684 cycles (CTD 1336)
+Process    9 hasn't lived for 1779 cycles (CTD 1336)
 Cycle to die is now 1286
 It is now cycle 7181
 P   18 | sti r15 0 0

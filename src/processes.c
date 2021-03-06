@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:16:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/06 19:27:32 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 19:32:39 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ t_cursor	*init_processes(t_players *players)
 	return (processes);
 }
 
-t_cursor	*remove_process(t_cursor *process, t_cursor *processes)
+t_cursor	*remove_process(t_cursor *process, t_cursor *processes,
+													t_game_para *parameters)
 {
 	t_cursor	*cur;
 	t_cursor	*tmp;
@@ -81,5 +82,8 @@ t_cursor	*remove_process(t_cursor *process, t_cursor *processes)
 		}
 		cur = tmp;
 	}
+	printf("Process %4d hasn't lived for %4d cycles (CTD %4d)\n",
+		process->id, parameters->cycle_counter - process->last_live,
+		parameters->cycle_to_die);
 	return (processes);
 }
