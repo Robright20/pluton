@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:51:44 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/06 11:13:21 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 12:56:38 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int			lfork(t_cursor *processes, t_game_para *parameters,
 	int			index;
 	t_cursor	*new_process;
 
-	printf("P    %d | %s %d\n", processes->id,
+	printf("P %4d | %s %d\n", processes->id,
 		op_tab[processes->opcode - 1].name, processes->args[0]);
 	index = (processes->args[0] + MEM_SIZE) % MEM_SIZE;
 	if (!(new_process = fork_child(processes, fprocesses)))

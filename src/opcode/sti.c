@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sti.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:58:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/05 22:21:50 by mac              ###   ########.fr       */
+/*   Updated: 2021/03/06 12:56:38 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		sti(t_cursor *processes, t_game_para *parameters, int *size)
 		processes->args[1] = processes->registeries[processes->args[1] - 1];
 	if (size[2] == 1)
 		processes->args[2] = processes->registeries[processes->args[2] - 1];
-	printf("P    %d | %s r%d %d %d\n", processes->id,
+	printf("P %4d | %s r%d %d %d\n", processes->id,
 		op_tab[processes->opcode - 1].name, processes->args[0],
 		processes->args[1], processes->args[2]);
 	printf("       | -> store to %d + %d = %d (with pc and mod %d)\n",

@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 14:52:38 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/05 15:15:24 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 12:56:38 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		add(t_cursor *processes)
 		processes->args[1] > 0 && processes->args[1] < 17 &&
 		processes->args[2] > 0 && processes->args[2] < 17)
 	{
-		printf("P    %d | %s r%d r%d r%d\n", processes->id,
+		printf("P %4d | %s r%d r%d r%d\n", processes->id,
 			op_tab[processes->opcode - 1].name, processes->args[0],
 			processes->args[1], processes->args[2]);
 		processes->args[0] = processes->registeries[processes->args[0] - 1];
