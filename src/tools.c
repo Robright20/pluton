@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:31:54 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/06 12:27:58 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 18:29:26 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ unsigned int	get_vfarena(t_cursor *processes, char *arena, int n, int pc)
 	int					idx;
 	int					i;
 
-	i = pc;
+	i = pc % MEM_SIZE;
 	value = 0;
 	if (n == 3)
 	{
@@ -71,7 +71,8 @@ int			get_args(t_cursor *processes, t_game_para *parameters, int *size)
 	int		i;
 	int		tmp;
 
-	pc = processes->pc + (op_tab[processes->opcode - 1].codage_byte ? 2 : 1);
+	pc = (processes->pc + (op_tab[processes->opcode - 1].codage_byte ? 2 : 1))
+																% MEM_SIZE;
 	i = -1;
 	while (++i < op_tab[processes->opcode - 1].args_counter)
 	{
@@ -116,16 +117,19 @@ t_game_para	*init_game_parameters(t_players *players)
 	return (parameters);
 }
 
-void		cpy_toarena(int reg, t_game_para *parameters, int index, int n)
+void		cpy_toarena(int reg, t_game_para **parameters, int index, int n)
 {
 	int		i;
 	int		tmp;
 
-	i = index - 1;
+	i = index % MEM_SIZE;
+	index = index + n;
 	tmp = (n - 1) * 8;
-	while (++i < index + n)
+	while (i < index)
 	{
-		parameters->arena[i] = (reg >> tmp) & 255;
+		(*parameters)->arena[i] = (reg >> tmp) & 255;
+		i = (i + 1) % MEM_SIZE;
+		(i == 0) && (index %= MEM_SIZE);
 		tmp -= 8;
 	}
 }

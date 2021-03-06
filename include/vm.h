@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/06 12:46:34 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 17:57:35 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,5 @@ t_cursor			*fork_child(t_cursor *processes, t_cursor **fprocesses);
 t_game_para			*init_game_parameters(t_players *players);
 int					get_args(t_cursor *processes, t_game_para *parameters, int *size);													
 t_cursor			*remove_process(t_cursor *process, t_cursor *processes);
-void				cpy_toarena(int reg, t_game_para *parameters, int index, int n);
+void				cpy_toarena(int reg, t_game_para **parameters, int index, int n);
 #endif

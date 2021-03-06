@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/03/06 12:43:36 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/06 18:00:34 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ int		the_check(t_cursor *processes, t_game_para *parameters)
 	cur_process = processes;
 	while (cur_process)
 	{
-		// if (parameters->cycle_counter - cur_process->last_live >
-		// 	parameters->cycle_to_die && parameters->cycle_counter -
-		// 	cur_process->start > parameters->cycle_to_die)
-		// 	printf("%d %d\n", cur_process->id, parameters->cycle_counter - cur_process->start);
-		// printf("%d\n", cur_process->player_id);
+		if (parameters->cycle_counter - cur_process->last_live >
+			parameters->cycle_to_die && parameters->cycle_counter -
+			cur_process->start > parameters->cycle_to_die)
+			printf("[%d %d]\n", cur_process->id, parameters->cycle_counter - cur_process->start);
 		if (!processes)
 			return (parameters->last_live);
 		cur_process = cur_process->next;
@@ -77,7 +76,7 @@ void			execute_operations(t_cursor *processes, t_game_para *parameters,
 	int		args_size;
 	int		pc;
 
-	pc = processes->pc;
+	pc = processes->pc % MEM_SIZE;
 	size = NULL;
 	if (op_tab[processes->opcode - 1].codage_byte)
 		size = check_codage_byte(parameters->arena[pc + 1], processes->opcode);
@@ -130,8 +129,8 @@ int			start_battle(t_cursor *processes, t_players *players)
 {
 	t_game_para		*parameters;
 	int				cycle_to_check;
-	// int		i;
-	// int		j;
+	int		i;
+	int		j;
 
 	if (!(parameters = init_game_parameters(players)))
 		return (-1);
@@ -141,25 +140,25 @@ int			start_battle(t_cursor *processes, t_players *players)
 		while (++cycle_to_check <= parameters->cycle_to_die)
 		{
 			parameters->cycle_counter++;
-			// if (parameters->cycle_counter == 3417)
-			// {
-			// 	i = -1;
-			// 	j = 0;
-			// 	while (++i < 4096)
-			// 	{
-			// 		j++;
-			// 		printf("%02hhx ", parameters->arena[i]);
-			// 		if (j == 32)
-			// 		{
-			// 			printf("\n");
-			// 			j = 0;
-			// 		}
-			// 	}
-			// }
-			if (parameters->cycle_counter == 4000)
-				exit (0);
+			if (parameters->cycle_counter == 4841 || parameters->cycle_counter == 4839)
+			{
+				i = -1;
+				j = 0;
+				while (++i < 4096)
+				{
+					j++;
+					printf("%02hhx ", parameters->arena[i]);
+					if (j == 32)
+					{
+						printf("\n");
+						j = 0;
+					}
+				}
+			}
 			printf("It is now cycle %d\n", parameters->cycle_counter);
 			processes_execution(&processes, parameters);
+			if (parameters->cycle_counter == 4895)
+				exit(0);
 		}
 		if (the_check(processes, parameters))
 			break ;
