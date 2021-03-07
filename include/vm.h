@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/07 16:51:03 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/07 17:46:12 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ struct				s_game_para
 	int				check_counter;
 	int				live_counter;
 	int				last_live_counter;
+	int				or_cycle_to_die;
 	int     		opcode_wait_cycles[17];
 	t_players 		*players;
 };
