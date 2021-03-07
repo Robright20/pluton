@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/03/07 12:47:19 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/07 16:52:08 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,19 @@ int				operations(t_cursor *processes, t_game_para *parameters,
 	ret = 1;
 	op = processes->opcode;
 	(op == 1) && (ret = live(processes, parameters));
-	(op == 2) && (ret = ld(processes));
+	(op == 2) && (ret = ld(processes, parameters, size));
 	(op == 3) && (ret = st(processes, parameters, size));
 	(op == 4) && (ret = add(processes));
 	(op == 5) && (ret = sub(processes));
-	(op == 6) && (ret = and(processes, size));
-	(op == 7) && (ret = or(processes, size));
-	(op == 8) && (ret = xor(processes, size));
+	(op == 6) && (ret = and(processes, parameters, size));
+	(op == 7) && (ret = or(processes, parameters, size));
+	(op == 8) && (ret = xor(processes, parameters, size));
 	(op == 9) && (ret = zjmp(processes));
-	(op == 10) && (ret = ldi(processes, parameters));
+	(op == 10) && (ret = ldi(processes, parameters, size));
 	(op == 11) && (ret = sti(processes, parameters, size));
 	(op == 12) && (ret = ft_fork(processes, parameters, fprocesses));
-	(op == 13) && (ret = lld(processes));
-	(op == 14) && (ret = lldi(processes, parameters));
+	(op == 13) && (ret = lld(processes, parameters, size));
+	(op == 14) && (ret = lldi(processes, parameters, size));
 	(op == 15) && (ret = lfork(processes, parameters, fprocesses));
 	// (op == 16) && aff(processes, parameters);
 	return (ret);
@@ -154,8 +154,8 @@ int			start_battle(t_cursor *processes, t_players *players)
 			// 		}
 			// 	}
 			// }
-			if (parameters->cycle_counter == 20)
-				exit(0);
+			// if (parameters->cycle_counter == 20)
+			// 	exit(0);
 			printf("It is now cycle %d\n", parameters->cycle_counter);
 			processes_execution(&processes, parameters);
 		}

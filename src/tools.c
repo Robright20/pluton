@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:31:54 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/07 12:53:41 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/07 16:27:43 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,15 @@ int				*check_codage_byte(int codage_byte, int op)
 	return (size);
 }
 
-unsigned int	get_vfarena(t_cursor *processes, char *arena, int n, int pc)
+unsigned int	get_vfarena(char *arena, int n, int pc)
 {
 	unsigned int		value;
-	int					idx;
 	int					i;
 	int					end;
 
 	i = pc % MEM_SIZE;
 	value = 0;
-	if (n == 3)
-	{
-		idx = processes->opcode == 13 || processes->opcode == 15;
-		idx = idx ? IDX_MOD : MAX_INT;
-		i = (pc + get_vfarena(processes, arena, 2, pc) % idx) % MEM_SIZE;
-		n = 4;
-	}
+	(n == 3) && (n = 2);
 	end = pc + n;
 	while (i < end)
 	{
@@ -86,7 +79,7 @@ int				get_args(t_cursor *processes, t_game_para *parameters,
 		else
 			tmp = op_tab[processes->opcode - 1].dir_size ? 2 : 4;
 		processes->args[i] =
-						get_vfarena(processes, parameters->arena, tmp, pc);
+						get_vfarena(parameters->arena, tmp, pc);
 		if (op_tab[processes->opcode - 1].codage_byte)
 			pc = (pc + size[i]) % MEM_SIZE;
 	}

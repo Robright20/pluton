@@ -6,13 +6,13 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 16:20:53 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/06 12:56:38 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/07 16:48:09 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		and(t_cursor *processes, int *size)
+int		and(t_cursor *processes, t_game_para *parameters, int *size)
 {
 	int		result;
 
@@ -25,6 +25,10 @@ int		and(t_cursor *processes, int *size)
 		printf("P %4d | %s %d %d r%d\n", processes->id,
 			op_tab[processes->opcode - 1].name, processes->args[0],
 			processes->args[1], processes->args[2]);
+		if (size[0] == 3)
+			processes->args[0] = if_arg_tind(processes, parameters, 0);
+		if (size[1] == 3)
+			processes->args[1] = if_arg_tind(processes, parameters, 1);
 		result = processes->args[0] & processes->args[1];
 		processes->registeries[processes->args[2] - 1] = result;
 		(result == 0) && (processes->carry = 1);

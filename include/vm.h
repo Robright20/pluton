@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/07 11:16:45 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/07 16:51:03 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,20 +97,20 @@ void				players_introduction(t_players *players);
 int     			start_battle(t_cursor *processes, t_players *players);
 int					convert_to_num(char *str, int size);
 int					*check_codage_byte(int codage_byte, int op);
-unsigned int		get_vfarena(t_cursor *processes, char *arena, int n, int pc);
+unsigned int		get_vfarena(char *arena, int n, int pc);
 int					sti(t_cursor *processes, t_game_para *parameters, int *size);
-int					and(t_cursor *processes, int *size);
-int					or(t_cursor *processes, int *size);
-int					xor(t_cursor *processes, int *size);
-int					ld(t_cursor *processes);
+int					and(t_cursor *processes, t_game_para *parameters, int *size);
+int					or(t_cursor *processes, t_game_para *parameters, int *size);
+int					xor(t_cursor *processes, t_game_para *parameters, int *size);
+int					ld(t_cursor *processes, t_game_para *parameters, int *size);
 int					live(t_cursor *processes, t_game_para *parameters);
 int					st(t_cursor *processes, t_game_para *parameters, int *size);
 int					add(t_cursor *processes);
 int					sub(t_cursor *processes);
-int					ldi(t_cursor *processes, t_game_para *parameters);
-int					lld(t_cursor *processes);
+int					ldi(t_cursor *processes, t_game_para *parameters, int *size);
+int					lld(t_cursor *processes, t_game_para *parameters, int *size);
 int					zjmp(t_cursor *processes);
-int					lldi(t_cursor *processes, t_game_para *parameters);
+int					lldi(t_cursor *processes, t_game_para *parameters, int *size);
 int					ft_fork(t_cursor *processes, t_game_para *parameters,
 															t_cursor **fprocesses);
 int					lfork(t_cursor *processes, t_game_para *parameters,
@@ -121,4 +121,5 @@ int					get_args(t_cursor *processes, t_game_para *parameters, int *size);
 t_cursor	*remove_process(t_cursor *process, t_cursor *processes,
 														t_game_para *parameters);
 void				cpy_toarena(int reg, t_game_para **parameters, int index, int n);
+int					if_arg_tind(t_cursor *processes, t_game_para *parameters, int i);
 #endif

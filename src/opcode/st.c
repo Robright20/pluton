@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 14:33:14 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/07 12:53:30 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/07 16:38:59 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		st(t_cursor *processes, t_game_para *parameters, int *size)
 			processes->registeries[processes->args[1] - 1] = arg1;
 		else
 		{
-			index = processes->pc + (processes->args[1] % IDX_MOD);
+			index = (processes->pc + (processes->args[1] % IDX_MOD)) % MEM_SIZE;
 			cpy_toarena(arg1, &parameters, index, 4);
 		}
 	}
