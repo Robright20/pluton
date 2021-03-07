@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   battle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/03/06 23:29:49 by mac              ###   ########.fr       */
+/*   Updated: 2021/03/07 11:29:35 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		the_check(t_cursor *processes, t_game_para *parameters)
+t_cursor		*the_check(t_cursor *processes, t_game_para *parameters)
 {
 	int			diff_lives;
 	t_cursor	*cur_process;
+	t_cursor	*tmp;
 
 	diff_lives = parameters->live_counter - parameters->last_live_counter;
 	parameters->check_counter++;
 	cur_process = processes;
 	while (cur_process)
 	{
+		tmp = cur_process->next;
 		if (parameters->cycle_counter - cur_process->last_live >
 													parameters->cycle_to_die)
 			processes = remove_process(cur_process, processes, parameters);
-		if (!processes)
-			return (parameters->last_live);
-		cur_process = cur_process->next;
+		cur_process = tmp;
 	}
 	if (diff_lives >= NBR_LIVE || parameters->check_counter % MAX_CHECKS == 0)
 	{
@@ -38,7 +38,7 @@ int		the_check(t_cursor *processes, t_game_para *parameters)
 		parameters->check_counter = 0;
 	}
 	parameters->last_live_counter = parameters->live_counter;
-	return (0);
+	return (processes);
 }
 
 int				operations(t_cursor *processes, t_game_para *parameters,
@@ -156,14 +156,13 @@ int			start_battle(t_cursor *processes, t_players *players)
 			// }
 			printf("It is now cycle %d\n", parameters->cycle_counter);
 			processes_execution(&processes, parameters);
-			if (parameters->cycle_counter == 20000)
+			if (parameters->cycle_counter == 24511)
 				exit(0);
 		}
-		if (the_check(processes, parameters))
-			break ;
+		processes = the_check(processes, parameters);
 	}
-	printf("“Contestant %d, \"%s\", has won !\n", parameters->last_live,
-							players->player[parameters->last_live]->name);
+	printf("Contestant %d, \"%s\", has won !\n", parameters->last_live,
+							players->player[parameters->last_live - 1]->name);
 	ft_memdel((void **)&parameters->arena);
 	ft_memdel((void **)&parameters);
 	return (1);
