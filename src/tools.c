@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:31:54 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/06 22:41:22 by mac              ###   ########.fr       */
+/*   Updated: 2021/03/07 12:53:41 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int				*check_codage_byte(int codage_byte, int op)
 		((tmp == 2) && op_tab[op - 1].dir_size) && (size[j] = 2);
 		((tmp == 2) && !op_tab[op - 1].dir_size) && (size[j] = 4);
 		type = op_tab[op - 1].args[j++];
-		type = (tmp >> (tmp - 1)) & 1;
+		(tmp == 1 | tmp == 2) && (type = (tmp >> (tmp - 1)) & 1);
+		(tmp == 3) && (type = ((tmp >> 0 & 1) && (tmp >> 1 & 1)));
 		if (type != 1)
 			size[3] = -1;
 	}

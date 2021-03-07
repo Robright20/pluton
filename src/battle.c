@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/03/07 11:29:35 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/07 12:47:19 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void			execute_operations(t_cursor *processes, t_game_para *parameters,
 	if (!op_tab[processes->opcode - 1].codage_byte || !size[3])
 	{
 		get_args(processes, parameters, size);
-		operations(processes, parameters, fprocesses, size);	
+		operations(processes, parameters, fprocesses, size);
 	}
 	if (op_tab[processes->opcode - 1].codage_byte)
 	{
@@ -92,10 +92,10 @@ void			execute_operations(t_cursor *processes, t_game_para *parameters,
 		processes->pc = (pc + 2 + args_size) % MEM_SIZE;
 	}
 	else if (processes->opcode != 9)
-		processes->pc = (pc + 1 + (op_tab[processes->opcode - 1].dir_size ? 2 : 4))
-																	% MEM_SIZE;
+		processes->pc = (pc + 1 + (op_tab[processes->opcode - 1].dir_size
+														? 2 : 4)) % MEM_SIZE;
 	else if (processes->opcode == 9 && !processes->carry)
-		processes->pc = (pc + 3) %MEM_SIZE;
+		processes->pc = (pc + 3) % MEM_SIZE;
 	processes->wait_cycle = -1;
 	ft_memdel((void **)&size);
 }
@@ -139,7 +139,7 @@ int			start_battle(t_cursor *processes, t_players *players)
 		while (++cycle_to_check <= parameters->cycle_to_die)
 		{
 			parameters->cycle_counter++;
-			// if (parameters->cycle_counter == 4841 || parameters->cycle_counter == 4839)
+			// if (parameters->cycle_counter == 1)
 			// {
 			// 	i = -1;
 			// 	j = 0;
@@ -154,10 +154,10 @@ int			start_battle(t_cursor *processes, t_players *players)
 			// 		}
 			// 	}
 			// }
+			if (parameters->cycle_counter == 20)
+				exit(0);
 			printf("It is now cycle %d\n", parameters->cycle_counter);
 			processes_execution(&processes, parameters);
-			if (parameters->cycle_counter == 24511)
-				exit(0);
 		}
 		processes = the_check(processes, parameters);
 	}

@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 14:33:14 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/06 18:40:18 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/07 12:53:30 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int		st(t_cursor *processes, t_game_para *parameters, int *size)
 
 	if (processes->args[0] > 0 && processes->args[0] < 17)
 	{
+		printf("P %4d | %s r%d %d\n", processes->id,
+			op_tab[processes->opcode - 1].name, processes->args[0],
+			processes->args[1]);
 		arg1 = processes->registeries[processes->args[0] - 1];
 		if (size[1] == 1 && processes->args[1] > 0 && processes->args[1] < 17)
 			processes->registeries[processes->args[1] - 1] = arg1;
