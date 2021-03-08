@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:43:44 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/07 16:46:53 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/08 17:30:32 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ int		ldi(t_cursor *processes, t_game_para *parameters, int *size)
 
 	if (processes->args[2] > 0 && processes->args[2] < 17)
 	{
-		printf("P %4d | %s %d %d r%d\n", processes->id,
-			op_tab[processes->opcode - 1].name, processes->args[0],
-			processes->args[1], processes->args[2]);
+		printf("P %4d | ldi %d %d r%d\n", processes->id,
+			processes->args[0], processes->args[1], processes->args[2]);
 		printf("       | -> load from %d + %d = %d (with pc and mod %d)\n",
 			processes->args[0], processes->args[1],
 			processes->args[0] + processes->args[1], processes->pc +

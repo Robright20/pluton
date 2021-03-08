@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -140,7 +141,7 @@ int			start_battle(t_cursor *processes, t_players *players)
 		while (++cycle_to_check <= parameters->cycle_to_die)
 		{
 			parameters->cycle_counter++;
-			// if (parameters->cycle_counter == 1)
+			// if (parameters->cycle_counter == 50)
 			// {
 			// 	i = -1;
 			// 	j = 0;
@@ -155,8 +156,6 @@ int			start_battle(t_cursor *processes, t_players *players)
 			// 		}
 			// 	}
 			// }
-			if (parameters->cycle_counter == 24000)
-				exit(0);
 			printf("It is now cycle %d\n", parameters->cycle_counter);
 			processes_execution(&processes, parameters);
 		}

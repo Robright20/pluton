@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:20:27 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/07 16:51:51 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/08 17:41:25 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,18 @@
 
 int		lld(t_cursor *processes, t_game_para *parameters, int *size)
 {
+	int		index;
+
 	if (processes->args[1] > 0 && processes->args[1] < 17)
 	{
-		if (size[0] == 3)
-			processes->args[0] = if_arg_tind(processes, parameters, 0);
+		printf("P %4d | %s %d r%d\n", processes->id,
+		op_tab[processes->opcode - 1].name, processes->args[0],
+		processes->args[1]);
+		if (size[1] == 3)
+		{
+			index = (processes->pc + processes->args[0]) % MEM_SIZE;
+			processes->args[0] = get_vfarena(parameters->arena, 4, index);
+		}
 		processes->registeries[processes->args[1] - 1] = processes->args[0];
 		(processes->args[0] == 0) && (processes->carry = 1);
 		(processes->args[0] != 0) && (processes->carry = 0);
