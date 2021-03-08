@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:31:54 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/08 17:15:07 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/08 18:27:17 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int				*check_codage_byte(int codage_byte, int op)
 		(tmp == 3) && (size[j] = 3);
 		((tmp == 2) && op_tab[op - 1].dir_size) && (size[j] = 2);
 		((tmp == 2) && !op_tab[op - 1].dir_size) && (size[j] = 4);
+		// printf("%d\n", size[j]);
 		type = op_tab[op - 1].args[j++];
 		(tmp == 1 | tmp == 2) && (type = (tmp >> (tmp - 1)) & 1);
 		(tmp == 3) && (type = ((tmp >> 0 & 1) && (tmp >> 1 & 1)));
@@ -81,7 +82,7 @@ int				get_args(t_cursor *processes, t_game_para *parameters,
 		processes->args[i] =
 						get_vfarena(parameters->arena, tmp, pc);
 		if (op_tab[processes->opcode - 1].codage_byte)
-			pc = (pc + size[i]) % MEM_SIZE;
+			pc = (pc + (size[i] == 3 ? 2 : size[i])) % MEM_SIZE;
 	}
 	return (1);
 }
