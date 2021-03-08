@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/03/07 17:47:43 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/08 15:32:20 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,8 +155,8 @@ int			start_battle(t_cursor *processes, t_players *players)
 			// 		}
 			// 	}
 			// }
-			// if (parameters->cycle_counter == 20)
-			// 	exit(0);
+			if (parameters->cycle_counter == 20000)
+				exit(0);
 			printf("It is now cycle %d\n", parameters->cycle_counter);
 			processes_execution(&processes, parameters);
 		}
