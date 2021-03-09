@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sti.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:58:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/08 15:40:48 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/09 23:26:56 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ int		sti(t_cursor *processes, t_game_para *parameters, int *size)
 		processes->args[2] = processes->registeries[processes->args[2] - 1];
 	if (processes->args[0] > 0 && processes->args[0] < 17)
 	{
-		printf("P %4d | %s r%d %d %d\n", processes->id,
+		if ((parameters->verbos >> 2) & 1)
+			printf("P %4d | %s r%d %d %d\n", processes->id,
 			op_tab[processes->opcode - 1].name, processes->args[0],
 			processes->args[1], processes->args[2]);
-		printf("       | -> store to %d + %d = %d (with pc and mod %d)\n",
+		if ((parameters->verbos >> 2) & 1)
+			printf("       | -> store to %d + %d = %d (with pc and mod %d)\n",
 			processes->args[1], processes->args[2],
 			processes->args[1] + processes->args[2], processes->pc +
 			processes->args[1] + processes->args[2]);

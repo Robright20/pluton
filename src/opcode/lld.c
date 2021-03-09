@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lld.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:20:27 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/08 17:41:25 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/09 23:25:32 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ int		lld(t_cursor *processes, t_game_para *parameters, int *size)
 
 	if (processes->args[1] > 0 && processes->args[1] < 17)
 	{
-		printf("P %4d | %s %d r%d\n", processes->id,
-		op_tab[processes->opcode - 1].name, processes->args[0],
-		processes->args[1]);
+		if ((parameters->verbos >> 2) & 1)
+			printf("P %4d | %s %d r%d\n", processes->id,
+			op_tab[processes->opcode - 1].name, processes->args[0],
+			processes->args[1]);
 		if (size[1] == 3)
 		{
 			index = (processes->pc + processes->args[0]) % MEM_SIZE;

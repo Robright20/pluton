@@ -33,7 +33,8 @@ t_cursor		*the_check(t_cursor *processes, t_game_para *parameters)
 	if (diff_lives >= NBR_LIVE || parameters->check_counter % MAX_CHECKS == 0)
 	{
 		parameters->cycle_to_die -= CYCLE_DELTA;
-		printf("Cycle to die is now %d\n", parameters->cycle_to_die);
+		if ((parameters->verbos >> 1) & 1)
+			printf("Cycle to die is now %d\n", parameters->cycle_to_die);
 		parameters->or_cycle_to_die = parameters->cycle_to_die;
 		if (parameters->cycle_to_die <= 0)
 			parameters->cycle_to_die = 1;
@@ -54,12 +55,12 @@ int				operations(t_cursor *processes, t_game_para *parameters,
 	(op == 1) && (ret = live(processes, parameters));
 	(op == 2) && (ret = ld(processes, parameters, size));
 	(op == 3) && (ret = st(processes, parameters, size));
-	(op == 4) && (ret = add(processes));
-	(op == 5) && (ret = sub(processes));
+	(op == 4) && (ret = add(processes, parameters));
+	(op == 5) && (ret = sub(processes, parameters));
 	(op == 6) && (ret = and(processes, parameters, size));
 	(op == 7) && (ret = or(processes, parameters, size));
 	(op == 8) && (ret = xor(processes, parameters, size));
-	(op == 9) && (ret = zjmp(processes));
+	(op == 9) && (ret = zjmp(processes, parameters));
 	(op == 10) && (ret = ldi(processes, parameters, size));
 	(op == 11) && (ret = sti(processes, parameters, size));
 	(op == 12) && (ret = ft_fork(processes, parameters, fprocesses));
@@ -157,7 +158,8 @@ int			start_battle(t_cursor *processes, t_players *players,
 			// 		}
 			// 	}
 			// }
-			printf("It is now cycle %d\n", parameters->cycle_counter);
+			if ((parameters->verbos >> 1) & 1)
+				printf("It is now cycle %d\n", parameters->cycle_counter);
 			processes_execution(&processes, parameters);
 		}
 		processes = the_check(processes, parameters);

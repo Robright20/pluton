@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:56:09 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/08 15:23:14 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/09 23:24:30 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int			ft_fork(t_cursor *processes, t_game_para *parameters,
 	if (!(new_process = fork_child(processes, fprocesses)))
 		return (-1);
 	new_process->pc = (index + processes->pc) % MEM_SIZE;
-	printf("P %4d | %s %d (%d)\n", processes->id,
+	if ((parameters->verbos >> 2) & 1)
+		printf("P %4d | %s %d (%d)\n", processes->id,
 	op_tab[processes->opcode - 1].name, processes->args[0], new_process->pc);
 	new_process->opcode = parameters->arena[new_process->pc];
 	if (new_process->opcode < 1 || new_process->opcode > 16)

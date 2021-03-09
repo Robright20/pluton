@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/09 19:16:47 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/09 23:28:21 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,11 @@ int					xor(t_cursor *processes, t_game_para *parameters, int *size);
 int					ld(t_cursor *processes, t_game_para *parameters, int *size);
 int					live(t_cursor *processes, t_game_para *parameters);
 int					st(t_cursor *processes, t_game_para *parameters, int *size);
-int					add(t_cursor *processes);
-int					sub(t_cursor *processes);
+int					add(t_cursor *processes, t_game_para *parameters);
+int					sub(t_cursor *processes, t_game_para *parameters);
 int					ldi(t_cursor *processes, t_game_para *parameters, int *size);
 int					lld(t_cursor *processes, t_game_para *parameters, int *size);
-int					zjmp(t_cursor *processes);
+int					zjmp(t_cursor *processes, t_game_para *parameters);
 int					lldi(t_cursor *processes, t_game_para *parameters, int *size);
 int					ft_fork(t_cursor *processes, t_game_para *parameters,
 															t_cursor **fprocesses);
