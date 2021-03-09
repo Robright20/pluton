@@ -126,14 +126,15 @@ int			processes_execution(t_cursor **processes, t_game_para *parameters)
 	return (1);
 }
 
-int			start_battle(t_cursor *processes, t_players *players)
+int			start_battle(t_cursor *processes, t_players *players,
+														int *ids_av)
 {
 	t_game_para		*parameters;
 	int				cycle_to_check;
 	// int		i;
 	// int		j;
 
-	if (!(parameters = init_game_parameters(players)))
+	if (!(parameters = init_game_parameters(players, ids_av)))
 		return (-1);
 	while (processes && parameters->cycle_to_die > 0)
 	{
@@ -141,7 +142,7 @@ int			start_battle(t_cursor *processes, t_players *players)
 		while (++cycle_to_check <= parameters->cycle_to_die)
 		{
 			parameters->cycle_counter++;
-			// if (parameters->cycle_counter == 50)
+			// if (parameters->cycle_counter == 1)
 			// {
 			// 	i = -1;
 			// 	j = 0;

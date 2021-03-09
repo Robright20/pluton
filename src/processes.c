@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:16:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/08 17:07:32 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/09 18:49:47 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,20 @@ t_cursor		*add_process(t_cursor *processes, t_players *players, int id)
 	return (new_process);
 }
 
-void		players_introduction(t_players *players)
+void		players_introduction(t_players *players, int *ids_av)
 {
 	int		i;
 
 	i = -1;
 	printf("Introducing contestants...\n");
-	while (++i < players->number_of_players)
-		printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", i + 1,
+	while (++i < 4)
+		if (ids_av[i] == 1)
+			printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", i + 1,
 							players->player[i]->size, players->player[i]->name,
 												players->player[i]->comment);
 }
 
-t_cursor	*init_processes(t_players *players)
+t_cursor	*init_processes(t_players *players, int *ids_av)
 {
 	t_cursor	*processes;
 	int			i;
@@ -52,8 +53,8 @@ t_cursor	*init_processes(t_players *players)
 	i = -1;
 	processes = NULL;
 	unique_id = 0;
-	while (++i < players->number_of_players)
-		if (!(processes = add_process(processes, players, i)))
+	while (++i < 4)
+		if (ids_av[i] == 1 && !(processes = add_process(processes, players, i)))
 			return (NULL);
 	return (processes);
 }

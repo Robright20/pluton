@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 15:26:45 by mac               #+#    #+#             */
-/*   Updated: 2021/03/08 19:29:39 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/09 18:25:10 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int		check_champ_file(t_players *players, char *champ, int id)
 	int				ret;
 
 	tmp = NULL;
-	printf("%s\n", champ);
 	if ((fd = open(champ, O_RDONLY)) < 0)
 	{
 		perror("champ");
@@ -28,7 +27,7 @@ int		check_champ_file(t_players *players, char *champ, int id)
 	}
 	if ((magic_header = convert_to_numfd(4, fd)) != COREWAR_EXEC_MAGIC)
 		return (-2);
-	if (read(fd, players->player[id]->name, PROG_NAME_LENGTH) != 128)
+	if ((ret = read(fd, players->player[id]->name, PROG_NAME_LENGTH)) != 128)
 		return (-1);
 	if (convert_to_numfd(4, fd) != 0)
 		return (-4);
@@ -59,7 +58,7 @@ int		verify_champ(t_players *players, char *argv, int id)
 		else if (ret == -4)
 			write(2, "Error - Inconsistent number of instructions\n", 44);
 		else
-			write(2, "ERROR : champion file not valid\n", 31);
+			write(2, "ERROR : champion file not valid\n", 32);
 		return (-1);
 	}
 	return (1);

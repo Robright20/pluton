@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:20:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/02/21 16:04:38 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/09 18:58:52 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,17 @@ int	convert_to_num(char *str, int size)
 	return (hex);
 }
 
-int			flag_n(int argc, char **argv, t_players *players, int *ids_av)
+int			extension(char *champ, int champ_len)
+{
+	char	*extension;
+
+	extension = ft_strsub(champ, champ_len - 4, champ_len);
+	if (ft_strequ(extension, ".cor"))
+		return (1);
+	return (0);
+}
+
+int			flag_n(int argc, char **argv, t_players *players, int **ids_av)
 {
 	int		id;
 	int		i;
@@ -56,43 +66,52 @@ int			flag_n(int argc, char **argv, t_players *players, int *ids_av)
 	i = 0;
 	id = 0;
 	while (++i < argc)
-		if (ft_strequ(argv[i], "-n") && (id = ft_atoi(argv[++i])))
+		if (ft_strequ(argv[i], "-n") && (id = ft_atoi(argv[++i])) >= 0)
 		{
-			if (id > 0 && id < 5 && ids_av[id - 1])
-			{
-				printf("ERROR : id  already reseved\n");
+			if (id > 0 && id < 5 && (*ids_av)[id - 1])
 				return (-1);
-			}
-			++i;
-			if (id > 0 && id < 5)
-			{
-				ids_av[id - 1] = 1;
-				players->player[id - 1]->id = id;
-				if ((verify_champ(players, argv[i], id - 1)) < 0)
-					return (-1);
-			}
+			if (id < 1 || id > 4)
+				return (-2);
+			(*ids_av)[id - 1] = 1;
+			players->player[id - 1]->id = id;
 		}
 	return (1);
 }
 
-int			read_players(int argc, char **argv, t_players *players, int *ids_av)
+int			print_flagn_error(int ret)
+{
+	if (ret == -1)
+		write(2, "ERROR : id  already reseved\n", 28);
+	if (ret == -2)
+		write(2, "ERROR : flag -n not valid\n", 26);
+	return (-1);
+}
+
+int			read_players(int argc, char **argv, t_players *players, int **ids_av)
 {
 	int		i;
 	int		j;
+	int		ret;
 
 	i = 0;
 	j = 0;
-	if (flag_n(argc, argv, players, ids_av) < 0)
-		return (-1);
+	if ((ret = flag_n(argc, argv, players, ids_av)) < 0)
+		return (print_flagn_error(ret));
 	while (++i < argc)
 		if (ft_strequ(argv[i], "-n"))
+		{
+			ret = ft_atoi(argv[i + 1]) - 1;
+			if (verify_champ(players, argv[i + 2], ret) < 0)
+				return (-1);
+			players->number_of_players++;
 			i += 2;
+		}
 		else
 		{
-			while (ids_av[j])
+			while ((*ids_av)[j])
 				j++;
 			players->player[j]->id = j + 1;
-			ids_av[j] = 1;
+			(*ids_av)[j] = 1;
 			if (verify_champ(players, argv[i], j) < 0)
 				return (-1);
 			players->number_of_players++;
@@ -107,7 +126,7 @@ t_players	*init_players(void)
 
 	indx = -1;
 	players = (t_players *)ft_memalloc(sizeof(t_players));
-	players->player = (t_player **)ft_memalloc(sizeof(t_player *));
+	players->player = (t_player **)ft_memalloc(sizeof(t_player *) * 4);
 	if (!players || !players->player)
 	{
 		printf("init players not finished");
@@ -139,11 +158,11 @@ int		main(int argc, char **argv)
 	if (!(ids_av = (int *)ft_memalloc(sizeof(int) * 4)))
 		return (0);
 	if (!(players = init_players()) ||
-						!read_players(argc, argv, players, ids_av))
+						(read_players(argc, argv, players, &ids_av) < 0))
 		return (0);
-	if (!(processes = init_processes(players)))
+	if (!(processes = init_processes(players, ids_av)))
 		return (0);
-	players_introduction(players);
-	start_battle(processes, players);
+	players_introduction(players, ids_av);
+	start_battle(processes, players, ids_av);
 	return (0);
 }
