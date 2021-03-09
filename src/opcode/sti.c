@@ -6,7 +6,7 @@
 /*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:58:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/09 23:26:56 by mac              ###   ########.fr       */
+/*   Updated: 2021/03/10 00:12:29 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,14 @@ int		sti(t_cursor *processes, t_game_para *parameters, int *size)
 			printf("P %4d | %s r%d %d %d\n", processes->id,
 			op_tab[processes->opcode - 1].name, processes->args[0],
 			processes->args[1], processes->args[2]);
-		if ((parameters->verbos >> 2) & 1)
-			printf("       | -> store to %d + %d = %d (with pc and mod %d)\n",
-			processes->args[1], processes->args[2],
-			processes->args[1] + processes->args[2], processes->pc +
-			processes->args[1] + processes->args[2]);
 		if (size[1] == 3)
 			processes->args[1] = if_arg_tind(processes, parameters, 1);
 		sum = processes->args[1] + processes->args[2];
 		index = (index + ((sum % IDX_MOD + MEM_SIZE) % MEM_SIZE)) % MEM_SIZE;
+		if ((parameters->verbos >> 2) & 1)
+			printf("       | -> store to %d + %d = %d (with pc and mod %d)\n",
+			processes->args[1], processes->args[2],
+			processes->args[1] + processes->args[2], index);
 		reg = processes->args[0] - 1;
 		cpy_toarena(processes->registeries[reg], &parameters, index, 4);
 	}

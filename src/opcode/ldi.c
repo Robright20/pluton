@@ -6,7 +6,7 @@
 /*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:43:44 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/09 23:26:09 by mac              ###   ########.fr       */
+/*   Updated: 2021/03/10 00:25:25 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,17 @@ int		ldi(t_cursor *processes, t_game_para *parameters, int *size)
 
 	if (processes->args[2] > 0 && processes->args[2] < 17)
 	{
+		if (size[0] == 3)
+			processes->args[0] = if_arg_tind(processes, parameters, 0);
 		if ((parameters->verbos >> 2) & 1)
 			printf("P %4d | ldi %d %d r%d\n", processes->id,
 				processes->args[0], processes->args[1], processes->args[2]);
-		if ((parameters->verbos >> 2) & 1)
-			printf("       | -> load from %d + %d = %d (with pc and mod %d)\n",
-				processes->args[0], processes->args[1],
-				processes->args[0] + processes->args[1], processes->pc +
-				processes->args[0] + processes->args[1]);
-		if (size[0] == 3)
-			processes->args[0] = if_arg_tind(processes, parameters, 0);
 		sum = processes->args[0] + processes->args[1];
 		index = processes->pc;
 		index = (index + ((sum % IDX_MOD + MEM_SIZE) % MEM_SIZE)) % MEM_SIZE;
+		if ((parameters->verbos >> 2) & 1)
+			printf("       | -> load from %d + %d = %d (with pc and mod %d)\n",
+				processes->args[0], processes->args[1], sum, index);
 		to_save = get_vfarena(parameters->arena, 4, index);
 		processes->registeries[processes->args[2] - 1] = to_save;
 	}
