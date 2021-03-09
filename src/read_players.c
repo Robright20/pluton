@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:20:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/09 18:58:52 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/09 19:23:56 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ int			read_players(int argc, char **argv, t_players *players, int **ids_av)
 			players->number_of_players++;
 			i += 2;
 		}
+		else if (ft_strequ(argv[i], "-v"))
+			players->verbos = ft_atoi(argv[++i]);
 		else
 		{
 			while ((*ids_av)[j])

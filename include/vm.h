@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/09 18:53:55 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/09 19:16:47 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ struct				s_players
 {
 	t_player		**player;
 	int				*ids_av;
+	int				verbos;
 	int				number_of_players;
 };
 
@@ -62,6 +63,7 @@ struct				s_game_para
 {
 	char			*arena;
 	int				last_live;
+	int				verbos;
 	int				cycle_counter;
 	int				cycle_to_die;
 	int				check_counter;

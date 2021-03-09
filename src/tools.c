@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:31:54 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/09 18:53:35 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/09 19:17:42 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ t_game_para		*init_game_parameters(t_players *players, int *ids_av)
 		return (NULL);
 	parameters->players = players;
 	parameters->cycle_to_die = CYCLE_TO_DIE;
+	parameters->verbos = players->verbos;
 	parameters->or_cycle_to_die = parameters->cycle_to_die;
 	parameters->last_live = players->number_of_players;
 	parameters->opcode_wait_cycles[0] = 10;
