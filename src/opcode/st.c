@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   st.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 14:33:14 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/09 23:26:36 by mac              ###   ########.fr       */
+/*   Updated: 2021/03/11 16:54:23 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int		st(t_cursor *processes, t_game_para *parameters, int *size)
 			processes->registeries[processes->args[1] - 1] = arg1;
 		else
 		{
-			index = (processes->pc + (processes->args[1] % IDX_MOD)) % MEM_SIZE;
+			index = (processes->pc + ((processes->args[1] % IDX_MOD + MEM_SIZE)
+														% MEM_SIZE)) % MEM_SIZE;
 			cpy_toarena(arg1, &parameters, index, 4);
 		}
 	}
