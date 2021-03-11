@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_players.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:20:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/09 23:32:37 by mac              ###   ########.fr       */
+/*   Updated: 2021/03/11 11:10:36 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,10 @@ int			read_players(int argc, char **argv, t_players *players, int **ids_av)
 			players->number_of_players++;
 			i += 2;
 		}
-		else if (ft_strequ(argv[i], "-v"))
+		else if (ft_strequ(argv[i], "-v") || ft_strequ(argv[i], "--verbos"))
 			players->verbos = ft_atoi(argv[++i]);
+		else if (ft_strequ(argv[i], "-d") || ft_strequ(argv[i], "--dump"))
+			players->dump = ft_atoi(argv[++i]);
 		else
 		{
 			while ((*ids_av)[j])

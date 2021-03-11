@@ -127,13 +127,32 @@ int			processes_execution(t_cursor **processes, t_game_para *parameters)
 	return (1);
 }
 
+int		dump_arena(t_game_para *parameters)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	j = 0;
+	printf("0x0000 : ");
+	while (++i < 4096)
+	{
+		j++;
+		printf("%02hhx ", parameters->arena[i]);
+		if (j % 64 == 0)
+		{
+			printf("\n");
+			(j != 4096) && printf("0x%04x : ", j);
+		}
+	}
+	return (1);
+}
+
 int			start_battle(t_cursor *processes, t_players *players,
 														int *ids_av)
 {
 	t_game_para		*parameters;
 	int				cycle_to_check;
-	// int		i;
-	// int		j;
 
 	if (!(parameters = init_game_parameters(players, ids_av)))
 		return (-1);
@@ -143,21 +162,8 @@ int			start_battle(t_cursor *processes, t_players *players,
 		while (++cycle_to_check <= parameters->cycle_to_die)
 		{
 			parameters->cycle_counter++;
-			// if (parameters->cycle_counter == 1)
-			// {
-			// 	i = -1;
-			// 	j = 0;
-			// 	while (++i < 4096)
-			// 	{
-			// 		j++;
-			// 		printf("%02hhx ", parameters->arena[i]);
-			// 		if (j == 32)
-			// 		{
-			// 			printf("\n");
-			// 			j = 0;
-			// 		}
-			// 	}
-			// }
+			if (parameters->cycle_counter == parameters->dump)
+				return (dump_arena(parameters));
 			if ((parameters->verbos >> 1) & 1)
 				printf("It is now cycle %d\n", parameters->cycle_counter);
 			processes_execution(&processes, parameters);
