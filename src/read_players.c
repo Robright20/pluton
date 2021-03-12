@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:20:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/12 15:02:09 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/12 16:19:57 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,34 +23,46 @@ int			flag_n(int argc, char **argv, t_players *players, int **ids_av)
 		if (ft_strequ(argv[i], "-n") && (id = ft_atoi(argv[++i])) >= 0)
 		{
 			if (id > 0 && id < 5 && (*ids_av)[id - 1])
+			{
+				write(2, "ERROR : id  already reseved\n", 28);
 				return (-1);
+			}
 			if (id < 1 || id > 4)
-				return (-2);
+			{
+				write(2, "ERROR : flag -n not valid\n", 26);
+				return (-1);
+			}
 			(*ids_av)[id - 1] = 1;
 			players->player[id - 1]->id = id;
 		}
 	return (1);
 }
 
-int			print_flagn_error(int ret)
+int		read_players_tmp(char **argv, t_players **players, int **ids_av,
+																	int i)
 {
-	if (ret == -1)
-		write(2, "ERROR : id  already reseved\n", 28);
-	if (ret == -2)
-		write(2, "ERROR : flag -n not valid\n", 26);
-	return (-1);
+	int		j;
+
+	j = 0;
+	while ((*ids_av)[j])
+		j++;
+	(*players)->player[j]->id = j + 1;
+	(*ids_av)[j] = 1;
+	if (verify_champ((*players), argv[i], j) < 0)
+		return (-1);
+	(*players)->number_of_players++;
+	return (1);
 }
 
-int			read_players(int argc, char **argv, t_players *players, int **ids_av)
+int			read_players(int argc, char **argv, t_players *players,
+															int **ids_av)
 {
 	int		i;
-	int		j;
 	int		ret;
 
 	i = 0;
-	j = 0;
 	if ((ret = flag_n(argc, argv, players, ids_av)) < 0)
-		return (print_flagn_error(ret));
+		return (-1);
 	while (++i < argc)
 		if (ft_strequ(argv[i], "-n"))
 		{
@@ -66,13 +78,8 @@ int			read_players(int argc, char **argv, t_players *players, int **ids_av)
 			players->dump = ft_atoi(argv[++i]);
 		else
 		{
-			while ((*ids_av)[j])
-				j++;
-			players->player[j]->id = j + 1;
-			(*ids_av)[j] = 1;
-			if (verify_champ(players, argv[i], j) < 0)
+			if (read_players_tmp(argv, &players, ids_av, i) < 0)
 				return (-1);
-			players->number_of_players++;
 		}
 	return (1);
 }
@@ -106,7 +113,7 @@ t_players	*init_players(void)
 	return (players);
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_players	*players;
 	t_cursor	*processes;
