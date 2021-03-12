@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:58:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/10 18:20:43 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/12 12:15:03 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int		sti(t_cursor *processes, t_game_para *parameters, int *size)
 {
 	int		index;
 	int		sum;
-	int		reg;
 
 	index = processes->pc;
 	if (size[1] == 1)
@@ -46,8 +45,8 @@ int		sti(t_cursor *processes, t_game_para *parameters, int *size)
 			printf("       | -> store to %d + %d = %d (with pc and mod %d)\n",
 			processes->args[1], processes->args[2], processes->args[1] +
 			processes->args[2], sum % IDX_MOD + processes->pc);
-		reg = processes->args[0] - 1;
-		cpy_toarena(processes->registeries[reg], &parameters, index, 4);
+		cpy_toarena(processes->registeries[processes->args[0] - 1],
+														&parameters, index, 4);
 	}
 	return (1);
 }
