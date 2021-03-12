@@ -67,7 +67,8 @@ int				operations(t_cursor *processes, t_game_para *parameters,
 	(op == 13) && (ret = lld(processes, parameters, size));
 	(op == 14) && (ret = lldi(processes, parameters, size));
 	(op == 15) && (ret = lfork(processes, parameters, fprocesses));
-	// (op == 16) && aff(processes, parameters);
+	if (op == 16)
+		printf("%d\n", processes->registeries[(processes->args[0] - 1) % 256]);
 	return (ret);
 }
 
