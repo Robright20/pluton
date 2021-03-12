@@ -6,13 +6,22 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 15:12:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/12 12:57:55 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/12 16:23:40 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		lldi(t_cursor *processes, t_game_para *parameters, int *size)
+t_cursor	*if_size_3(t_cursor *processes, t_game_para *parameters, int *size)
+{
+	if (size[0] == 3)
+		processes->args[0] = if_arg_tind(processes, parameters, 0);
+	if (size[1] == 3)
+		processes->args[1] = if_arg_tind(processes, parameters, 1);
+	return (processes);
+}
+
+int			lldi(t_cursor *processes, t_game_para *parameters, int *size)
 {
 	int		index;
 	int		sum;
@@ -20,10 +29,7 @@ int		lldi(t_cursor *processes, t_game_para *parameters, int *size)
 
 	if (processes->args[2] > 0 && processes->args[2] < 17)
 	{
-		if (size[0] == 3)
-			processes->args[0] = if_arg_tind(processes, parameters, 0);
-		if (size[1] == 3)
-			processes->args[1] = if_arg_tind(processes, parameters, 1);
+		if_size_3(processes, parameters, size);
 		if ((parameters->verbos >> 2) & 1)
 			printf("P %4d | lldi %d %d r%d\n", processes->id,
 				processes->args[0], processes->args[1], processes->args[2]);
