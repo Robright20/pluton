@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/11 11:07:20 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/12 12:54:17 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,4 +127,5 @@ t_cursor	*remove_process(t_cursor *process, t_cursor *processes,
 														t_game_para *parameters);
 void				cpy_toarena(int reg, t_game_para **parameters, int index, int n);
 int					if_arg_tind(t_cursor *processes, t_game_para *parameters, int i);
+int					dump_arena(t_game_para *parameters);
 #endif

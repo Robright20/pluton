@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/17 11:12:50 by mac               #+#    #+#             */
-/*   Updated: 2021/03/08 16:44:34 by aalhaoui         ###   ########.fr       */
+/*   Created: 2021/03/12 12:53:28 by aalhaoui          #+#    #+#             */
+/*   Updated: 2021/03/12 12:53:30 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +14,9 @@
 
 t_cursor		*the_check(t_cursor *processes, t_game_para *parameters)
 {
-	int			diff_lives;
 	t_cursor	*cur_process;
 	t_cursor	*tmp;
 
-	diff_lives = parameters->live_counter - parameters->last_live_counter;
 	parameters->check_counter++;
 	cur_process = processes;
 	while (cur_process)
@@ -30,14 +27,14 @@ t_cursor		*the_check(t_cursor *processes, t_game_para *parameters)
 			processes = remove_process(cur_process, processes, parameters);
 		cur_process = tmp;
 	}
-	if (diff_lives >= NBR_LIVE || parameters->check_counter % MAX_CHECKS == 0)
+	if (parameters->live_counter - parameters->last_live_counter >= NBR_LIVE
+								|| parameters->check_counter % MAX_CHECKS == 0)
 	{
 		parameters->cycle_to_die -= CYCLE_DELTA;
 		if ((parameters->verbos >> 1) & 1)
 			printf("Cycle to die is now %d\n", parameters->cycle_to_die);
 		parameters->or_cycle_to_die = parameters->cycle_to_die;
-		if (parameters->cycle_to_die <= 0)
-			parameters->cycle_to_die = 1;
+		(parameters->cycle_to_die <= 0) && (parameters->cycle_to_die = 1);
 		parameters->check_counter = 0;
 	}
 	parameters->last_live_counter = parameters->live_counter;
@@ -67,8 +64,8 @@ int				operations(t_cursor *processes, t_game_para *parameters,
 	(op == 13) && (ret = lld(processes, parameters, size));
 	(op == 14) && (ret = lldi(processes, parameters, size));
 	(op == 15) && (ret = lfork(processes, parameters, fprocesses));
-	if (op == 16)
-		printf("%d\n", processes->registeries[(processes->args[0] - 1) % 256]);
+	// if (op == 16)
+	// 	printf("%d\n", processes->registeries[(processes->args[0] - 1)] % 256);
 	return (ret);
 }
 
@@ -95,11 +92,9 @@ void			execute_operations(t_cursor *processes, t_game_para *parameters,
 		args_size = (args_size + MEM_SIZE) % MEM_SIZE;
 		processes->pc = (pc + 2 + args_size) % MEM_SIZE;
 	}
-	else if (processes->opcode != 9)
+	else if (processes->opcode != 9 || (processes->opcode == 9 && !processes->carry))
 		processes->pc = (pc + 1 + (op_tab[processes->opcode - 1].dir_size
 														? 2 : 4)) % MEM_SIZE;
-	else if (processes->opcode == 9 && !processes->carry)
-		processes->pc = (pc + 3) % MEM_SIZE;
 	processes->wait_cycle = -1;
 	ft_memdel((void **)&size);
 }
