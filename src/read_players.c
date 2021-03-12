@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:20:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/11 11:10:36 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/12 12:26:58 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,6 @@ int	convert_to_num(char *str, int size)
 		hex |= (int)str[i];
 	}
 	return (hex);
-}
-
-int			extension(char *champ, int champ_len)
-{
-	char	*extension;
-
-	extension = ft_strsub(champ, champ_len - 4, champ_len);
-	if (ft_strequ(extension, ".cor"))
-		return (1);
-	return (0);
 }
 
 int			flag_n(int argc, char **argv, t_players *players, int **ids_av)

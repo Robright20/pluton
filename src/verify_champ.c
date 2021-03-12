@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 15:26:45 by mac               #+#    #+#             */
-/*   Updated: 2021/03/09 19:21:51 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/12 12:27:14 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,27 @@ int		check_champ_file(t_players *players, char *champ, int id)
 	return (1);
 }
 
+int			extension(char *champ, int champ_len)
+{
+	char	*extension;
+
+	extension = ft_strsub(champ, champ_len - 4, champ_len);
+	if (ft_strequ(extension, ".cor"))
+		return (1);
+	return (0);
+}
+
 int		verify_champ(t_players *players, char *argv, int id)
 {
 	int		ret;
+	int		champ_len;
 
+	champ_len = ft_strlen(argv);
+	if (champ_len <= 4 || !extension(argv, champ_len))
+	{
+		write(2, "ERROR : champion name not valid\n", 32);
+		return (-1);
+	}
 	if ((ret = check_champ_file(players, argv, id)) < 0)
 	{
 		if (ret == -3)
