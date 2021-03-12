@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 18:35:13 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/09 18:58:03 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/12 12:20:28 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,21 @@ int		init_arena(t_players *players, t_game_para *parameters, int *ids_av)
 			j++;
 		}
 	return (1);
+}
+
+void			cpy_toarena(int reg, t_game_para **parameters, int index, int n)
+{
+	int		i;
+	int		tmp;
+
+	i = index % MEM_SIZE;
+	index = index + n;
+	tmp = (n - 1) * 8;
+	while (i < index)
+	{
+		(*parameters)->arena[i] = (reg >> tmp) & 255;
+		i = (i + 1) % MEM_SIZE;
+		(i == 0) && (index %= MEM_SIZE);
+		tmp -= 8;
+	}
 }

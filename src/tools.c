@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:31:54 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/11 11:07:49 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/12 12:19:49 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,20 +86,8 @@ int				get_args(t_cursor *processes, t_game_para *parameters,
 	return (1);
 }
 
-t_game_para		*init_game_parameters(t_players *players, int *ids_av)
+t_game_para		*set_wait_cycle(t_game_para *parameters)
 {
-	t_game_para *parameters;
-
-	if (!(parameters = (t_game_para *)ft_memalloc(sizeof(t_game_para))))
-		return (NULL);
-	if (!init_arena(players, parameters, ids_av))
-		return (NULL);
-	parameters->players = players;
-	parameters->cycle_to_die = CYCLE_TO_DIE;
-	parameters->verbos = players->verbos;
-	parameters->dump = players->dump;
-	parameters->or_cycle_to_die = parameters->cycle_to_die;
-	parameters->last_live = players->number_of_players;
 	parameters->opcode_wait_cycles[0] = 10;
 	parameters->opcode_wait_cycles[1] = 5;
 	parameters->opcode_wait_cycles[2] = 5;
@@ -119,19 +107,20 @@ t_game_para		*init_game_parameters(t_players *players, int *ids_av)
 	return (parameters);
 }
 
-void			cpy_toarena(int reg, t_game_para **parameters, int index, int n)
+t_game_para		*init_game_parameters(t_players *players, int *ids_av)
 {
-	int		i;
-	int		tmp;
+	t_game_para *parameters;
 
-	i = index % MEM_SIZE;
-	index = index + n;
-	tmp = (n - 1) * 8;
-	while (i < index)
-	{
-		(*parameters)->arena[i] = (reg >> tmp) & 255;
-		i = (i + 1) % MEM_SIZE;
-		(i == 0) && (index %= MEM_SIZE);
-		tmp -= 8;
-	}
+	if (!(parameters = (t_game_para *)ft_memalloc(sizeof(t_game_para))))
+		return (NULL);
+	if (!init_arena(players, parameters, ids_av))
+		return (NULL);
+	parameters->players = players;
+	parameters->cycle_to_die = CYCLE_TO_DIE;
+	parameters->verbos = players->verbos;
+	parameters->dump = players->dump;
+	parameters->or_cycle_to_die = parameters->cycle_to_die;
+	parameters->last_live = players->number_of_players;
+	parameters = set_wait_cycle(parameters);
+	return (parameters);
 }
