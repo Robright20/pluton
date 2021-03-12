@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   processes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:16:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/09 23:29:57 by mac              ###   ########.fr       */
+/*   Updated: 2021/03/12 15:44:06 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_cursor		*add_process(t_cursor *processes, t_players *players, int id)
 	return (new_process);
 }
 
-void		players_introduction(t_players *players, int *ids_av)
+void			players_introduction(t_players *players, int *ids_av)
 {
 	int		i;
 
@@ -45,7 +45,7 @@ void		players_introduction(t_players *players, int *ids_av)
 												players->player[i]->comment);
 }
 
-t_cursor	*init_processes(t_players *players, int *ids_av)
+t_cursor		*init_processes(t_players *players, int *ids_av)
 {
 	t_cursor	*processes;
 	int			i;
@@ -59,7 +59,7 @@ t_cursor	*init_processes(t_players *players, int *ids_av)
 	return (processes);
 }
 
-t_cursor	*remove_process(t_cursor *process, t_cursor *processes,
+t_cursor		*remove_process(t_cursor *process, t_cursor *processes,
 													t_game_para *parameters)
 {
 	t_cursor	*cur;
@@ -69,18 +69,14 @@ t_cursor	*remove_process(t_cursor *process, t_cursor *processes,
 	while (cur)
 	{
 		tmp = cur->next;
+		(cur == process) && (processes = tmp);
 		if (cur == process)
-		{
-			processes = tmp;
 			ft_memdel((void **)&cur);
-			break ;
-		}
-		else if (tmp == process)
-		{
-			cur->next = tmp->next;
+		(tmp == process) && (cur->next = tmp->next);
+		if (tmp == process)
 			ft_memdel((void **)&tmp);
+		if (tmp == process || cur == process)
 			break ;
-		}
 		cur = tmp;
 	}
 	if ((parameters->verbos >> 2) & 1)

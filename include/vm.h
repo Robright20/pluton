@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/31 18:22:33 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/12 12:54:17 by aalhaoui         ###   ########.fr       */
+/*   Created: 2021/03/12 12:56:22 by aalhaoui          #+#    #+#             */
+/*   Updated: 2021/03/12 15:40:52 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int					lfork(t_cursor *processes, t_game_para *parameters,
 t_cursor			*fork_child(t_cursor *processes, t_cursor **fprocesses);
 t_game_para			*init_game_parameters(t_players *players, int *ids_av);
 int					get_args(t_cursor *processes, t_game_para *parameters, int *size);													
-t_cursor	*remove_process(t_cursor *process, t_cursor *processes,
+t_cursor			*remove_process(t_cursor *process, t_cursor *processes,
 														t_game_para *parameters);
 void				cpy_toarena(int reg, t_game_para **parameters, int index, int n);
 int					if_arg_tind(t_cursor *processes, t_game_para *parameters, int i);

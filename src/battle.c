@@ -6,13 +6,13 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:53:28 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/12 12:53:30 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/12 12:55:45 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-t_cursor		*the_check(t_cursor *processes, t_game_para *parameters)
+t_cursor	*the_check(t_cursor *processes, t_game_para *parameters)
 {
 	t_cursor	*cur_process;
 	t_cursor	*tmp;
@@ -41,7 +41,7 @@ t_cursor		*the_check(t_cursor *processes, t_game_para *parameters)
 	return (processes);
 }
 
-int				operations(t_cursor *processes, t_game_para *parameters,
+int			operations(t_cursor *processes, t_game_para *parameters,
 											t_cursor **fprocesses, int *size)
 {
 	int		ret;
@@ -69,7 +69,7 @@ int				operations(t_cursor *processes, t_game_para *parameters,
 	return (ret);
 }
 
-void			execute_operations(t_cursor *processes, t_game_para *parameters,
+void		execute_operations(t_cursor *processes, t_game_para *parameters,
 														t_cursor **fprocesses)
 {
 	int		*size;
@@ -119,27 +119,6 @@ int			processes_execution(t_cursor **processes, t_game_para *parameters)
 		if (!cur_process->wait_cycle)
 			execute_operations(cur_process, parameters, processes);
 		cur_process = cur_process->next;
-	}
-	return (1);
-}
-
-int		dump_arena(t_game_para *parameters)
-{
-	int		i;
-	int		j;
-
-	i = -1;
-	j = 0;
-	printf("0x0000 : ");
-	while (++i < 4096)
-	{
-		j++;
-		printf("%02hhx ", parameters->arena[i]);
-		if (j % 64 == 0)
-		{
-			printf("\n");
-			(j != 4096) && printf("0x%04x : ", j);
-		}
 	}
 	return (1);
 }
