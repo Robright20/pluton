@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:53:28 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/12 12:55:45 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/12 16:46:35 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,9 @@ void		execute_operations(t_cursor *processes, t_game_para *parameters,
 	if (op_tab[processes->opcode - 1].codage_byte)
 		size = check_codage_byte(parameters->arena[pc + 1], processes->opcode);
 	if (!op_tab[processes->opcode - 1].codage_byte || !size[3])
-	{
 		get_args(processes, parameters, size);
+	if (!op_tab[processes->opcode - 1].codage_byte || !size[3])
 		operations(processes, parameters, fprocesses, size);
-	}
 	if (op_tab[processes->opcode - 1].codage_byte)
 	{
 		args_size = (size[0] == 3 ? 2 : size[0]) + (size[1] == 3 ? 2 : size[1])
@@ -92,7 +91,8 @@ void		execute_operations(t_cursor *processes, t_game_para *parameters,
 		args_size = (args_size + MEM_SIZE) % MEM_SIZE;
 		processes->pc = (pc + 2 + args_size) % MEM_SIZE;
 	}
-	else if (processes->opcode != 9 || (processes->opcode == 9 && !processes->carry))
+	else if (processes->opcode != 9 ||
+								(processes->opcode == 9 && !processes->carry))
 		processes->pc = (pc + 1 + (op_tab[processes->opcode - 1].dir_size
 														? 2 : 4)) % MEM_SIZE;
 	processes->wait_cycle = -1;
