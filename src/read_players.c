@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:20:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/12 16:20:49 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/12 17:48:06 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,21 @@ t_players	*init_players(void)
 	return (players);
 }
 
+int			print_usage(void)
+{
+	printf("Usage: ./corewar [-d N -v N | -n N <champion1.cor> <...>\n");
+	printf(" -d / --dump   N    : Dumps memory after N cycles then exits\n");
+	printf(" -v / --verbos N    : Verbosity levels, can be added together ");
+	printf("to enable several\n");
+	printf("			- 0 : Show only essentials (introduction + ");
+	printf("the winner)\n");
+	printf("			- 1 : Show lives\n");
+	printf("			- 2 : Show cycles\n");
+	printf("			- 4 : Show operations (Params are NOT litteral ...)\n");
+	printf("			- 8 : Show deaths\n");
+	return (1);
+}
+
 int			main(int argc, char **argv)
 {
 	t_players	*players;
@@ -122,6 +137,7 @@ int			main(int argc, char **argv)
 	processes = NULL;
 	if (!(ids_av = (int *)ft_memalloc(sizeof(int) * 4)))
 		return (0);
+	(argc == 1) && print_usage();
 	if (!(players = init_players()) ||
 						(read_players(argc, argv, players, &ids_av) < 0))
 		return (0);
