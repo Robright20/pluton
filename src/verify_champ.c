@@ -6,15 +6,28 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 15:26:45 by mac               #+#    #+#             */
-/*   Updated: 2021/03/12 12:27:14 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/12 16:08:36 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int		check_champ_file(t_players *players, char *champ, int id)
+int			check_header(t_players **players, int id, int fd)
 {
 	unsigned int	magic_header;
+	int				ret;
+
+	if ((magic_header = convert_to_numfd(4, fd)) != COREWAR_EXEC_MAGIC)
+		return (-2);
+	if ((ret = read(fd, (*players)->player[id]->name, PROG_NAME_LENGTH)) != 128)
+		return (-1);
+	if (convert_to_numfd(4, fd) != 0)
+		return (-4);
+	return (1);
+}
+
+int			check_champ_file(t_players *players, char *champ, int id)
+{
 	char			*tmp;
 	int				fd;
 	int				ret;
@@ -25,12 +38,8 @@ int		check_champ_file(t_players *players, char *champ, int id)
 		perror("champ");
 		return (-1);
 	}
-	if ((magic_header = convert_to_numfd(4, fd)) != COREWAR_EXEC_MAGIC)
-		return (-2);
-	if ((ret = read(fd, players->player[id]->name, PROG_NAME_LENGTH)) != 128)
-		return (-1);
-	if (convert_to_numfd(4, fd) != 0)
-		return (-4);
+	if ((ret = check_header(&players, id, fd)) < 0)
+		return (ret);
 	if ((players->player[id]->size = convert_to_numfd(4, fd)) < 0 ||
 				players->player[id]->size > 682)
 		return (-3);
@@ -55,7 +64,7 @@ int			extension(char *champ, int champ_len)
 	return (0);
 }
 
-int		verify_champ(t_players *players, char *argv, int id)
+int			verify_champ(t_players *players, char *argv, int id)
 {
 	int		ret;
 	int		champ_len;
