@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 15:26:45 by mac               #+#    #+#             */
-/*   Updated: 2021/03/13 11:48:00 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/13 11:52:48 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ int			extension(char *champ, int champ_len)
 
 	extension = ft_strsub(champ, champ_len - 4, champ_len);
 	if (ft_strequ(extension, ".cor"))
+	{
+		ft_memdel((void **)&extension);
 		return (1);
-	ft_memdel((void **)&extension);
+	}
 	return (0);
 }
 
