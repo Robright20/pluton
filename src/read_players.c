@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:20:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/12 17:48:06 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/13 11:45:39 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,21 +113,6 @@ t_players	*init_players(void)
 	return (players);
 }
 
-int			print_usage(void)
-{
-	printf("Usage: ./corewar [-d N -v N | -n N <champion1.cor> <...>\n");
-	printf(" -d / --dump   N    : Dumps memory after N cycles then exits\n");
-	printf(" -v / --verbos N    : Verbosity levels, can be added together ");
-	printf("to enable several\n");
-	printf("			- 0 : Show only essentials (introduction + ");
-	printf("the winner)\n");
-	printf("			- 1 : Show lives\n");
-	printf("			- 2 : Show cycles\n");
-	printf("			- 4 : Show operations (Params are NOT litteral ...)\n");
-	printf("			- 8 : Show deaths\n");
-	return (1);
-}
-
 int			main(int argc, char **argv)
 {
 	t_players	*players;
@@ -145,5 +130,6 @@ int			main(int argc, char **argv)
 		return (0);
 	players_introduction(players, ids_av);
 	start_battle(processes, players, ids_av);
+	free_resources(players, ids_av);
 	return (0);
 }

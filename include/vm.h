@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:56:22 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/12 15:40:52 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/13 11:46:13 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,4 +128,6 @@ t_cursor			*remove_process(t_cursor *process, t_cursor *processes,
 void				cpy_toarena(int reg, t_game_para **parameters, int index, int n);
 int					if_arg_tind(t_cursor *processes, t_game_para *parameters, int i);
 int					dump_arena(t_game_para *parameters);
+int					print_usage(void);
+void				free_resources(t_players *players, int *ids_av);
 #endif
