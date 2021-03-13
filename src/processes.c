@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:16:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/12 15:44:06 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/13 11:35:17 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ t_cursor		*remove_process(t_cursor *process, t_cursor *processes,
 	t_cursor	*tmp;
 
 	cur = processes;
+	if ((parameters->verbos >> 2) & 1)
+		printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
+		process->id, parameters->cycle_counter - process->last_live,
+		parameters->or_cycle_to_die);
 	while (cur)
 	{
 		tmp = cur->next;
@@ -79,9 +83,5 @@ t_cursor		*remove_process(t_cursor *process, t_cursor *processes,
 			break ;
 		cur = tmp;
 	}
-	if ((parameters->verbos >> 2) & 1)
-		printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
-		process->id, parameters->cycle_counter - process->last_live,
-		parameters->or_cycle_to_die);
 	return (processes);
 }
