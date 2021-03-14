@@ -8,6 +8,7 @@ const net = require('net');
 const http = require('http');
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({ noServer: true });
+const getLine = require('./src/getLine');
 let client = {connected: false};
 
 const MIMETypes = {
@@ -47,45 +48,26 @@ wss.on('connection', (ws) => {
 });
 
 const socketServer = net.createServer((sock) => {
-	let dataBak = [];
 	sock.on('error', (err) => log(err));
 	sock.setEncoding('utf-8');
 
 	sock.on('data', data => {
-		let line = "";
-		dataBak = dataBak.concat(data.split("\n"));
-		log(dataBak);
-		if (!client.connected)
-			return sock.write("NO_HTTP_CLIENT: data sent will be lost.\n");
-		while ((line = dataBak.shift()))
-		{
-			sendLine(sock, client, line);
-			log(line.length);
-		}
+		let line = getLine(sock, data);
+		// if (!client.connected)
+			// return sock.write("NO_HTTP_CLIENT: data sent will be lost.\n");
+    do {
+      if (line) {
+        sendLine(sock, client, line);
+      }
+      log(line);
+    } while ((line = getLine(sock)));
 	});
 });
 
-const getLine = (function () {
-	const cache = new Map();
-	return function(key, data) {
-		let cached = (cache.get(key) ?? "") + (data ?? "");
-    let result;
-		if (cached.includes('\n')) {
-      cached = cached.split("\n");
-      result = cached.shift();
-      cached = cached.join("\n");
-      cache.set(key, cached);
-    } else if (data?.length) {
-      cache.set(key, data);
-    }
-    return result;
-	}
-})();
-
 const sendLine = (sock, client, line) => {
-	if (!/^##check-client/.test(line))
-		client.sock.send(line + '\n');
-	else
+	// if (!/^##check-client/.test(line))
+		// client.sock.send(line + '\n');
+	// else
 		sock.write("200: client connected.\n");
 }
 
