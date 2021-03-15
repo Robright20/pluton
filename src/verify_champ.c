@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 15:26:45 by mac               #+#    #+#             */
-/*   Updated: 2021/03/13 11:52:48 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/15 17:30:00 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,27 @@ int			check_header(t_players **players, int id, int fd)
 {
 	unsigned int	magic_header;
 	int				ret;
+	int				boool;
 
+	boool = 1;
 	if ((magic_header = convert_to_numfd(4, fd)) != COREWAR_EXEC_MAGIC)
-		return (-2);
+		boool = -4;
 	if ((ret = read(fd, (*players)->player[id]->name, PROG_NAME_LENGTH)) != 128)
-		return (-1);
+		boool = -1;
 	if (convert_to_numfd(4, fd) != 0)
-		return (-4);
-	return (1);
+		boool = -4;
+	return (boool);
 }
 
 int			check_champ_file(t_players *players, char *champ, int id)
 {
-	char			*tmp;
+	char			tmp;
 	int				fd;
 	int				ret;
+	int				boool;
 
-	tmp = NULL;
+	tmp = 0;
+	boool = 1;
 	if ((fd = open(champ, O_RDONLY)) < 0)
 	{
 		perror("champ");
@@ -42,16 +46,17 @@ int			check_champ_file(t_players *players, char *champ, int id)
 		return (ret);
 	if ((players->player[id]->size = convert_to_numfd(4, fd)) < 0 ||
 				players->player[id]->size > 682)
-		return (-3);
-	if (read(fd, players->player[id]->comment, COMMENT_LENGTH) != 2048)
-		return (-1);
-	if (convert_to_numfd(4, fd) != 0)
-		return (-1);
-	if ((ret = read(fd, players->player[id]->code, players->player[id]->size)))
-		if ((ret != players->player[id]->size) || read(fd, tmp, 1))
-			return (-4);
+		boool = -3;
+	else if (read(fd, players->player[id]->comment, COMMENT_LENGTH) != 2048)
+		boool = -1;
+	else if (convert_to_numfd(4, fd) != 0)
+		boool = -1;
+	else if ((ret = read(fd, players->player[id]->code,
+											players->player[id]->size)))
+		if ((ret != players->player[id]->size) || read(fd, &tmp, 1))
+			boool = -4;
 	close(fd);
-	return (1);
+	return (boool);
 }
 
 int			extension(char *champ, int champ_len)

@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:56:22 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/13 11:46:13 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/14 18:53:54 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ struct				s_op
 	int				dir_size;
 };
 
-extern	t_op		op_tab[17];
+extern	t_op		op_tab[];
 int					unique_id;
 
 struct				s_player

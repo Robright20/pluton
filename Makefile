@@ -1,3 +1,4 @@
+
 NAME = corewar
 SRC = $(addprefix src/, read_players.c op.c verify_champ.c arena.c\
 		processes.c battle.c tools.c convert.c tools1.c\
@@ -10,7 +11,7 @@ OBJ = $(SRC:.c=.o)
 LFTDIR = ./libft
 LDLIBS = -lft
 LDFLAGS = -L$(LFTDIR)
-CFLAGS = -Wall -Wextra -Werror -I./include
+CFLAGS = -Wall -Wextra -Werror -g  -I./include
 CC = gcc
 RED			= \033[31m
 GREEN		= \033[32m

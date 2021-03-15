@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mac <mac@student.42.fr>                    +#+  +:+       +#+         #
+#    By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/15 22:00:03 by bob               #+#    #+#              #
-#    Updated: 2021/02/13 00:03:59 by mac              ###   ########.fr        #
+#    Updated: 2021/03/15 16:40:27 by aalhaoui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ ifeq ($(shell uname -s), Darwin)
 else
 	ARFLAGS = rcsU
 endif
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 CC = gcc
 
 # **************************************************************************** #
