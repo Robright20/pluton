@@ -8,9 +8,7 @@ SRC = $(addprefix src/, read_players.c op.c verify_champ.c arena.c\
 
 HEADER = $(addprefix include/, vm.h op.h)
 OBJ = $(SRC:.c=.o)
-LFTDIR = ./libft
-LDLIBS = -lft
-LDFLAGS = -L$(LFTDIR)
+FT_PRINTF = ./ft_printf
 CFLAGS = -Wall -Wextra -Werror -g  -I./include
 CC = gcc
 RED			= \033[31m
@@ -18,25 +16,23 @@ GREEN		= \033[32m
 YELLOW		= \033[93m
 RESET		= \033[0m
 
-all : $(LFTDIR) $(NAME)
+all : $(NAME)
 
-$(NAME): $(OBJ) $(HEADER)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LDFLAGS) $(LDLIBS)
+$(NAME): $(FT_PRINTF) $(OBJ) $(HEADER) 
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) 
 	@echo "⇾ building $(GREEN)corewar$(RESET)"
 
-$(LFTDIR):
+$(FT_PRINTF):
 	@make -C $@
 
 clean: 
 	@$(RM) $(OBJ)
-	@make -C $(LFTDIR) clean
 	@echo "⇾ $(NAME) $(RED)cleaned$(RESET)"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@make -C $(LFTDIR) fclean
 	@echo "⇾ $(NAME) $(RED)deleted$(RESET)"
 
 re: fclean all
 
-.PHONY: all clean fclean re $(LFTDIR)
+.PHONY: all clean fclean re

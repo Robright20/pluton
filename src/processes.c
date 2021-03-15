@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:16:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/13 11:35:17 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/15 18:41:37 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void			players_introduction(t_players *players, int *ids_av)
 	int		i;
 
 	i = -1;
-	printf("Introducing contestants...\n");
+	ft_printf("Introducing contestants...\n");
 	while (++i < 4)
 		if (ids_av[i] == 1)
-			printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", i + 1,
+			ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", i + 1,
 							players->player[i]->size, players->player[i]->name,
 												players->player[i]->comment);
 }
@@ -67,7 +67,7 @@ t_cursor		*remove_process(t_cursor *process, t_cursor *processes,
 
 	cur = processes;
 	if ((parameters->verbos >> 2) & 1)
-		printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
+		ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
 		process->id, parameters->cycle_counter - process->last_live,
 		parameters->or_cycle_to_die);
 	while (cur)

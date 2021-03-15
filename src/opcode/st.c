@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 14:33:14 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/11 16:54:23 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/15 18:41:37 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		st(t_cursor *processes, t_game_para *parameters, int *size)
 	if (processes->args[0] > 0 && processes->args[0] < 17)
 	{
 		if ((parameters->verbos >> 2) & 1)
-			printf("P %4d | %s r%d %d\n", processes->id,
+			ft_printf("P %4d | %s r%d %d\n", processes->id,
 			op_tab[processes->opcode - 1].name, processes->args[0],
 			processes->args[1]);
 		arg1 = processes->registeries[processes->args[0] - 1];

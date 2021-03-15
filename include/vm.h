@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:56:22 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/14 18:53:54 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/15 19:04:39 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include "op.h"
 # include <stdlib.h>
 # include <stdio.h>
-# include "../libft/libft.h"
+# include "../ft_printf/libft/headers/libft.h"
+# include "../ft_printf/headers/ft_printf.h"
+# include "../ft_printf/headers/float_bigint.h"
 
 typedef	struct		s_cursor	t_cursor;
 typedef	struct 		s_op 		t_op;
@@ -57,6 +59,7 @@ struct				s_players
 	int				*ids_av;
 	int				verbos;
 	int				dump;
+	int				aff;
 	int				number_of_players;
 };
 
@@ -66,6 +69,7 @@ struct				s_game_para
 	int				last_live;
 	int				verbos;
 	int				dump;
+	int				aff;
 	int				cycle_counter;
 	int				cycle_to_die;
 	int				check_counter;

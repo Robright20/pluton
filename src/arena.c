@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 18:35:13 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/12 14:42:33 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/15 18:41:36 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ int			dump_arena(t_game_para *parameters)
 
 	i = -1;
 	j = 0;
-	printf("0x0000 : ");
+	ft_printf("0x0000 : ");
 	while (++i < 4096)
 	{
 		j++;
-		printf("%02hhx ", parameters->arena[i]);
+		ft_printf("%02hhx ", parameters->arena[i]);
 		if (j % 64 == 0)
 		{
-			printf("\n");
-			(j != 4096) && printf("0x%04x : ", j);
+			ft_printf("\n");
+			(j != 4096) && ft_printf("0x%04x : ", j);
 		}
 	}
 	return (1);

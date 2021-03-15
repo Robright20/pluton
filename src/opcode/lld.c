@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 16:20:27 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/10 19:13:47 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/15 18:41:37 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		lld(t_cursor *processes, t_game_para *parameters, int *size)
 			processes->args[0] = get_vfarena(parameters->arena, 2, index);
 		}
 		if ((parameters->verbos >> 2) & 1)
-			printf("P %4d | lld %d r%d\n", processes->id, processes->args[0],
+			ft_printf("P %4d | lld %d r%d\n", processes->id, processes->args[0],
 			processes->args[1]);
 		processes->registeries[processes->args[1] - 1] = processes->args[0];
 		(processes->args[0] == 0) && (processes->carry = 1);

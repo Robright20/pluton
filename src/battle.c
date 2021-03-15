@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:53:28 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/15 17:23:09 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/15 18:41:36 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_cursor	*the_check(t_cursor *processes, t_game_para *parameters)
 	{
 		parameters->cycle_to_die -= CYCLE_DELTA;
 		if ((parameters->verbos >> 1) & 1)
-			printf("Cycle to die is now %d\n", parameters->cycle_to_die);
+			ft_printf("Cycle to die is now %d\n", parameters->cycle_to_die);
 		parameters->or_cycle_to_die = parameters->cycle_to_die;
 		(parameters->cycle_to_die <= 0) && (parameters->cycle_to_die = 1);
 		parameters->check_counter = 0;
@@ -65,7 +65,9 @@ int			operations(t_cursor *processes, t_game_para *parameters,
 	(op == 14) && (ret = lldi(processes, parameters, size));
 	(op == 15) && (ret = lfork(processes, parameters, fprocesses));
 	if (op == 16)
-		printf("%c\n", processes->registeries[(processes->args[0] - 1)] % 256);
+		if (parameters->aff)
+			ft_printf("%c\n",
+						processes->registeries[(processes->args[0] - 1)] % 256);
 	return (ret);
 }
 
@@ -140,12 +142,12 @@ int			start_battle(t_cursor *processes, t_players *players,
 			if (parameters->cycle_counter == parameters->dump)
 				return (dump_arena(parameters));
 			if ((parameters->verbos >> 1) & 1)
-				printf("It is now cycle %d\n", parameters->cycle_counter);
+				ft_printf("It is now cycle %d\n", parameters->cycle_counter);
 			processes_execution(&processes, parameters);
 		}
 		processes = the_check(processes, parameters);
 	}
-	printf("Contestant %d, \"%s\", has won !\n", parameters->last_live,
+	ft_printf("Contestant %d, \"%s\", has won !\n", parameters->last_live,
 							players->player[parameters->last_live - 1]->name);
 	ft_memdel((void **)&parameters->arena);
 	ft_memdel((void **)&parameters);

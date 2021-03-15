@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 11:45:32 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/13 11:47:01 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/15 18:41:36 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int			print_usage(void)
 {
-	printf("Usage: ./corewar [-d N -v N | -n N <champion1.cor> <...>\n");
-	printf(" -d / --dump   N    : Dumps memory after N cycles then exits\n");
-	printf(" -v / --verbos N    : Verbosity levels, can be added together ");
-	printf("to enable several\n");
-	printf("			- 0 : Show only essentials (introduction + ");
-	printf("the winner)\n");
-	printf("			- 1 : Show lives\n");
-	printf("			- 2 : Show cycles\n");
-	printf("			- 4 : Show operations (Params are NOT litteral ...)\n");
-	printf("			- 8 : Show deaths\n");
+	ft_printf("Usage: ./corewar [-d N -v N | -n N <champion1.cor> <...>\n");
+	ft_printf(" -d / --dump   N    : Dumps memory after N cycles then exits\n");
+	ft_printf(" -v / --verbos N    : Verbosity levels, can be added together ");
+	ft_printf("to enable several\n");
+	ft_printf("			- 0 : Show only essentials (introduction + ");
+	ft_printf("the winner)\n");
+	ft_printf("			- 1 : Show lives\n");
+	ft_printf("			- 2 : Show cycles\n");
+	ft_printf("			- 4 : Show operations (Params are NOT litteral ...)\n");
+	ft_printf("			- 8 : Show deaths\n");
 	return (1);
 }
 

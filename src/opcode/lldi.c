@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 15:12:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/14 17:32:05 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/15 18:41:37 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int			lldi(t_cursor *processes, t_game_para *parameters, int *size)
 	{
 		processes = if_size_3(processes, parameters, size);
 		if ((parameters->verbos >> 2) & 1)
-			printf("P %4d | lldi %d %d r%d\n", processes->id,
+			ft_printf("P %4d | lldi %d %d r%d\n", processes->id,
 				processes->args[0], processes->args[1], processes->args[2]);
 		if ((parameters->verbos >> 2) & 1)
-			printf("       | -> load from %d + %d = %d (with pc %d)\n",
+			ft_printf("       | -> load from %d + %d = %d (with pc %d)\n",
 				processes->args[0], processes->args[1],
 				processes->args[0] + processes->args[1], processes->pc +
 				processes->args[0] + processes->args[1]);

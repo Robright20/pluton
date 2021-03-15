@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:56:09 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/10 17:12:58 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/15 18:41:37 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int			ft_fork(t_cursor *processes, t_game_para *parameters,
 		return (-1);
 	new_process->pc = (index + processes->pc) % MEM_SIZE;
 	if ((parameters->verbos >> 2) & 1)
-		printf("P %4d | fork %d (%d)\n", processes->id,
+		ft_printf("P %4d | fork %d (%d)\n", processes->id,
 	processes->args[0], (processes->args[0] % IDX_MOD) + processes->pc);
 	new_process->opcode = parameters->arena[new_process->pc];
 	if (new_process->opcode < 1 || new_process->opcode > 16)

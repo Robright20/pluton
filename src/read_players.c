@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:20:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/13 11:45:39 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/15 18:41:36 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,10 @@ int			read_players(int argc, char **argv, t_players *players,
 			players->verbos = ft_atoi(argv[++i]);
 		else if (ft_strequ(argv[i], "-d") || ft_strequ(argv[i], "--dump"))
 			players->dump = ft_atoi(argv[++i]);
-		else
-		{
-			if (read_players_tmp(argv, &players, ids_av, i) < 0)
-				return (-1);
-		}
+		else if (ft_strequ(argv[i], "-a") || ft_strequ(argv[i], "--aff"))
+			players->aff = 1;
+		else if (read_players_tmp(argv, &players, ids_av, i) < 0)
+			return (-1);
 	return (1);
 }
 
@@ -94,7 +93,7 @@ t_players	*init_players(void)
 	players->player = (t_player **)ft_memalloc(sizeof(t_player *) * 4);
 	if (!players || !players->player)
 	{
-		printf("init players not finished");
+		ft_printf("init players not finished");
 		return (NULL);
 	}
 	while (++indx < 4)
@@ -106,7 +105,7 @@ t_players	*init_players(void)
 		if (!players->player[indx] || !players->player[indx]->name ||
 			!players->player[indx]->comment || !players->player[indx]->code)
 		{
-			printf("init players not finished");
+			ft_printf("init players not finished");
 			return (NULL);
 		}
 	}
