@@ -4,7 +4,7 @@ import Pluton from "./pluton";
 import router from "./router";
 import "./style.css";
 const log = console.log;
-const WS_SERVER = "ws://localhost:8080";
+const WS_SERVER = "ws://localhost:3000";
 
 // instruction
 
@@ -133,7 +133,7 @@ function Index() {
   const idxMod = 64;
   const scale = width / 64;
   const users = [];
-  const dataBak = [];
+  let dataBak = [];
 
   const Draw = function(data) {
     const {ctx, } = data;
@@ -157,9 +157,10 @@ function Index() {
     ws.addEventListener('open', () => {
       log('[WS] connected.')
     });
-    ws.addEventListener('message', data => {
-      const line = "";
-      dataBak = dataBak.concat(data.split("\n"));
+    ws.addEventListener('message', msg => {
+      let line = "";
+      log(msg.data);
+      dataBak = dataBak.concat(msg.data.split("\n"));
       while ((line = dataBak.shift()))
         router.call({
           users,
