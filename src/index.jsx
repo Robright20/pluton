@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import ReactDOM from "react-dom";
 import Pluton from "./pluton";
 import router from "./router";
-import getLine from "./getLine";
+import getLine from "./getline";
+import middlewares from "./middlewares";
 import {Cell, User, Proc} from "./models";
 import "./style.css";
 
@@ -124,6 +125,7 @@ function Index() {
       do {
         if (/^##/.test(line)) {
           router.call({
+            middlewares,
             users,
             ctx,
             drawCell,
