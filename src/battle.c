@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:53:28 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/15 18:41:36 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/16 17:08:55 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int			operations(t_cursor *processes, t_game_para *parameters,
 	(op == 15) && (ret = lfork(processes, parameters, fprocesses));
 	if (op == 16)
 		if (parameters->aff)
-			ft_printf("%c\n",
+			ft_printf("Aff: %c\n",
 						processes->registeries[(processes->args[0] - 1)] % 256);
 	return (ret);
 }

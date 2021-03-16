@@ -1,0 +1,7 @@
+.name "wfs"
+.comment "sfdsd!"
+
+sti r1, %10, %3
+xor r1, r1, r1
+live %0
+zjmp %-5

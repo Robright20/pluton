@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 17:15:44 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/15 18:41:37 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/16 17:04:53 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int		ld(t_cursor *processes, t_game_para *parameters, int *size)
 		if (size[0] == 3)
 			processes->args[0] = if_arg_tind(processes, parameters, 0);
 		if ((parameters->verbos >> 2) & 1)
-			ft_printf("P %4d | ld %d r%d\n", processes->id, processes->args[0],
-			processes->args[1]);
+			ft_printf("P %4d | ld %d r%d\n", processes->id,
+			processes->args[0], processes->args[1]);
 		processes->registeries[processes->args[1] - 1] = processes->args[0];
 		(processes->args[0] == 0) && (processes->carry = 1);
 		(processes->args[0] != 0) && (processes->carry = 0);

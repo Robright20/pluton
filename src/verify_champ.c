@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 15:26:45 by mac               #+#    #+#             */
-/*   Updated: 2021/03/15 17:30:00 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/16 17:08:37 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,14 @@ int			check_header(t_players **players, int id, int fd)
 	boool = 1;
 	if ((magic_header = convert_to_numfd(4, fd)) != COREWAR_EXEC_MAGIC)
 		boool = -4;
-	if ((ret = read(fd, (*players)->player[id]->name, PROG_NAME_LENGTH)) != 128)
+	else if ((ret = read(fd, (*players)->player[id]->name,
+											PROG_NAME_LENGTH)) != 128)
 		boool = -1;
-	if (convert_to_numfd(4, fd) != 0)
+	else if (convert_to_numfd(4, fd) != 0)
 		boool = -4;
+	else if (((*players)->player[id]->size = convert_to_numfd(4, fd)) < 0 ||
+				(*players)->player[id]->size > 682)
+		boool = -3;
 	return (boool);
 }
 
@@ -44,10 +48,7 @@ int			check_champ_file(t_players *players, char *champ, int id)
 	}
 	if ((ret = check_header(&players, id, fd)) < 0)
 		return (ret);
-	if ((players->player[id]->size = convert_to_numfd(4, fd)) < 0 ||
-				players->player[id]->size > 682)
-		boool = -3;
-	else if (read(fd, players->player[id]->comment, COMMENT_LENGTH) != 2048)
+	if (read(fd, players->player[id]->comment, COMMENT_LENGTH) != 2048)
 		boool = -1;
 	else if (convert_to_numfd(4, fd) != 0)
 		boool = -1;
