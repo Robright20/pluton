@@ -3,7 +3,9 @@ import ReactDOM from "react-dom";
 import Pluton from "./pluton";
 import router from "./router";
 import getLine from "./getLine";
+import {Cell, User, Proc} from "./models";
 import "./style.css";
+
 const log = console.log;
 const WS_SERVER = "ws://localhost:3000";
 
@@ -37,59 +39,6 @@ runIf("", cb);
 
 // change canvas.height/width
 // get the rendering context canvas.getContext('2d')
-const userColor = [
-  // "#6fcf97",
-  "#00ff69",
-  // "#9cffc5",
-  "#eb5757",
-  "#56ccf2",
-  "#f2c94c"
-];
-const procColor = [
-  "#9cffc5",
-  // "#00ff69",
-  "#ffd0d0",
-  "#c8f2ff",
-  "#fdeec1"
-];
-let cuid = 0;
-// let cellDefaultBg = "#f7f6f5";
-let cellDefaultBg = "grey";
-let cellDefaultBorder = "";
-
-function Cell(id, text) {
-  this.id = id;
-  this.text = {
-    value: text,
-    fontFamily: "",
-    color: "",
-    size: 0
-  };
-  this.bgColor = cellDefaultBg;
-  this.border = cellDefaultBorder;
-}
-
-function Proc(uid, pid) {
-  this.uid = uid;
-  this.id = pid;
-  this.PC = 0;
-  this.info = {
-    carry: 0,
-    color: procColor[uid],
-    lives: 0
-  }
-}
-
-function User(name, desc, size) {
-  this.id = cuid++;
-  this.info = {
-    name,
-    desc,
-    size,
-    color: userColor[this.id]
-  }
-  this.procList = [new Proc(this.id, 0)];
-}
 
 //(4*1024)
 function drawCell(cell, ctx) {
@@ -128,6 +77,25 @@ function loadUser(user, ctx, position) {
       position++;
   }
 }
+
+function load4UserTest(loadFunc, UserFunc, ctx) {
+    let user = new UserFunc("bob", "1337 Student", 300);
+    user.procList.push(new Proc(user.id, 0));
+    loadFunc(user, ctx, 200);
+
+    user = new UserFunc("bob", "1337 Student", 350);
+    user.procList.push(new Proc(user.id, 0));
+    loadFunc(user, ctx, 1200);
+
+    user = new UserFunc("bob", "1337 Student", 300);
+    user.procList.push(new Proc(user.id, 0));
+    loadFunc(user, ctx, 2000);
+
+    user = new UserFunc("bob", "1337 Student", 500);
+    user.procList.push(new Proc(user.id, 0));
+    loadFunc(user, ctx, 3000);
+}
+
 function Index() {
   const height = 896;
   const width = 896;
@@ -143,15 +111,8 @@ function Index() {
       cell = new Cell(i, "2e");
       drawCell(cell, ctx);
     }
-    let user = new User("bob", "1337 Student", 300);
-    loadUser(user, ctx, 200);
-    user = new User("bob", "1337 Student", 350);
-    loadUser(user, ctx, 1200);
-    user = new User("bob", "1337 Student", 300);
-    loadUser(user, ctx, 2000);
-    user = new User("bob", "1337 Student", 500);
-    loadUser(user, ctx, 3000);
 
+    load4UserTest(loadUser, User, ctx);
 
     const ws = new WebSocket(WS_SERVER);
     ws.addEventListener('open', () => {

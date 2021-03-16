@@ -1,16 +1,11 @@
 const log = console.log;
-function newCycle() {log("newCycle")}
-function newProcess() {log("newProcess")}
-function newCheck() {log("newCheck")}
-function newUser() {log("newUser")}
-function newData() {log("newData")}
-function killProcess() {log("killProcess#")}
 
 export default {
-	newCycle,
-	newProcess,
-	newCheck,
-	newUser,
-	newData,
-	killProcess
+	newCycle: function(...params) {log("newCycle")},
+	newProcess: function(...params) {log("newProcess")},
+	updateProcess: function(...params) {log("updateProcess")},
+	newCheck: function(...params) {log("newCheck")},
+	newUser: function(...params) {log("newUser")},
+	newData: function(...params) {log("newData")},
+	killProcess: function(...params) {log("killProcess")}
 }
