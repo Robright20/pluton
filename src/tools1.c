@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 11:45:32 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/15 18:41:36 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/16 20:38:56 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int			print_usage(void)
 {
 	ft_printf("Usage: ./corewar [-d N -v N | -n N <champion1.cor> <...>\n");
+	ft_printf(" -a / --aff         : Prints output from \"aff\" (Default is to\
+ hide it)\n");
 	ft_printf(" -d / --dump   N    : Dumps memory after N cycles then exits\n");
 	ft_printf(" -v / --verbos N    : Verbosity levels, can be added together ");
 	ft_printf("to enable several\n");
