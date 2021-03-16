@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_players.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:20:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/15 18:41:36 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/16 22:07:00 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,10 @@ int			read_players(int argc, char **argv, t_players *players,
 {
 	int		i;
 	int		ret;
+	int		tmp;
 
 	i = 0;
+	tmp = 1;
 	if ((ret = flag_n(argc, argv, players, ids_av)) < 0)
 		return (-1);
 	while (++i < argc)
@@ -73,14 +75,14 @@ int			read_players(int argc, char **argv, t_players *players,
 			i += 2;
 		}
 		else if (ft_strequ(argv[i], "-v") || ft_strequ(argv[i], "--verbos"))
-			players->verbos = ft_atoi(argv[++i]);
+			((players->verbos = ft_atoi(argv[++i])) == 0) && (tmp = -2);
 		else if (ft_strequ(argv[i], "-d") || ft_strequ(argv[i], "--dump"))
-			players->dump = ft_atoi(argv[++i]);
+			((players->dump = ft_atoi(argv[++i])) == 0) && (tmp = -2);
 		else if (ft_strequ(argv[i], "-a") || ft_strequ(argv[i], "--aff"))
 			players->aff = 1;
 		else if (read_players_tmp(argv, &players, ids_av, i) < 0)
 			return (-1);
-	return (1);
+	return (tmp);
 }
 
 t_players	*init_players(void)
@@ -117,14 +119,20 @@ int			main(int argc, char **argv)
 	t_players	*players;
 	t_cursor	*processes;
 	int			*ids_av;
+	int			ret;
 
 	processes = NULL;
 	if (!(ids_av = (int *)ft_memalloc(sizeof(int) * 4)))
 		return (0);
 	(argc == 1) && print_usage();
-	if (!(players = init_players()) ||
-						(read_players(argc, argv, players, &ids_av) < 0))
+	if (!(players = init_players()))
 		return (0);
+	if ((ret = read_players(argc, argv, players, &ids_av) )< 0)
+	{
+		if (ret == -2)
+			ft_printf("ERROR : dump or verbos not valid\n");
+		return (0);
+	}
 	if (!(processes = init_processes(players, ids_av)))
 		return (0);
 	players_introduction(players, ids_av);
