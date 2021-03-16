@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import ReactDOM from "react-dom";
 import Pluton from "./pluton";
 import router from "./router";
+import getLine from "./getLine";
 import "./style.css";
 const log = console.log;
 const WS_SERVER = "ws://localhost:3000";
@@ -133,7 +134,6 @@ function Index() {
   const idxMod = 64;
   const scale = width / 64;
   const users = [];
-  let dataBak = [];
 
   const Draw = function(data) {
     const {ctx, } = data;
@@ -158,16 +158,19 @@ function Index() {
       log('[WS] connected.')
     });
     ws.addEventListener('message', msg => {
-      let line = "";
-      log(msg.data);
-      dataBak = dataBak.concat(msg.data.split("\n"));
-      while ((line = dataBak.shift()))
-        router.call({
-          users,
-          ctx,
-          drawCell,
-          Cell,
-          Proc}, line);
+      let line = getLine(ws, msg.data);
+
+      do {
+        if (/^##/.test(line)) {
+          router.call({
+            users,
+            ctx,
+            drawCell,
+            Cell,
+            Proc
+          }, line);
+        }
+      } while ((line = getLine(ws)));
     });
   }
 
