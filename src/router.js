@@ -2,9 +2,13 @@ import Controller from './controller';
 
 /* 
 * new-process userId pid pc
-* new-user userId
+* new-user userId [data]
 * new-data pid idx [data]
 * kill-process pid
+
+* update-process pid [data]
+* live pid [data]
+*
 
 * process-info
 *   - PC
