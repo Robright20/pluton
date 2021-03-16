@@ -7,5 +7,6 @@ export default {
 	newCheck: function(...params) {log("newCheck")},
 	newUser: function(...params) {log("newUser")},
 	newData: function(...params) {log("newData")},
-	killProcess: function(...params) {log("killProcess")}
+	killProcess: function(...params) {log("killProcess")},
+	live: function(...params) {log("live")}
 }

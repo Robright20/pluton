@@ -20,7 +20,8 @@ const router = (function() {
 	map.set("##new-check", Controller.newCheck);
 	map.set("##new-user", Controller.newUser);
 	map.set("##new-data", Controller.newData);
-	map.set("##kill-process", Controller.killProcess);
+  map.set("##kill-process", Controller.killProcess);
+	map.set("##live", Controller.live);
 
 	return function(req) {
 		let path = "";
