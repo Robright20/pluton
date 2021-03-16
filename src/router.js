@@ -2,17 +2,13 @@ import Controller from './controller';
 
 /* 
 * new-process userId pid pc
-* new-user userId [data]
+* new-user userId [data] (data -> {name, desc, code, size})
 * new-data pid idx [data]
 * kill-process pid
 
-* update-process pid [data]
-* live pid [data]
+* update-process pid [data] (data -> pc, carry)
+* live pid [data] (data -> userId)
 *
-
-* process-info
-*   - PC
-*   - carry
 */
 
 const router = (function() {
@@ -35,6 +31,7 @@ const router = (function() {
 			map.get(path).call(this, ...reqSplit); //maybe set a timeout here
 		} catch (err) {
 			console.log(`[${path}] Invalid Path.`);
+			console.log(err);
 		}
 	}
 })();
