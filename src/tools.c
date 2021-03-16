@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:31:54 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/16 18:18:41 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/16 20:55:37 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,11 @@ t_game_para		*set_wait_cycle(t_game_para *parameters)
 t_game_para		*init_game_parameters(t_players *players, int *ids_av)
 {
 	t_game_para *parameters;
+	int			i;
 
+	i = 3;
+	while (!ids_av[i])
+		i--;
 	if (!(parameters = (t_game_para *)ft_memalloc(sizeof(t_game_para))))
 		return (NULL);
 	if (!init_arena(players, parameters, ids_av))
@@ -121,7 +125,7 @@ t_game_para		*init_game_parameters(t_players *players, int *ids_av)
 	parameters->dump = players->dump;
 	parameters->aff = players->aff;
 	parameters->or_cycle_to_die = parameters->cycle_to_die;
-	parameters->last_live = players->number_of_players;
+	parameters->last_live = i + 1;
 	parameters = set_wait_cycle(parameters);
 	return (parameters);
 }
