@@ -1,21 +1,38 @@
-module.exports = {
-  Cell: (function() {
-    const cellDefaultBg = "grey";
-    const cellDefaultBorder = "";
+const Cell = (function() {
+  const cellDefaultBg = "grey";
+  const cellDefaultBorder = "";
 
-    return function Cell(id, text) {
-      this.id = id;
-      this.text = {
-        value: text,
-        fontFamily: "",
-        color: "",
-        size: 0
-      };
-      this.bgColor = cellDefaultBg;
-      this.border = cellDefaultBorder;
+  function drawCell(ctx) {
+    const x = (this.id % ctx.idxMod) * ctx.scale;
+    const y = Math.floor(this.id / ctx.idxMod) * ctx.scale;
+    ctx.clearRect(x, y, ctx.scale, ctx.scale)
+    if (ctx.scale >= 20) {
+      ctx.font = `80% serif`;
+      ctx.textBaseline = 'top';
+      ctx.fillText(this.text.value, x + 1, y + 1);
     }
-  })(),
+    ctx.fillStyle = this.bgColor;
+    ctx.fillRect(x, y, ctx.scale, ctx.scale)
+    ctx.strokeStyle = this.border;
+    ctx.lineWidth = this.lineWidth;
+    ctx.strokeRect(x, y, ctx.scale, ctx.scale)
+  }
+  return function Cell(id, text) {
+    this.id = id;
+    this.text = {
+      value: text,
+      fontFamily: "",
+      color: "",
+      size: 0
+    };
+    this.bgColor = cellDefaultBg;
+    this.border = cellDefaultBorder;
+    this.draw = drawCell;
+  }
+})();
 
+module.exports = {
+  Cell,
   User: (function() {
     let cuid = 0;
     const userColor = [
@@ -24,16 +41,34 @@ module.exports = {
       "#56ccf2",
       "#f2c94c"
     ];
+    function loadUser(ctx, position) {
+      const proc = this.procList[0];
+      let cell;
 
-    return function(name, desc, size) {
+      proc['info'].PC ??= position;
+      for (let i = 0; i < this['info'].size; i++) {
+          cell = new Cell(position, "2e");
+          cell.bgColor = this.['info'].color;
+          cell.lineWidth = 1.0;
+          if (i == 0) {
+            cell.lineWidth = 2.5;
+            cell.bgColor = proc['info'].color;
+          }
+          cell.draw(ctx);
+          position++;
+      }
+    }
+    return function(name, desc, code, size) {
       this.id = cuid++;
       this.info = {
         name,
         desc,
+        code,
         size,
         color: userColor[this.id]
       };
       this.procList = [];
+      this.load = loadUser;
     }
   })(),
 
@@ -45,13 +80,15 @@ module.exports = {
       "#fdeec1"
     ];
 
-    return function(uid, pid) {
+    return function(uid, pid, pc) {
       this.uid = uid;
       this.id = pid;
-      this.PC = 0;
+      this.PC = pc;
       this.info = {
         carry: 0,
-        color: procColor[uid],
+        color: procColor[
+          (typeof uid === "number") ? uid : uid.id
+        ],
         lives: 0
       };
     }
