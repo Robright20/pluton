@@ -1,9 +1,10 @@
-function newCycle() {}
-function newProcess() {}
-function newCheck() {}
-function newUser() {}
-function newData() {}
-function killProcess() {}
+const log = console.log;
+function newCycle() {log("newCycle")}
+function newProcess() {log("newProcess")}
+function newCheck() {log("newCheck")}
+function newUser() {log("newUser")}
+function newData() {log("newData")}
+function killProcess() {log("killProcess#")}
 
 export default {
 	newCycle,

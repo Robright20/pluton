@@ -53,8 +53,8 @@ const socketServer = net.createServer((sock) => {
 
 	sock.on('data', data => {
 		let line = getLine(sock, data);
-		// if (!client.connected)
-			// return sock.write("NO_HTTP_CLIENT: data sent will be lost.\n");
+		if (!client.connected)
+			return sock.write("NO_HTTP_CLIENT: data sent will be lost.\n");
     do {
       if (line) {
         sendLine(sock, client, line);
@@ -65,9 +65,9 @@ const socketServer = net.createServer((sock) => {
 });
 
 const sendLine = (sock, client, line) => {
-	// if (!/^##check-client/.test(line))
-		// client.sock.send(line + '\n');
-	// else
+	if (!/^##check-client/.test(line))
+		client.sock.send(line + '\n');
+	else
 		sock.write("200: client connected.\n");
 }
 
