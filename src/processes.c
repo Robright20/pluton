@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:16:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/16 17:02:36 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/16 18:18:02 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ t_cursor		*add_process(t_cursor *processes, t_players *players, int id)
 
 	if (!(new_process = (t_cursor *)ft_memalloc(sizeof(t_cursor))))
 		return (NULL);
-	new_process->id = ++unique_id;
+	new_process->id = ++g_unique_id;
 	new_process->registeries[0] = -(id + 1);
-	new_process->pc = MEM_SIZE / players->number_of_players * (unique_id - 1);
+	new_process->pc = MEM_SIZE / players->number_of_players * (g_unique_id - 1);
 	new_process->wait_cycle = -1;
 	new_process->code_size = players->player[id]->size;
 	new_process->player_id = id + 1;
@@ -52,7 +52,7 @@ t_cursor		*init_processes(t_players *players, int *ids_av)
 
 	i = -1;
 	processes = NULL;
-	unique_id = 0;
+	g_unique_id = 0;
 	while (++i < 4)
 		if (ids_av[i] == 1 && !(processes = add_process(processes, players, i)))
 			return (NULL);

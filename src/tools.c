@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:31:54 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/15 17:52:08 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/16 18:18:41 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ int				*check_codage_byte(int codage_byte, int op)
 	j = 0;
 	if (!(size = ft_memalloc(sizeof(int) * 4)))
 		return (NULL);
-	while (--i > 3 - op_tab[op - 1].args_counter)
+	while (--i > 3 - g_op_tab[op - 1].args_counter)
 	{
 		tmp = codage_byte;
 		tmp = (tmp >> (i * 2)) & 3;
 		(tmp == 1) && (size[j] = 1);
 		(tmp == 3) && (size[j] = 3);
-		((tmp == 2) && op_tab[op - 1].dir_size) && (size[j] = 2);
-		((tmp == 2) && !op_tab[op - 1].dir_size) && (size[j] = 4);
-		type = op_tab[op - 1].args[j++];
+		((tmp == 2) && g_op_tab[op - 1].dir_size) && (size[j] = 2);
+		((tmp == 2) && !g_op_tab[op - 1].dir_size) && (size[j] = 4);
+		type = g_op_tab[op - 1].args[j++];
 		(tmp == 1 | tmp == 2) && (type = (tmp >> (tmp - 1)) & 1);
 		(tmp == 3) && (type = ((tmp >> 0 & 1) && (tmp >> 1 & 1)));
 		if (type != 1)
@@ -69,18 +69,18 @@ int				get_args(t_cursor *processes, t_game_para *parameters,
 	int		i;
 	int		tmp;
 
-	pc = (processes->pc + (op_tab[processes->opcode - 1].codage_byte ? 2 : 1))
+	pc = (processes->pc + (g_op_tab[processes->opcode - 1].codage_byte ? 2 : 1))
 																% MEM_SIZE;
 	i = -1;
-	while (++i < op_tab[processes->opcode - 1].args_counter)
+	while (++i < g_op_tab[processes->opcode - 1].args_counter)
 	{
-		if (op_tab[processes->opcode - 1].codage_byte)
+		if (g_op_tab[processes->opcode - 1].codage_byte)
 			tmp = size[i];
 		else
-			tmp = op_tab[processes->opcode - 1].dir_size ? 2 : 4;
+			tmp = g_op_tab[processes->opcode - 1].dir_size ? 2 : 4;
 		processes->args[i] =
 						get_vfarena(parameters->arena, tmp, pc);
-		if (op_tab[processes->opcode - 1].codage_byte)
+		if (g_op_tab[processes->opcode - 1].codage_byte)
 			pc = (pc + (size[i] == 3 ? 2 : size[i])) % MEM_SIZE;
 	}
 	return (1);

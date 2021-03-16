@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:51:44 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/15 18:41:37 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/16 18:18:41 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			lfork(t_cursor *processes, t_game_para *parameters,
 
 	if ((parameters->verbos >> 2) & 1)
 		ft_printf("P %4d | %s %d (%d)\n", processes->id,
-			op_tab[processes->opcode - 1].name, processes->args[0],
+			g_op_tab[processes->opcode - 1].name, processes->args[0],
 										processes->pc + processes->args[0]);
 	index = (processes->args[0] + MEM_SIZE) % MEM_SIZE;
 	if (!(new_process = fork_child(processes, fprocesses)))
@@ -31,7 +31,7 @@ int			lfork(t_cursor *processes, t_game_para *parameters,
 		new_process->pc = (new_process->pc + 1) % MEM_SIZE;
 	else
 		new_process->wait_cycle =
-			op_tab[new_process->opcode - 1].cycle_to_wait;
+			g_op_tab[new_process->opcode - 1].cycle_to_wait;
 	*fprocesses = new_process;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:56:09 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/15 18:41:37 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/16 18:18:41 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_cursor	*fork_child(t_cursor *processes, t_cursor **fprocesses)
 	i = -1;
 	if (!(new_process = (t_cursor *)ft_memalloc(sizeof(t_cursor))))
 		return (NULL);
-	new_process->id = ++unique_id;
+	new_process->id = ++g_unique_id;
 	while (++i < 16)
 		new_process->registeries[i] = processes->registeries[i];
 	new_process->carry = processes->carry;
@@ -49,7 +49,7 @@ int			ft_fork(t_cursor *processes, t_game_para *parameters,
 		new_process->pc = (new_process->pc + 1) % MEM_SIZE;
 	else
 		new_process->wait_cycle =
-			op_tab[new_process->opcode - 1].cycle_to_wait;
+			g_op_tab[new_process->opcode - 1].cycle_to_wait;
 	*fprocesses = new_process;
 	return (1);
 }

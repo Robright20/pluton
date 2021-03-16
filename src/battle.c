@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:53:28 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/16 17:08:55 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/16 18:19:17 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ void		execute_operations(t_cursor *processes, t_game_para *parameters,
 
 	pc = processes->pc % MEM_SIZE;
 	size = NULL;
-	if (op_tab[processes->opcode - 1].codage_byte)
+	if (g_op_tab[processes->opcode - 1].codage_byte)
 		size = check_codage_byte(parameters->arena[pc + 1], processes->opcode);
-	if (!op_tab[processes->opcode - 1].codage_byte || !size[3])
+	if (!g_op_tab[processes->opcode - 1].codage_byte || !size[3])
 		get_args(processes, parameters, size);
-	if (!op_tab[processes->opcode - 1].codage_byte || !size[3])
+	if (!g_op_tab[processes->opcode - 1].codage_byte || !size[3])
 		operations(processes, parameters, fprocesses, size);
-	if (op_tab[processes->opcode - 1].codage_byte)
+	if (g_op_tab[processes->opcode - 1].codage_byte)
 	{
 		args_size = (size[0] == 3 ? 2 : size[0]) + (size[1] == 3 ? 2 : size[1])
 												+ (size[2] == 3 ? 2 : size[2]);
@@ -95,7 +95,7 @@ void		execute_operations(t_cursor *processes, t_game_para *parameters,
 	}
 	else if (processes->opcode != 9 ||
 								(processes->opcode == 9 && !processes->carry))
-		processes->pc = (pc + 1 + (op_tab[processes->opcode - 1].dir_size
+		processes->pc = (pc + 1 + (g_op_tab[processes->opcode - 1].dir_size
 														? 2 : 4)) % MEM_SIZE;
 	processes->wait_cycle = -1;
 	ft_memdel((void **)&size);
@@ -115,7 +115,7 @@ int			processes_execution(t_cursor **processes, t_game_para *parameters)
 				cur_process->pc = (cur_process->pc + 1) % MEM_SIZE;
 			else
 				cur_process->wait_cycle =
-								op_tab[cur_process->opcode - 1].cycle_to_wait;
+								g_op_tab[cur_process->opcode - 1].cycle_to_wait;
 		}
 		cur_process->wait_cycle--;
 		if (!cur_process->wait_cycle)
