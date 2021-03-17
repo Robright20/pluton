@@ -2,6 +2,12 @@ const Cell = (function() {
   const cellDefaultBg = "grey";
   const cellDefaultBorder = "";
 
+  function clearCell(ctx) {
+    //maybe optimize using memoization
+    const x = (this.id % ctx.idxMod) * ctx.scale;
+    const y = Math.floor(this.id / ctx.idxMod) * ctx.scale;
+    ctx.clearRect(x, y, ctx.scale, ctx.scale)
+  }
   function drawCell(ctx) {
     const x = (this.id % ctx.idxMod) * ctx.scale;
     const y = Math.floor(this.id / ctx.idxMod) * ctx.scale;
@@ -28,6 +34,7 @@ const Cell = (function() {
     this.bgColor = cellDefaultBg;
     this.border = cellDefaultBorder;
     this.draw = drawCell;
+    this.clear = clearCell;
   }
 })();
 
@@ -42,13 +49,14 @@ module.exports = {
       "#f2c94c"
     ];
 
-    function loadUser(ctx, position) {
+    function loadUser(cells, ctx, position) {
       const proc = this.procList[0];
       let cell;
 
       proc['info'].PC ??= position;
+      this.position = position;
       for (let i = 0; i < this['info'].size; i++) {
-          cell = new Cell(position, "2e");
+          cell = cells[position]; //possibly cell's cleanup needed
           cell.bgColor = this.['info'].color;
           cell.lineWidth = 1.0;
           cell.draw(ctx);
@@ -77,10 +85,10 @@ module.exports = {
       "#fdeec1"
     ];
 
-    return function(uid, pid, pc) {
+    return function(uid, pid, cell) {
       this.uid = uid;
       this.id = pid;
-      this.PC = pc;
+      this.PC = cell.id;
       this.info = {
         carry: 0,
         color: procColor[
@@ -88,9 +96,9 @@ module.exports = {
         ],
         lives: 0
       };
-      this.cell = new Cell(pc, "2e");
-      this.cell.bgColor = this.['info'].color;
-      this.cell.lineWidth = 2.5;
+      cell.bgColor = this.['info'].color;
+      cell.lineWidth = 2.5;
+      this.cell = cell;
     }
   })()
 };
