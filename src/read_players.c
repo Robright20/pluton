@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_players.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:20:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/16 22:07:00 by mac              ###   ########.fr       */
+/*   Updated: 2021/03/17 10:07:04 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int			main(int argc, char **argv)
 	(argc == 1) && print_usage();
 	if (!(players = init_players()))
 		return (0);
-	if ((ret = read_players(argc, argv, players, &ids_av) )< 0)
+	if ((ret = read_players(argc, argv, players, &ids_av)) < 0)
 	{
 		if (ret == -2)
 			ft_printf("ERROR : dump or verbos not valid\n");

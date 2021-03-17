@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:58:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/16 18:30:15 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/17 10:16:18 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int		sti(t_cursor *processes, t_game_para *parameters, int *size)
 		sum = processes->args[1] + processes->args[2];
 		index = (index + ((sum % IDX_MOD + MEM_SIZE) % MEM_SIZE)) % MEM_SIZE;
 		if ((parameters->verbos >> 2) & 1)
-			ft_printf("       | -> store to %d + %d = %d (with pc and mod %d)\n",
-			processes->args[1], processes->args[2], processes->args[1] +
-			processes->args[2], sum % IDX_MOD + processes->pc);
+			ft_printf("       | -> store to %d + %d = \
+%d (with pc and mod %d)\n", processes->args[1], processes->args[2],
+	processes->args[1] + processes->args[2], sum % IDX_MOD + processes->pc);
 		cpy_toarena(processes->registeries[processes->args[0] - 1],
 														&parameters, index, 4);
 	}
