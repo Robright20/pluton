@@ -1,4 +1,3 @@
-
 NAME 		= corewar
 SRC 		= $(addprefix src/, read_players.c op.c verify_champ.c arena.c\
 				processes.c battle.c tools.c convert.c tools1.c\
@@ -16,12 +15,13 @@ OBJ 		= $(SRC:.c=.o)
 all : $(NAME)
 
 $(NAME): $(OBJ) $(HEADER) $(LIBPRINTF)
-	
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBPRINTF)
 	@echo "\033[1;34m>>\033[0m corewar: \033[1;32m corewar compilled.\033[0m"
 
-$(LIBPRINTF): 
+$(LIBPRINTF): force
 	@make -C $(FT_PRINTF)
+
+force:
 
 clean: 
 	@$(RM) $(OBJ)
@@ -35,4 +35,4 @@ fclean:
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re force
