@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:20:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/17 10:07:04 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/17 11:51:05 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,31 @@ int			flag_n(int argc, char **argv, t_players *players, int **ids_av)
 }
 
 int			read_players_tmp(char **argv, t_players **players, int **ids_av,
-																	int i)
+																	int *i)
 {
 	int		j;
 
 	j = 0;
-	while ((*ids_av)[j])
-		j++;
-	(*players)->player[j]->id = j + 1;
-	(*ids_av)[j] = 1;
-	if (verify_champ((*players), argv[i], j) < 0)
-		return (-1);
-	(*players)->number_of_players++;
+	if (ft_strequ(argv[*i], "-v") || ft_strequ(argv[*i], "--verbos"))
+	{
+		if (((*players)->verbos = ft_atoi(argv[++(*i)])) == 0)
+			return (-2);
+	}
+	else if (ft_strequ(argv[*i], "-d") || ft_strequ(argv[*i], "--dump"))
+	{
+		if (((*players)->dump = ft_atoi(argv[++(*i)])) == 0)
+			return (-2);
+	}
+	else
+	{
+		while ((*ids_av)[j])
+			j++;
+		(*players)->player[j]->id = j + 1;
+		(*ids_av)[j] = 1;
+		if (verify_champ((*players), argv[*i], j) < 0)
+			return (-1);
+		(*players)->number_of_players++;
+	}
 	return (1);
 }
 
@@ -62,7 +75,6 @@ int			read_players(int argc, char **argv, t_players *players,
 	int		tmp;
 
 	i = 0;
-	tmp = 1;
 	if ((ret = flag_n(argc, argv, players, ids_av)) < 0)
 		return (-1);
 	while (++i < argc)
@@ -74,14 +86,10 @@ int			read_players(int argc, char **argv, t_players *players,
 			players->number_of_players++;
 			i += 2;
 		}
-		else if (ft_strequ(argv[i], "-v") || ft_strequ(argv[i], "--verbos"))
-			((players->verbos = ft_atoi(argv[++i])) == 0) && (tmp = -2);
-		else if (ft_strequ(argv[i], "-d") || ft_strequ(argv[i], "--dump"))
-			((players->dump = ft_atoi(argv[++i])) == 0) && (tmp = -2);
 		else if (ft_strequ(argv[i], "-a") || ft_strequ(argv[i], "--aff"))
 			players->aff = 1;
-		else if (read_players_tmp(argv, &players, ids_av, i) < 0)
-			return (-1);
+		else if ((tmp = read_players_tmp(argv, &players, ids_av, &i)) < 0)
+			return (tmp);
 	return (tmp);
 }
 
