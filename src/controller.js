@@ -1,4 +1,4 @@
-import {Cell, User, Proc} from "./models";
+import {User, Proc} from "./models";
 
 const log = console.log;
 
@@ -8,13 +8,13 @@ export default {
     // new-process [userId, pid, pc]
     const [userId, pid, pc] = params;
     const user = this.users[userId];
-    const proc = new Proc(user, pid, pc);
+    const proc = new Proc(user, pid, cells[pc]);
     log(`Creating process uid=[${userId}] pid=[${pid}]`);
 
     user.procList.push(proc);
     this.procs[pid] = proc;
     if (user.procList.length === 1) {
-      user.load(this.ctx, pc);
+      user.load(this.cells, this.ctx, pc);
     }
     log(user);
     log(this.procs);
