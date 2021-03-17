@@ -49,6 +49,7 @@ function Index() {
   const scale = width / 64;
   const users = {};
   const procs = {};
+  const pluton = [];
 
   const Draw = function(data) {
     const {ctx, } = data;
@@ -57,6 +58,7 @@ function Index() {
     for (let i = 0; i < 4096; i++) {
       cell = new Cell(i, "2e");
       cell.draw(ctx);
+      pluton.push(cell);
     }
 
     const ws = new WebSocket(WS_SERVER);

@@ -14,10 +14,11 @@ export default {
     user.procList.push(proc);
     this.procs[pid] = proc;
     if (user.procList.length === 1) {
-      user.load(this.ctx, pc, this.drawCell);
+      user.load(this.ctx, pc);
     }
     log(user);
     log(this.procs);
+    proc.cell.draw(this.ctx);
   },
 	updateProcess: function(...params) {log("updateProcess")},
 	newCheck: function(...params) {log("newCheck")},

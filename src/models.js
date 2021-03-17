@@ -41,6 +41,7 @@ module.exports = {
       "#56ccf2",
       "#f2c94c"
     ];
+
     function loadUser(ctx, position) {
       const proc = this.procList[0];
       let cell;
@@ -50,10 +51,6 @@ module.exports = {
           cell = new Cell(position, "2e");
           cell.bgColor = this.['info'].color;
           cell.lineWidth = 1.0;
-          if (i == 0) {
-            cell.lineWidth = 2.5;
-            cell.bgColor = proc['info'].color;
-          }
           cell.draw(ctx);
           position++;
       }
@@ -91,6 +88,9 @@ module.exports = {
         ],
         lives: 0
       };
+      this.cell = new Cell(pc, "2e");
+      this.cell.bgColor = this.['info'].color;
+      this.cell.lineWidth = 2.5;
     }
   })()
 };
