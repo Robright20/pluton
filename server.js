@@ -7,8 +7,8 @@ const fs = require('fs');
 const net = require('net');
 const http = require('http');
 const WebSocket = require('ws');
+const {getLine} = require('./src/lib');
 const wss = new WebSocket.Server({ noServer: true });
-const getLine = require('./src/getline');
 let client = {connected: false};
 
 const MIMETypes = {

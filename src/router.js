@@ -6,7 +6,7 @@ import Controller from './controller';
 * new-data pid idx [data]
 * kill-process pid
 
-* update-process pid [data] (data -> pc, carry)
+* update-process pid [data] (data -> {pc, carry})
 * live pid [data] (data -> userId)
 *
 */

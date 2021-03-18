@@ -1,27 +1,31 @@
 import React, {useState, useEffect} from "react";
+import {Cell} from "./models";
 
-function Pluton(props) {
-  const [canvas, setCanvas] = useState({});
-
+function Pluton({startDraw, options}) {
   useEffect(() => {
-    if (canvas instanceof HTMLCanvasElement) {
-      const ctx = canvas.getContext('2d');
-      props.startDraw({canvas, ctx});
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const cells = [];
+    let cell;
+
+    Object.assign(ctx, options);
+    for (let i = 0; i < 4096; i++) {
+      cell = new Cell(i, "2e");
+      cell.draw(ctx);
+      cells.push(cell);
     }
-    else
-      setCanvas(document.getElementById('canvas'));
-  }, [canvas]);
+    startDraw({ctx, cells});
+  }, []);
 
-  useEffect(() => {
-    console.log('->pluton');
-    console.log(canvas.height, canvas.width);
-  });
   return (
-    <canvas
-      id="canvas"
-      width={props.canvasWidth}
-      height={props.canvasHeight}>
-    </canvas>
+    <div>
+      <canvas
+        id="canvas"
+        width={options.width}
+        height={options.height}
+      >
+      </canvas>
+    </div>
   );
 }
 

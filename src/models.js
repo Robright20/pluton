@@ -2,11 +2,12 @@ const Cell = (function() {
   const cellDefaultBg = "grey";
   const cellDefaultBorder = "";
 
-  function clearCell(ctx) {
-    //maybe optimize using memoization
-    const x = (this.id % ctx.idxMod) * ctx.scale;
-    const y = Math.floor(this.id / ctx.idxMod) * ctx.scale;
-    ctx.clearRect(x, y, ctx.scale, ctx.scale)
+  function reset() {
+    ctx = this.ctx;
+    ctx.clearRect(...this.coords, ctx.scale, ctx.scale)
+    this.border = cellDefaultBorder;
+    this.user.setCell(this);
+    this.draw(ctx);
   }
   function drawCell(ctx) {
     const x = (this.id % ctx.idxMod) * ctx.scale;
@@ -22,6 +23,8 @@ const Cell = (function() {
     ctx.strokeStyle = this.border;
     ctx.lineWidth = this.lineWidth;
     ctx.strokeRect(x, y, ctx.scale, ctx.scale)
+    this.coords = [x, y];
+    this.ctx = ctx;
   }
   return function Cell(id, text) {
     this.id = id;
@@ -34,7 +37,7 @@ const Cell = (function() {
     this.bgColor = cellDefaultBg;
     this.border = cellDefaultBorder;
     this.draw = drawCell;
-    this.clear = clearCell;
+    this.reset = reset;
   }
 })();
 
@@ -48,17 +51,20 @@ module.exports = {
       "#56ccf2",
       "#f2c94c"
     ];
-
+    function setCell(cell) {
+      cell.bgColor = this.['info'].color;
+      cell.lineWidth = 1.0;
+      cell.user = this;
+    }
     function loadUser(cells, ctx, position) {
       const proc = this.procList[0];
       let cell;
 
-      proc['info'].PC ??= position;
+      // proc['info'].PC ??= position;
       this.position = position;
       for (let i = 0; i < this['info'].size; i++) {
           cell = cells[position]; //possibly cell's cleanup needed
-          cell.bgColor = this.['info'].color;
-          cell.lineWidth = 1.0;
+          this.setCell(cell);
           cell.draw(ctx);
           position++;
       }
@@ -74,6 +80,7 @@ module.exports = {
       };
       this.procList = [];
       this.load = loadUser;
+      this.setCell = setCell;
     }
   })(),
 
@@ -84,7 +91,10 @@ module.exports = {
       "#c8f2ff",
       "#fdeec1"
     ];
-
+    function setCell() {
+      this.cell.bgColor = this.['info'].color;
+      this.cell.lineWidth = 2.5;
+    }
     return function(uid, pid, cell) {
       this.uid = uid;
       this.id = pid;
@@ -96,9 +106,9 @@ module.exports = {
         ],
         lives: 0
       };
-      cell.bgColor = this.['info'].color;
-      cell.lineWidth = 2.5;
       this.cell = cell;
+      this.setCell = setCell;
+      setCell.bind(this)();
     }
   })()
 };
