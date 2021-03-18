@@ -50,6 +50,8 @@ function Index() {
             say
           }, line);
         }
+        log("[MSG] " + line)
+        ws.send("ACK\n");
       } while ((line = getLine(ws)));
     });
   }

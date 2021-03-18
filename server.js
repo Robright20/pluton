@@ -7,17 +7,8 @@ const fs = require('fs');
 const net = require('net');
 const http = require('http');
 const WebSocket = require('ws');
-const {getLine} = require('./src/lib');
+const {MIMETypes, client, getLine} = require('./src/lib');
 const wss = new WebSocket.Server({ noServer: true });
-let client = {connected: false};
-
-const MIMETypes = {
-	'html': 'text/html',
-	'css': 'text/css',
-	'js': 'text/javascript; charset=utf-8',
-	'svg': 'image/svg+xml',
-	'ico': 'image/x-icon'
-};
 
 const httpServer = http.createServer((req, res) => {
 	const url = (req.url === '/') ? '/index.html': req.url;
@@ -45,31 +36,40 @@ wss.on('connection', (ws) => {
 	ws.send("connected to the server\n");
 	client.connected = true;
 	client.sock = ws;
-	ws.on('message', (msg) => log('received: %s', msg));
+	ws.on('message', (msg) => {
+		let line = getLine(ws, msg);
+
+    do {
+      if (line) {
+        sendLine(line, client.sock_to);
+      }
+      log(`[msg] [ws] ${line}`);
+    } while ((line = getLine(ws)));
+  });
 });
 
 const socketServer = net.createServer((sock) => {
 	sock.on('error', (err) => log(err));
 	sock.setEncoding('utf-8');
+	client.sock_to = sock;
 
 	sock.on('data', data => {
 		let line = getLine(sock, data);
 		if (!client.connected)
-			return sock.write("NO_HTTP_CLIENT: data sent will be lost.\n");
+			return sock.write("ERR: NO_HTTP_CLIENT\n");
     do {
       if (line) {
-        sendLine(sock, client, line);
+        sendLine(line, client.sock);
       }
-      log(line);
+      log(`[msg] [socket] ${line}`);
     } while ((line = getLine(sock)));
 	});
 });
 
-const sendLine = (sock, client, line) => {
-	if (!/^##check-client/.test(line))
-		client.sock.send(line + '\n');
-	else
-		sock.write("200: client connected.\n");
+const sendLine = (line, sock) => {
+	if (sock instanceof WebSocket)
+			return sock.send(line + '\n');
+	return sock?.write(line + '\n');
 }
 
 httpServer.listen(HTTP_PORT, () => log(`[http] listening on port: ${HTTP_PORT}`));
