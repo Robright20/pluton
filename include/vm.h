@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fokrober <fokrober@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:56:22 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/16 18:19:35 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/18 17:03:16 by fokrober         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "op.h"
 # include <stdlib.h>
 # include <stdio.h>
+# include "viz.h"
 # include "../ft_printf/libft/headers/libft.h"
 # include "../ft_printf/headers/ft_printf.h"
 # include "../ft_printf/headers/float_bigint.h"
@@ -36,6 +37,7 @@ typedef struct		s_op
 
 extern	t_op		g_op_tab[];
 int					g_unique_id;
+int					g_viz_fd;
 
 typedef struct		s_player
 {

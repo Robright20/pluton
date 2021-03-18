@@ -22,11 +22,12 @@ const router = (function() {
 	map.set("##new-data", Controller.newData);
   map.set("##kill-process", Controller.killProcess);
 	map.set("##live", Controller.live);
+	map.set("##check-client", Controller.checkClient);
 
 	return function(req) {
 		let path = "";
 		try {
-			const reqSplit = req.split(" ");
+			const reqSplit = req.split("|");
 			path = reqSplit.shift();
 			map.get(path).call(this, ...reqSplit); //maybe set a timeout here
 		} catch (err) {

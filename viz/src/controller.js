@@ -60,5 +60,6 @@ export default {
     delete this.procs[pid];
     log(`[killProcess]`, user, this.procs);
   },
-	live: function(...params) {log("live")}
+	live: function(...params) {log("live")},
+  checkClient: function(...params) {log("checkClient")}
 }

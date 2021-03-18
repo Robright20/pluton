@@ -49,9 +49,13 @@ wss.on('connection', (ws) => {
 });
 
 const socketServer = net.createServer((sock) => {
-	sock.on('error', (err) => log(err));
 	sock.setEncoding('utf-8');
 	client.sock_to = sock;
+
+  sock.on("error", (e) => {
+    if (e.code === "EPIPE")
+      log('[socket] closed.');
+  });
 
 	sock.on('data', data => {
 		let line = getLine(sock, data);
@@ -71,6 +75,28 @@ const sendLine = (line, sock) => {
 			return sock.send(line + '\n');
 	return sock?.write(line + '\n');
 }
+
+socketServer.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.log('Address in use, retrying...');
+    setTimeout(() => {
+      socketServer.close();
+      socketServer.listen(HTTP_PORT);
+    }, 1000);
+  }
+  // log(err);
+});
+
+httpServer.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.log('Address in use, retrying...');
+    setTimeout(() => {
+      socketServer.close();
+      socketServer.listen(HTTP_PORT);
+    }, 1000);
+  }
+  // log(err);
+});
 
 httpServer.listen(HTTP_PORT, () => log(`[http] listening on port: ${HTTP_PORT}`));
 socketServer.listen(SOCK_PORT, () => log(`[socket] listening on port: ${SOCK_PORT}`));

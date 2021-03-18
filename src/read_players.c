@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_players.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fokrober <fokrober@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 18:20:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/17 11:51:05 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/18 17:03:42 by fokrober         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ int			main(int argc, char **argv)
 	int			ret;
 
 	processes = NULL;
+	g_viz_fd = v_init();
 	if (!(ids_av = (int *)ft_memalloc(sizeof(int) * 4)))
 		return (0);
 	(argc == 1) && print_usage();
