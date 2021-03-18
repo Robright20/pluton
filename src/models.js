@@ -6,7 +6,12 @@ const Cell = (function() {
     ctx = this.ctx;
     ctx.clearRect(...this.coords, ctx.scale, ctx.scale)
     this.border = cellDefaultBorder;
-    this.user.setCell(this);
+    if (this.user)
+      this.user.setCell(this);
+    else {
+      const cell = new Cell(this.id, this.text.value);
+      Object.assign(this, cell);
+    }
     this.draw(ctx);
   }
   function drawCell(ctx) {
@@ -51,6 +56,15 @@ module.exports = {
       "#56ccf2",
       "#f2c94c"
     ];
+    function addProc(proc) {
+      this.procList.push(proc);
+    }
+    function removeProc(proc) {
+      const i = this.procList.indexOf(proc);
+
+      if (i >= 0)
+        return this.procList.splice(i, 1);
+    }
     function setCell(cell) {
       cell.bgColor = this.['info'].color;
       cell.lineWidth = 1.0;

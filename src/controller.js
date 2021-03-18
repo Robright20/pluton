@@ -50,7 +50,15 @@ export default {
   },
 	killProcess: function(...params) {
     // delete in the user's procList and then in global's one
-    log("killProcess");
+    // kill-process pid
+    const [pid] = params;
+    const proc = this.procs[pid];
+    const user = proc.uid;
+
+    proc.cell.reset();
+    user.removeProc(proc);
+    delete this.procs[pid];
+    log(`[killProcess]`, user, this.procs);
   },
 	live: function(...params) {log("live")}
 }

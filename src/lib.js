@@ -1,4 +1,20 @@
 module.exports = {
+  client: {
+    _connected: false,
+    set connected(state) {
+      this.__connected = state;
+    },
+    get connected() {
+      return this.__connected;
+    }
+  },
+  MIMETypes: {
+    'html': 'text/html',
+    'css': 'text/css',
+    'js': 'text/javascript; charset=utf-8',
+    'svg': 'image/svg+xml',
+    'ico': 'image/x-icon'
+  },
   getLine: (function () {
     const cache = new Map();
 
