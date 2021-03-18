@@ -1,6 +1,6 @@
 const Cell = (function() {
   const cellDefaultBg = "grey";
-  const cellDefaultBorder = "";
+  const cellDefaultBorder = "#000";
 
   function reset() {
     ctx = this.ctx;
@@ -95,6 +95,7 @@ module.exports = {
       this.procList = [];
       this.load = loadUser;
       this.setCell = setCell;
+      this.removeProc = removeProc;
     }
   })(),
 
