@@ -3,9 +3,10 @@ SRC 		= $(addprefix src/, read_players.c op.c verify_champ.c arena.c\
 				processes.c battle.c tools.c convert.c tools1.c\
 				opcode/add.c opcode/and.c opcode/fork.c opcode/live.c opcode/lld.c\
 				opcode/lldi.c opcode/or.c opcode/st.c opcode/sti.c opcode/sub.c\
-				opcode/xor.c opcode/zjmp.c opcode/ldi.c opcode/ld.c opcode/lfork.c)
+				opcode/xor.c opcode/zjmp.c opcode/ldi.c opcode/ld.c opcode/lfork.c\
+				viz.c)
 
-HEADER 		= $(addprefix include/, vm.h op.h)
+HEADER 		= $(addprefix include/, vm.h op.h viz.h)
 FT_PRINTF 	= ft_printf
 LIBPRINTF 	= ft_printf/libftprintf.a
 CFLAGS 		= -Wall -Wextra -Werror -I./include
