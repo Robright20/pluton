@@ -96,6 +96,8 @@ module.exports = {
       this.load = loadUser;
       this.setCell = setCell;
       this.removeProc = removeProc;
+      this.lives = 0;
+      this.lastLives = 0;
     }
   })(),
 

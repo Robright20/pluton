@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import ReactDOM from "react-dom";
-import Pluton from "./pluton";
+import {Pluton, GeneralInfo} from "./pluton";
+// import {Pluton} from "./pluton";
 import router from "./router";
 import {sleep, getLine, say} from "./lib";
 import {Proc} from "./models";
@@ -23,6 +24,7 @@ import 'regenerator-runtime/runtime'
 */
 
 function Index() {
+  const setters = {};
   const height = 896;
   const width = 896;
   const idxMod = 64;
@@ -30,10 +32,25 @@ function Index() {
   const users = {};
   const procs = {};
 
+  function dispatch(event, ...args) {
+    const callbacks = setters[event] || [];
+
+    callbacks.forEach((cb) => {
+      cb(...args);
+    });
+  }
+
+  function saveSetters(event, cb) {
+    setters[event] ??= [cb];
+
+    if (setters[event].length !== 1)
+      setters[event].push(cb);
+  };
+
   const Draw = function(data) {
     const {ctx, cells} = data;
-
     const ws = new WebSocket(WS_SERVER);
+
     ws.addEventListener('open', () => {
       log('[WS] connected.')
     });
@@ -42,6 +59,7 @@ function Index() {
 
       do {
         if (/^##/.test(line)) {
+          dispatch("status", "RUNNING...");
           router.call({
             users,
             procs,
@@ -49,7 +67,8 @@ function Index() {
             ctx,
             Proc,
             say,
-            ws
+            ws,
+            dispatch
           }, line);
         }
         log("[MSG] " + line);
@@ -60,6 +79,7 @@ function Index() {
   }
 
   return (
+    <div>
     <Pluton
       startDraw={Draw}
       options={({
@@ -68,14 +88,16 @@ function Index() {
         scale,
         idxMod
       })}
-    >
-    </Pluton>
+    />
+    <GeneralInfo saveSetter={saveSetters} />
+    </div>
   );
 }
 
 ReactDOM.render(<Index />, document.getElementById('root'));
 
 /*
+    <Warrior saveSetter={saveSetters} />
 
 ** RANDOM THOUGHTS
 ===================

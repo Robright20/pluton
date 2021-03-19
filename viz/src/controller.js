@@ -3,9 +3,19 @@ import {User, Proc} from "./models";
 const log = console.log;
 
 export default {
-	newCycle: function(...params) {
-    log("newCycle");
-  },
+	newCycle: (function() {
+    let cycle = 0;
+    return function(...params) {
+      // this.updateInfo((prevInfo) => {
+      //   prevInfo.cycles ??= 0;
+      //   prevInfo.cycles += 1;
+      //   log("newCycle");
+      // });
+      cycle++;
+      this.dispatch("cycle", cycle);
+      log("newCycle");
+    }
+  })(),
 	newProcess: function(...params) {
     // new-process [userId, pid, pc]
     const [userId, pid, pc] = params;
@@ -19,6 +29,9 @@ export default {
     user.procList.push(proc);
     this.procs[pid] = proc;
     proc.cell.draw(this.ctx);
+    // this.updateInfo((prevInfo) => {
+    //   prevInfo.users = this.users
+    // });
   },
 	updateProcess: function(...params) {
     // update-process pid [data] (data -> {pc, carry})
