@@ -25,6 +25,7 @@ int		live(t_cursor *processes, t_game_para *parameters)
 			ft_printf("Player %d (%s) is said to be alive\n",
 			-processes->args[0],
 			parameters->players->player[-processes->args[0] - 1]->name);
+		ft_dprintf(g_viz_fd, "##live|%d|%d\n", processes->id, processes->args[0]);
 		parameters->last_live = -processes->args[0];
 	}
 	return (1);

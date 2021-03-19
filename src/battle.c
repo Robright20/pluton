@@ -119,7 +119,10 @@ int			processes_execution(t_cursor **processes, t_game_para *parameters)
 		}
 		cur_process->wait_cycle--;
 		if (!cur_process->wait_cycle)
+		{
 			execute_operations(cur_process, parameters, processes);
+			ft_dprintf(g_viz_fd, "##update-process|%d|%d|%d\n", cur_process->id, cur_process->pc, 0);
+		}
 		cur_process = cur_process->next;
 	}
 	return (1);
@@ -143,6 +146,7 @@ int			start_battle(t_cursor *processes, t_players *players,
 				return (dump_arena(parameters));
 			if ((parameters->verbos >> 1) & 1)
 				ft_printf("It is now cycle %d\n", parameters->cycle_counter);
+			ft_dprintf(g_viz_fd, "##new-cycle\n");
 			processes_execution(&processes, parameters);
 		}
 		processes = the_check(processes, parameters);

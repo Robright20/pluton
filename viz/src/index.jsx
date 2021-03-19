@@ -2,11 +2,12 @@ import React, {useState} from "react";
 import ReactDOM from "react-dom";
 import Pluton from "./pluton";
 import router from "./router";
-import {getLine, say} from "./lib";
+import {sleep, getLine, say} from "./lib";
 import {Proc} from "./models";
 import "./style.css";
 const log = console.log;
 const WS_SERVER = "ws://localhost:3000";
+import 'regenerator-runtime/runtime'
 
 // instructions
 
@@ -36,7 +37,7 @@ function Index() {
     ws.addEventListener('open', () => {
       log('[WS] connected.')
     });
-    ws.addEventListener('message', msg => {
+    ws.addEventListener('message', async (msg) => {
       let line = getLine(ws, msg.data);
 
       do {
@@ -47,12 +48,14 @@ function Index() {
             cells,
             ctx,
             Proc,
-            say
+            say,
+            ws
           }, line);
         }
-        log("[MSG] " + line)
-        ws.send("ACK\n");
+        log("[MSG] " + line);
       } while ((line = getLine(ws)));
+      // await sleep(100);
+      ws.send("ACK\n")
     });
   }
 

@@ -27,7 +27,7 @@ const Cell = (function() {
     ctx.fillRect(x, y, ctx.scale, ctx.scale)
     ctx.strokeStyle = this.border;
     ctx.lineWidth = this.lineWidth;
-    ctx.strokeRect(x, y, ctx.scale, ctx.scale)
+    ctx.strokeRect(x, y, ctx.scale, ctx.scale);
     this.coords = [x, y];
     this.ctx = ctx;
   }
@@ -108,7 +108,7 @@ module.exports = {
     ];
     function setCell() {
       this.cell.bgColor = this.['info'].color;
-      this.cell.lineWidth = 2.5;
+      // this.cell.lineWidth = 2.5;
     }
     return function(uid, pid, cell) {
       this.uid = uid;

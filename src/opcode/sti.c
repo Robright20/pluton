@@ -45,6 +45,7 @@ int		sti(t_cursor *processes, t_game_para *parameters, int *size)
 			ft_printf("       | -> store to %d + %d = \
 %d (with pc and mod %d)\n", processes->args[1], processes->args[2],
 	processes->args[1] + processes->args[2], sum % IDX_MOD + processes->pc);
+		ft_dprintf(g_viz_fd, "##new-data|%d|%d|%d\n", processes->id, index % MEM_SIZE, 4);
 		cpy_toarena(processes->registeries[processes->args[0] - 1],
 														&parameters, index, 4);
 	}

@@ -70,9 +70,12 @@ t_cursor		*remove_process(t_cursor *process, t_cursor *processes,
 
 	cur = processes;
 	if ((parameters->verbos >> 2) & 1)
+	{
 		ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
 		process->id, parameters->cycle_counter - process->last_live,
 		parameters->or_cycle_to_die);
+		ft_dprintf(g_viz_fd, "##kill-process|%d\n", process->id);
+	}
 	while (cur)
 	{
 		tmp = cur->next;

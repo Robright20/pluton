@@ -30,6 +30,7 @@ int		st(t_cursor *processes, t_game_para *parameters, int *size)
 		{
 			index = (processes->pc + ((processes->args[1] % IDX_MOD + MEM_SIZE)
 														% MEM_SIZE)) % MEM_SIZE;
+			ft_dprintf(g_viz_fd, "##new-data|%d|%d|%d\n", processes->id, index % MEM_SIZE, 4);
 			cpy_toarena(arg1, &parameters, index, 4);
 		}
 	}

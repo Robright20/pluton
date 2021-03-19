@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "viz.h"
 
 int	g_fd;
 
@@ -37,5 +38,6 @@ int	ft_dprintf(int fd, const char *restrict format, ...)
 			nbr += write(g_fd, fmt++, 1);
 	}
 	va_end(ap);
+	v_ack_await(fd);
 	return (nbr);
 }

@@ -27,7 +27,7 @@ module.exports = {
         cached = cached.join("\n");
         cache.set(key, cached);
       } else if (data?.length) {
-        cache.set(key, data);
+        cache.set(key, cached);
       }
       return result;
     }
@@ -47,7 +47,8 @@ module.exports = {
   })(),
   sleep: function(time) {
     return new Promise(resolve => {
-      setTimeout(() => resolve("ok"), time);
+      setTimeout(() => {
+        resolve("ok")}, time);
     });
   }
 }

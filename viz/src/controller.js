@@ -3,14 +3,16 @@ import {User, Proc} from "./models";
 const log = console.log;
 
 export default {
-	newCycle: function(...params) {log("newCycle")},
+	newCycle: function(...params) {
+    log("newCycle");
+  },
 	newProcess: function(...params) {
     // new-process [userId, pid, pc]
     const [userId, pid, pc] = params;
     const user = this.users[userId];
     if (user.procList.length === 0) {
       user.load(this.cells, this.ctx, pc);
-      // this.say("We've got a new warrior !");
+      // this.say("Leave the cluster right now !");
     }
     log(`Creating process uid=[${userId}] pid=[${pid}]`);
     const proc = new Proc(user, pid, this.cells[pc]);
@@ -23,6 +25,8 @@ export default {
     const [pid, pc, carry] = params;
     const proc = this.procs[pid];
 
+    if (proc.PC == pc)
+      return ;
     proc.cell.reset();
     proc.PC = pc;
     proc.carry = carry;
@@ -41,12 +45,17 @@ export default {
   },
 	newData: function(...params) {
     // new-data pid idx [data]
-    const [pid, idx, ] = params;
+    let [pid, idx, ] = params;
     const user = this.procs[pid].uid;
-    const cell = this.cells[idx];
+    const ctx = this.ctx;
+    let cell;
 
-    cell.user = user;
-    cell.reset();
+    for (let i = 0; i < 4; i++) {
+      cell = this.cells[idx];
+      cell.user = user;
+      cell.reset();
+      idx++;
+    }
   },
 	killProcess: function(...params) {
     // delete in the user's procList and then in global's one
@@ -55,11 +64,16 @@ export default {
     const proc = this.procs[pid];
     const user = proc.uid;
 
+    log(`killProcess ${pid}`);
     proc.cell.reset();
     user.removeProc(proc);
     delete this.procs[pid];
     log(`[killProcess]`, user, this.procs);
   },
-	live: function(...params) {log("live")},
-  checkClient: function(...params) {log("checkClient")}
+	live: function(...params) {
+    log("live");
+  },
+  checkClient: function(...params) {
+    log("checkClient");
+  }
 }

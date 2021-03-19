@@ -33,5 +33,6 @@ int			lfork(t_cursor *processes, t_game_para *parameters,
 		new_process->wait_cycle =
 			g_op_tab[new_process->opcode - 1].cycle_to_wait;
 	*fprocesses = new_process;
+	ft_dprintf(g_viz_fd, "##new-process|%d|%d|%d\n", -(new_process->player_id), new_process->id, new_process->pc);
 	return (1);
 }
