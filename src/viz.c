@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   viz.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bob <bob@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 10:31:06 by fokrober          #+#    #+#             */
-/*   Updated: 2021/02/05 08:54:38 by fokrober         ###   ########.fr       */
+/*   Updated: 2021/03/20 13:23:26 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@
 ** don't forget to use v_await() to wait for the
 ** child process and close the other side of the
 ** pipe.
-** 
+**
 ** fd[0] => read from the subprocess
 ** fd[1] => write from the subprocess
-** 
+**
 ** opt = 'r' => read from the subprocess
 ** opt = 'w'/others => write from the subprocess
 */
@@ -92,6 +92,7 @@ int		v_init(void)
 
 	ret = v_socket_connect();
 	await_time = 0;
+	line = NULL;
 	while (ret > 0 && await_time < TIMEOUT)
 	{
 		write(ret, "##check-client\n", 15);
@@ -119,6 +120,7 @@ void	v_ack_await(int fd)
 {
 	char	*line;
 
+	line = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
 		ft_putendl_fd(line, 1);

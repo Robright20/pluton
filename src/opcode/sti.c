@@ -6,13 +6,13 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:58:16 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/17 10:16:18 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/20 13:38:22 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/vm.h"
 
-int		if_arg_tind(t_cursor *processes, t_game_para *parameters, int i)
+int			if_arg_tind(t_cursor *processes, t_game_para *parameters, int i)
 {
 	int		index;
 	int		value;
@@ -22,16 +22,22 @@ int		if_arg_tind(t_cursor *processes, t_game_para *parameters, int i)
 	return (value);
 }
 
-int		sti(t_cursor *processes, t_game_para *parameters, int *size)
+t_cursor	*if_size_isreg(t_cursor *processes, int *size)
+{
+	if (size[1] == 1)
+		processes->args[1] = processes->registeries[processes->args[1] - 1];
+	if (size[2] == 1)
+		processes->args[2] = processes->registeries[processes->args[2] - 1];
+	return (processes);
+}
+
+int			sti(t_cursor *processes, t_game_para *parameters, int *size)
 {
 	int		index;
 	int		sum;
 
 	index = processes->pc;
-	if (size[1] == 1)
-		processes->args[1] = processes->registeries[processes->args[1] - 1];
-	if (size[2] == 1)
-		processes->args[2] = processes->registeries[processes->args[2] - 1];
+	processes = if_size_isreg(processes, size);
 	if (processes->args[0] > 0 && processes->args[0] < 17)
 	{
 		if (size[1] == 3)
@@ -45,7 +51,8 @@ int		sti(t_cursor *processes, t_game_para *parameters, int *size)
 			ft_printf("       | -> store to %d + %d = \
 %d (with pc and mod %d)\n", processes->args[1], processes->args[2],
 	processes->args[1] + processes->args[2], sum % IDX_MOD + processes->pc);
-		ft_dprintf(g_viz_fd, "##new-data|%d|%d|%d\n", processes->id, index % MEM_SIZE, 4);
+		ft_dprintf(g_viz_fd, "##new-data|%d|%d|%d\n", processes->id,
+														index % MEM_SIZE, 4);
 		cpy_toarena(processes->registeries[processes->args[0] - 1],
 														&parameters, index, 4);
 	}

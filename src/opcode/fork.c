@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 16:56:09 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/16 18:18:41 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/20 13:21:27 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int			ft_fork(t_cursor *processes, t_game_para *parameters,
 		new_process->wait_cycle =
 			g_op_tab[new_process->opcode - 1].cycle_to_wait;
 	*fprocesses = new_process;
-	ft_dprintf(g_viz_fd, "##new-process|%d|%d|%d\n", -(new_process->player_id), new_process->id, new_process->pc);
+	ft_dprintf(g_viz_fd, "##new-process|%d|%d|%d\n", -(new_process->player_id),
+										new_process->id, new_process->pc);
 	return (1);
 }

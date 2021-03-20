@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   processes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fokrober <fokrober@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:16:11 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/18 17:56:29 by fokrober         ###   ########.fr       */
+/*   Updated: 2021/03/20 13:21:50 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ t_cursor		*add_process(t_cursor *processes, t_players *players, int id)
 		processes = new_process;
 	else
 		new_process->next = processes;
-	ft_dprintf(g_viz_fd, "##new-user|%d|%s|%s|%s|%d\n", -(id + 1), players->player[id]->name, players->player[id]->comment,
-	"code", players->player[id]->size);
-	ft_dprintf(g_viz_fd, "##new-process|%d|%d|%d\n", -(id + 1), g_unique_id, new_process->pc);
+	ft_dprintf(g_viz_fd, "##new-user|%d|%s|%s|%s|%d\n", -(id + 1),
+					players->player[id]->name, players->player[id]->comment,
+											"code", players->player[id]->size);
+	ft_dprintf(g_viz_fd, "##new-process|%d|%d|%d\n", -(id + 1), g_unique_id,
+															new_process->pc);
 	return (new_process);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:55:51 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/16 18:18:41 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/20 13:21:27 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int		live(t_cursor *processes, t_game_para *parameters)
 			ft_printf("Player %d (%s) is said to be alive\n",
 			-processes->args[0],
 			parameters->players->player[-processes->args[0] - 1]->name);
-		ft_dprintf(g_viz_fd, "##live|%d|%d\n", processes->id, processes->args[0]);
+		ft_dprintf(g_viz_fd, "##live|%d|%d\n", processes->id,
+													processes->args[0]);
 		parameters->last_live = -processes->args[0];
 	}
 	return (1);

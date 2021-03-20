@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fokrober <fokrober@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:56:22 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/18 17:03:16 by fokrober         ###   ########.fr       */
+/*   Updated: 2021/03/20 13:41:43 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,4 +141,6 @@ int					if_arg_tind(t_cursor *processes, t_game_para *parameters,
 int					dump_arena(t_game_para *parameters);
 int					print_usage(void);
 void				free_resources(t_players *players, int *ids_av);
+void				check_processes(t_cursor **processes,
+													t_game_para *parameters);
 #endif

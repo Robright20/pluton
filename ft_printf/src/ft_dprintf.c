@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzaboub <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 10:37:01 by mzaboub           #+#    #+#             */
-/*   Updated: 2021/01/15 11:42:52 by mzaboub          ###   ########.fr       */
+/*   Updated: 2021/03/20 13:31:20 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	ft_dprintf(int fd, const char *restrict format, ...)
 
 	nbr = 0;
 	g_fd = fd;
+	if (fd < 0)
+		return (-1);
 	va_start(ap, format);
 	fmt = (char*)format;
 	while (*fmt)

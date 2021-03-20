@@ -6,7 +6,7 @@
 /*   By: aalhaoui <aalhaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 12:53:28 by aalhaoui          #+#    #+#             */
-/*   Updated: 2021/03/17 11:50:46 by aalhaoui         ###   ########.fr       */
+/*   Updated: 2021/03/20 13:41:16 by aalhaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,8 @@
 
 t_cursor	*the_check(t_cursor *processes, t_game_para *parameters)
 {
-	t_cursor	*cur_process;
-	t_cursor	*tmp;
-
 	parameters->check_counter++;
-	cur_process = processes;
-	while (cur_process)
-	{
-		tmp = cur_process->next;
-		if (parameters->cycle_counter - cur_process->last_live >=
-													parameters->cycle_to_die)
-		{
-			processes = remove_process(cur_process, processes, parameters);
-			ft_dprintf(g_viz_fd, "##kill-process|%d\n", cur_process->id);
-		}
-		cur_process = tmp;
-	}
+	check_processes(&processes, parameters);
 	if (parameters->live_counter - parameters->last_live_counter >= NBR_LIVE
 								|| parameters->check_counter % MAX_CHECKS == 0)
 	{
@@ -125,7 +111,8 @@ int			processes_execution(t_cursor **processes, t_game_para *parameters)
 		if (!cur_process->wait_cycle)
 		{
 			execute_operations(cur_process, parameters, processes);
-			ft_dprintf(g_viz_fd, "##update-process|%d|%d|%d\n", cur_process->id, cur_process->pc, 0);
+			ft_dprintf(g_viz_fd, "##update-process|%d|%d|%d\n",
+								cur_process->id, cur_process->pc, 0);
 		}
 		cur_process = cur_process->next;
 	}
@@ -145,8 +132,7 @@ int			start_battle(t_cursor *processes, t_players *players,
 		cycle_to_check = 0;
 		while (++cycle_to_check <= parameters->cycle_to_die)
 		{
-			parameters->cycle_counter++;
-			if (parameters->cycle_counter == parameters->dump)
+			if (++parameters->cycle_counter == parameters->dump)
 				return (dump_arena(parameters));
 			if ((parameters->verbos >> 1) & 1)
 				ft_printf("It is now cycle %d\n", parameters->cycle_counter);
