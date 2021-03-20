@@ -24,7 +24,10 @@ t_cursor	*the_check(t_cursor *processes, t_game_para *parameters)
 		tmp = cur_process->next;
 		if (parameters->cycle_counter - cur_process->last_live >=
 													parameters->cycle_to_die)
+		{
 			processes = remove_process(cur_process, processes, parameters);
+			ft_dprintf(g_viz_fd, "##kill-process|%d\n", cur_process->id);
+		}
 		cur_process = tmp;
 	}
 	if (parameters->live_counter - parameters->last_live_counter >= NBR_LIVE
@@ -33,6 +36,7 @@ t_cursor	*the_check(t_cursor *processes, t_game_para *parameters)
 		parameters->cycle_to_die -= CYCLE_DELTA;
 		if ((parameters->verbos >> 1) & 1)
 			ft_printf("Cycle to die is now %d\n", parameters->cycle_to_die);
+		ft_dprintf(g_viz_fd, "##update-c2d|%d\n", parameters->cycle_to_die);
 		parameters->or_cycle_to_die = parameters->cycle_to_die;
 		(parameters->cycle_to_die <= 0) && (parameters->cycle_to_die = 1);
 		parameters->check_counter = 0;
@@ -151,6 +155,7 @@ int			start_battle(t_cursor *processes, t_players *players,
 		}
 		processes = the_check(processes, parameters);
 	}
+	ft_dprintf(g_viz_fd, "##END\n");
 	ft_printf("Contestant %d, \"%s\", has won !\n", parameters->last_live,
 							players->player[parameters->last_live - 1]->name);
 	ft_memdel((void **)&parameters->arena);

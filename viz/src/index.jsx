@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from "react";
 import ReactDOM from "react-dom";
-import {Pluton, GeneralInfo} from "./pluton";
-// import {Pluton} from "./pluton";
+import {Pluton, GeneralInfo, WarriorsBox} from "./pluton";
 import router from "./router";
-import {sleep, getLine, say} from "./lib";
+import {sleep, getLine, say, events, map4Obj} from "./lib";
 import {Proc} from "./models";
+import fakeUsers from "./users.json";
 import "./style.css";
 const log = console.log;
 const WS_SERVER = "ws://localhost:3000";
@@ -22,9 +22,8 @@ import 'regenerator-runtime/runtime'
 * #kill-process pid
 
 */
-
 function Index() {
-  const setters = {};
+  const {dispatch, saveSetters} = events;
   const height = 896;
   const width = 896;
   const idxMod = 64;
@@ -32,21 +31,7 @@ function Index() {
   const users = {};
   const procs = {};
 
-  function dispatch(event, ...args) {
-    const callbacks = setters[event] || [];
-
-    callbacks.forEach((cb) => {
-      cb(...args);
-    });
-  }
-
-  function saveSetters(event, cb) {
-    setters[event] ??= [cb];
-
-    if (setters[event].length !== 1)
-      setters[event].push(cb);
-  };
-
+  Object.defineProperty(users, "_map", {value: map4Obj});
   const Draw = function(data) {
     const {ctx, cells} = data;
     const ws = new WebSocket(WS_SERVER);
@@ -59,7 +44,6 @@ function Index() {
 
       do {
         if (/^##/.test(line)) {
-          dispatch("status", "RUNNING...");
           router.call({
             users,
             procs,
@@ -75,11 +59,13 @@ function Index() {
       } while ((line = getLine(ws)));
       // await sleep(100);
       ws.send("ACK\n")
+      // dispatch("users", users);
     });
   }
 
   return (
     <div>
+    <GeneralInfo saveSetter={saveSetters} />
     <Pluton
       startDraw={Draw}
       options={({
@@ -89,7 +75,7 @@ function Index() {
         idxMod
       })}
     />
-    <GeneralInfo saveSetter={saveSetters} />
+    <WarriorsBox saveSetter={saveSetters} />
     </div>
   );
 }
@@ -97,7 +83,7 @@ function Index() {
 ReactDOM.render(<Index />, document.getElementById('root'));
 
 /*
-    <Warrior saveSetter={saveSetters} />
+
 
 ** RANDOM THOUGHTS
 ===================

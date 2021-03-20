@@ -23,6 +23,8 @@ const router = (function() {
   map.set("##kill-process", Controller.killProcess);
 	map.set("##live", Controller.live);
 	map.set("##check-client", Controller.checkClient);
+	map.set("##update-c2d", Controller.cycleToDie);
+	map.set("##END", Controller.end);
 
 	return function(req) {
 		let path = "";

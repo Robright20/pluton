@@ -50,5 +50,27 @@ module.exports = {
       setTimeout(() => {
         resolve("ok")}, time);
     });
+  },
+  events: (function() {
+    const setters = {};
+
+    return {
+      dispatch: function(event, ...args) {
+        const callbacks = setters[event] || [];
+
+        callbacks.forEach((cb) => {
+          cb(...args);
+        });
+      },
+      saveSetters: function(event, cb) {
+        setters[event] ??= [cb];
+
+        if (setters[event].length !== 1)
+          setters[event].push(cb);
+      }
+    };
+  })(),
+  map4Obj: function(func) {
+    return Object.entries(this).map(func);
   }
 }

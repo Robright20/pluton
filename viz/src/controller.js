@@ -6,13 +6,10 @@ export default {
 	newCycle: (function() {
     let cycle = 0;
     return function(...params) {
-      // this.updateInfo((prevInfo) => {
-      //   prevInfo.cycles ??= 0;
-      //   prevInfo.cycles += 1;
-      //   log("newCycle");
-      // });
       cycle++;
       this.dispatch("cycle", cycle);
+      this.dispatch("users", this.users);
+      this.dispatch("status", "RUNNING...");
       log("newCycle");
     }
   })(),
@@ -29,9 +26,6 @@ export default {
     user.procList.push(proc);
     this.procs[pid] = proc;
     proc.cell.draw(this.ctx);
-    // this.updateInfo((prevInfo) => {
-    //   prevInfo.users = this.users
-    // });
   },
 	updateProcess: function(...params) {
     // update-process pid [data] (data -> {pc, carry})
@@ -88,5 +82,11 @@ export default {
   },
   checkClient: function(...params) {
     log("checkClient");
+  },
+  cycleToDie: function(...params) {
+      this.dispatch("cycleToDie", params[0]);
+  },
+  end: function(...params) {
+    this.dispatch("status", "FIN");
   }
 }
