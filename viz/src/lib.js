@@ -13,7 +13,9 @@ module.exports = {
     'css': 'text/css',
     'js': 'text/javascript; charset=utf-8',
     'svg': 'image/svg+xml',
-    'ico': 'image/x-icon'
+    'ico': 'image/x-icon',
+    'png': 'image/png',
+    'json': 'application/json'
   },
   getLine: (function () {
     const cache = new Map();
@@ -55,18 +57,17 @@ module.exports = {
     const setters = {};
 
     return {
-      dispatch: function(event, ...args) {
+      dispatch: function(event, args) {
         const callbacks = setters[event] || [];
 
         callbacks.forEach((cb) => {
-          cb(...args);
+          cb.call(this, args);
         });
       },
       saveSetters: function(event, cb) {
-        setters[event] ??= [cb];
+        setters[event] ??= [];
 
-        if (setters[event].length !== 1)
-          setters[event].push(cb);
+        setters[event].push(cb);
       }
     };
   })(),

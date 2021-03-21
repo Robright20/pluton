@@ -8,7 +8,7 @@ export default {
     return function(...params) {
       cycle++;
       this.dispatch("cycle", cycle);
-      this.dispatch("users", this.users);
+      this.dispatch("users", Object.assign({}, this.users));
       this.dispatch("status", "RUNNING...");
       log("newCycle");
     }
@@ -41,13 +41,16 @@ export default {
     proc.setCell();
     proc.cell.draw(this.ctx);
   },
-	newCheck: function(...params) {log("newCheck")},
+	newCheck: function(...params) {
+    this.dispatch("check", Object.assign({}, this.users));
+  },
 	newUser: function(...params) {
     // new-user [userId, name, desc, code, size]
     log(`Creating user [${params[0]}]...`);
     const details = params.slice(1, params.length);
     const user = new User(...details);
 
+    // this.say(`The play`)
     this.users[params[0]] = user;
   },
 	newData: function(...params) {
@@ -75,9 +78,15 @@ export default {
     proc.cell.reset();
     user.removeProc(proc);
     delete this.procs[pid];
+    this.dispatch("users", Object.assign({}, this.users));
     log(`[killProcess]`, user, this.procs);
   },
 	live: function(...params) {
+    const [pid, userId] = params;
+
+    this.users[userId].lives += 1;
+    this.users[userId].lastLives += 1;
+    this.dispatch("users", Object.assign({}, this.users));
     log("live");
   },
   checkClient: function(...params) {

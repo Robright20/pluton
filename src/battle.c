@@ -27,6 +27,8 @@ t_cursor	*the_check(t_cursor *processes, t_game_para *parameters)
 		(parameters->cycle_to_die <= 0) && (parameters->cycle_to_die = 1);
 		parameters->check_counter = 0;
 	}
+	ft_dprintf(g_viz_fd, "##new-check|%d\n", parameters->live_counter -
+		parameters->last_live_counter);
 	parameters->last_live_counter = parameters->live_counter;
 	return (processes);
 }

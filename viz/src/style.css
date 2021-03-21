@@ -40,15 +40,18 @@ body {
 	width: 25%;
 	padding: 5px;
 }
+
 #WarriorsBox{
 	max-width: 898px;
     margin: 5px 0;
 	border: 1px solid black;
 
 }
+
 .Warrior p {
 	margin: 0;
 }
+
 #GeneralInfo {
 	display: flex;
     justify-content: space-around;
@@ -56,4 +59,8 @@ body {
     border: 1px solid black;
     margin: 5px 0;
     padding: 10px;
+}
+
+#GeneralInfo span:last-child, #GeneralInfo span:first-child {
+	width: 150px;
 }

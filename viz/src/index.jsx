@@ -4,7 +4,6 @@ import {Pluton, GeneralInfo, WarriorsBox} from "./pluton";
 import router from "./router";
 import {sleep, getLine, say, events, map4Obj} from "./lib";
 import {Proc} from "./models";
-import fakeUsers from "./users.json";
 import "./style.css";
 const log = console.log;
 const WS_SERVER = "ws://localhost:3000";
@@ -31,7 +30,6 @@ function Index() {
   const users = {};
   const procs = {};
 
-  Object.defineProperty(users, "_map", {value: map4Obj});
   const Draw = function(data) {
     const {ctx, cells} = data;
     const ws = new WebSocket(WS_SERVER);

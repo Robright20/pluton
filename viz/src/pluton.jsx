@@ -1,7 +1,16 @@
 import React, {useState, useEffect} from "react";
+import fakeUsers from "./users.json";
+import {map4Obj, say} from "./lib";
 import {Cell} from "./models";
 
-function Warrior({user}) {
+function Warrior({user, saveSetter, id}) {
+  
+  useEffect(() => {
+    saveSetter("check", (users) => {
+      users[id] ? users[id].lastLives = 0 : false;
+    });
+  }, [saveSetter]);
+
   return (
     <div className="Warrior">
         <p><b>Name </b>: {user.info["name"]}</p>
@@ -9,14 +18,15 @@ function Warrior({user}) {
         <p><b>Size </b>: {user.info["size"]}</p>
         <p><b>Procs </b>: {user.procList.length}</p>
         <p><b>Lives Since </b>:</p>
-        <li><b>last check </b>: {user.lastLives}</li>
-        <li><b>game start </b>: {user.lives}</li>
+        <li><b>last check :</b> {user.lastLives}</li>
+        <li><b>Begining   :</b> {user.lives}</li>
     </div>
   );
 }
 
-export function WarriorsBox({saveSetter, key}) {
-  const [users, updateUsers] = useState();
+export function WarriorsBox({saveSetter}) {
+  const [users, updateUsers] = useState(fakeUsers);
+  Object.defineProperty(users, "_map", {value: map4Obj});
 
   useEffect(() => {
     saveSetter("users", updateUsers);
@@ -24,7 +34,16 @@ export function WarriorsBox({saveSetter, key}) {
 
   return (
     <div id="WarriorsBox">
-      { users?._map(([id, user]) => <Warrior user={user} key={id} />) }
+      {(
+        users._map(([id, user]) => {
+          return (<Warrior
+            user={user}
+            key={id}
+            id={id}
+            saveSetter={saveSetter}
+          />)
+        })
+      )}
     </div>
   );
 }
@@ -43,11 +62,11 @@ export function GeneralInfo({saveSetter}) {
   return (
     <div id="GeneralInfo">
       <b> { cycle == null ? "DEBUT" : status } </b>
-      <span><b> CYCLE </b>: {cycle ?? 0} </span>
         <span><b>CYCLE_TO_DIE </b>: { cycleToDie ?? 1536 }</span>
         <span><b>CYCLE_DELTA </b>: 50</span>
         <span><b>MAX_CHECKS  </b>: 10</span>
         <span><b>NBR_LIVE    </b>: 21</span>
+        <span><b> CYCLE </b>: {cycle ?? 0} </span>
     </div>
   );
 }
@@ -61,7 +80,7 @@ export function Pluton({startDraw, options}) {
 
     Object.assign(ctx, options);
     for (let i = 0; i < 4096; i++) {
-      cell = new Cell(i, "2e");
+      cell = new Cell(i, "00");
       cell.draw(ctx);
       cells.push(cell);
     }
